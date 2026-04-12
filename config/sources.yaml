@@ -1,0 +1,165 @@
+# AI Daily Brief - Data Sources Configuration
+
+sources:
+  # ========== Official Company Blogs ==========
+  openai:
+    name: "OpenAI"
+    url: "https://openai.com/news/"
+    type: "rss"
+    rss_url: "https://openai.com/news/rss.xml"
+    category: "official"
+    enabled: true
+    
+  sam_altman:
+    name: "Sam Altman"
+    url: "https://blog.samaltman.com/"
+    type: "rss"
+    rss_url: "https://blog.samaltman.com/rss"
+    category: "official"
+    enabled: true
+    
+  anthropic:
+    name: "Anthropic"
+    url: "https://www.anthropic.com/research"
+    type: "rss"
+    rss_url: "https://www.anthropic.com/rss.xml"
+    category: "official"
+    enabled: true
+    
+  deepmind:
+    name: "Google DeepMind"
+    url: "https://deepmind.google/blog/"
+    type: "rss"
+    rss_url: "https://deepmind.google/blog/rss.xml"
+    category: "official"
+    enabled: true
+    
+  dario_amodei:
+    name: "Dario Amodei"
+    url: "https://www.darioamodei.com/"
+    type: "rss"
+    rss_url: "https://www.darioamodei.com/feed"
+    category: "official"
+    enabled: true
+
+  # ========== Top Researchers ==========
+  karpathy:
+    name: "Andrej Karpathy"
+    url: "https://karpathy.ai/"
+    type: "rss"
+    rss_url: "https://karpathy.ai/rss.xml"
+    category: "researcher"
+    enabled: true
+    
+  greg_brockman:
+    name: "Greg Brockman"
+    url: "https://blog.gregbrockman.com/"
+    type: "rss"
+    rss_url: "https://blog.gregbrockman.com/rss"
+    category: "researcher"
+    enabled: true
+    
+  lilian_weng:
+    name: "Lilian Weng"
+    url: "https://lilianweng.github.io/"
+    type: "rss"
+    rss_url: "https://lilianweng.github.io/index.xml"
+    category: "researcher"
+    enabled: true
+    
+  colah:
+    name: "Christopher Olah"
+    url: "https://colah.github.io/"
+    type: "rss"
+    rss_url: "https://colah.github.io/rss.xml"
+    category: "researcher"
+    enabled: true
+    
+  simon_willison:
+    name: "Simon Willison"
+    url: "https://simonwillison.net/"
+    type: "rss"
+    rss_url: "https://simonwillison.net/atom.xml"
+    category: "researcher"
+    enabled: true
+    
+  fchollet:
+    name: "François Chollet"
+    url: "https://fchollet.com/"
+    type: "rss"
+    rss_url: "https://fchollet.com/feed"
+    category: "researcher"
+    enabled: true
+
+  # ========== Tech Media ==========
+  ai_hub_today:
+    name: "AI Hub Today"
+    url: "https://ai.hubtoday.app/"
+    type: "rss"
+    rss_url: "https://ai.hubtoday.app/feed"
+    category: "media"
+    enabled: true
+    
+  hn_chinese:
+    name: "Hacker News 中文"
+    url: "https://hn.buzzing.cc/"
+    type: "rss"
+    rss_url: "https://hn.buzzing.cc/feed"
+    category: "media"
+    enabled: true
+
+  # ========== Chinese AI Media ==========
+  jiqizhixin:
+    name: "机器之心"
+    url: "https://www.jiqizhixin.com/"
+    type: "rss"
+    rss_url: "https://www.jiqizhixin.com/rss"
+    category: "chinese"
+    enabled: true
+    
+  qbitai:
+    name: "量子位"
+    url: "https://www.qbitai.com/"
+    type: "rss"
+    rss_url: "https://www.qbitai.com/feed"
+    category: "chinese"
+    enabled: true
+    
+  xinzhiyuan:
+    name: "新智元"
+    url: "https://www.xinzhiyuan.com/"
+    type: "rss"
+    rss_url: "https://www.xinzhiyuan.com/feed"
+    category: "chinese"
+    enabled: true
+    
+  zhidx:
+    name: "智东西"
+    url: "https://www.zhidx.com/"
+    type: "rss"
+    rss_url: "https://www.zhidx.com/feed"
+    category: "chinese"
+    enabled: true
+    
+  paperweekly:
+    name: "PaperWeekly"
+    url: "https://www.paperweekly.cn/"
+    type: "rss"
+    rss_url: "https://www.paperweekly.cn/rss"
+    category: "chinese"
+    enabled: true
+    
+  infoq_ai:
+    name: "InfoQ AI"
+    url: "https://www.infoq.cn/ai"
+    type: "rss"
+    rss_url: "https://www.infoq.cn/feed/ai"
+    category: "chinese"
+    enabled: true
+
+# Category display names
+categories:
+  official: "🏢 大模型公司官方"
+  researcher: "👨‍🔬 顶级研究员"
+  media: "📰 技术媒体"
+  chinese: "🇨🇳 国内 AI 媒体"

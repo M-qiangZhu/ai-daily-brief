@@ -1,0 +1,13 @@
+{
+  "success": true,
+  "total_articles": 7,
+  "categories": {
+    "chinese": 7
+  },
+  "sources": [
+    "量子位",
+    "InfoQ AI"
+  ],
+  "output_path": "dist/index.html",
+  "generated_at": "2026-04-12T08:01:21.884932"
+}
