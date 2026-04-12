@@ -5,8 +5,7 @@ sources:
   openai:
     name: "OpenAI"
     url: "https://openai.com/news/"
-    type: "rss"
-    rss_url: "https://openai.com/news/rss.xml"
+    type: "web"  # OpenAI RSS 不稳定，改用网页抓取
     category: "official"
     enabled: true
     
@@ -21,8 +20,7 @@ sources:
   anthropic:
     name: "Anthropic"
     url: "https://www.anthropic.com/research"
-    type: "rss"
-    rss_url: "https://www.anthropic.com/rss.xml"
+    type: "web"  # RSS 404，改用网页抓取
     category: "official"
     enabled: true
     
@@ -46,8 +44,7 @@ sources:
   karpathy:
     name: "Andrej Karpathy"
     url: "https://karpathy.ai/"
-    type: "rss"
-    rss_url: "https://karpathy.ai/rss.xml"
+    type: "web"  # 改为网页抓取，他的rss.xml实际是html
     category: "researcher"
     enabled: true
     
@@ -63,7 +60,7 @@ sources:
     name: "Lilian Weng"
     url: "https://lilianweng.github.io/"
     type: "rss"
-    rss_url: "https://lilianweng.github.io/index.xml"
+    rss_url: "https://lilianweng.github.io/feed.xml"  # 修正链接
     category: "researcher"
     enabled: true
     
@@ -79,7 +76,7 @@ sources:
     name: "Simon Willison"
     url: "https://simonwillison.net/"
     type: "rss"
-    rss_url: "https://simonwillison.net/atom.xml"
+    rss_url: "https://simonwillison.net/feed/everything/"  # 修正链接
     category: "researcher"
     enabled: true
     

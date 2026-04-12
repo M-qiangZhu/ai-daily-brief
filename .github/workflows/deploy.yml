@@ -1,9 +1,10 @@
 name: Generate and Deploy AI Daily Brief
 
 on:
-  # Run daily at 08:00 CST (00:00 UTC)
+  # Run twice daily at 08:00 and 20:00 CST (00:00 and 12:00 UTC)
   schedule:
-    - cron: '0 0 * * *'
+    - cron: '0 0 * * *'   # 08:00 CST
+    - cron: '0 12 * * *'  # 20:00 CST
   
   # Allow manual trigger
   workflow_dispatch:
@@ -29,7 +30,7 @@ jobs:
     
     - name: Generate newsletter
       run: |
-        python main.py --days 1
+        python main.py --days 2
     
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v3
