@@ -398,8 +398,9 @@
             {% if articles %}
             <section class="category-section">
                 <div class="category-header">
-                    <span class="category-icon">{{ categories.get(category_key, category_key)[:2] }}</span>
-                    <h2 class="category-title">{{ categories.get(category_key, category_key)[3:] }}</h2>
+                    {% set cat_name = categories.get(category_key, category_key) %}
+                    <span class="category-icon">{{ cat_name.split(' ')[0] }}</span>
+                    <h2 class="category-title">{{ ' '.join(cat_name.split(' ')[1:]) }}</h2>
                     <span class="category-count">{{ articles|length }} 篇</span>
                 </div>
                 <div class="articles-grid">

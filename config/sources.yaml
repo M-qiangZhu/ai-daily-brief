@@ -202,7 +202,7 @@ sources:
 
 # Category display names - 优先级排序（靠前的先展示）
 categories:
-  chinese_ai: "🇨🇳 国内 AI 媒体"           # 第一优先级
-  foreign_official: "🏢 国际公司官方"      # 第二
-  foreign_researcher: "👨‍🔬 国际研究员"     # 第三
-  foreign_media: "📰 国际媒体"            # 第四
+  chinese_ai: "🇨🇳 国内 AI 媒体"
+  foreign_official: "🏢 国际公司官方"
+  foreign_researcher: "👨‍🔬 国际研究员"
+  foreign_media: "📰 国际媒体"
