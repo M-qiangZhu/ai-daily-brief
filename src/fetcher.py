@@ -1,4 +1,8 @@
 """
+AI Daily Brief - Content Fetcher
+Fetches news from RSS feeds and websites
+"""
+
 import asyncio
 import logging
 from dataclasses import dataclass
