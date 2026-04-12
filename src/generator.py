@@ -40,8 +40,8 @@ class HTMLGenerator:
         if date is None:
             date = datetime.now()
         
-        # Group articles by category
-        grouped = self._group_by_category(articles)
+        # Group articles by category (maintaining priority order)
+        grouped = self._group_by_category(articles, categories)
         
         # Calculate stats
         stats = {
@@ -116,8 +116,9 @@ class HTMLGenerator:
         logger.info(f"Saved history index to {history_path}")
         return history_path
     
-    def _group_by_category(self, articles: List[Article]) -> Dict[str, List[Article]]:
-        """Group articles by category"""
+    def _group_by_category(self, articles: List[Article], categories: Dict[str, str]) -> Dict[str, List[Article]]:
+        """Group articles by category, maintaining category priority order"""
+        # First group articles
         grouped = {}
         for article in articles:
             cat = article.category
@@ -129,7 +130,18 @@ class HTMLGenerator:
         for cat in grouped:
             grouped[cat].sort(key=lambda x: x.published, reverse=True)
         
-        return grouped
+        # Reorder by category priority (as defined in categories dict)
+        ordered_grouped = {}
+        for cat in categories.keys():
+            if cat in grouped and grouped[cat]:
+                ordered_grouped[cat] = grouped[cat]
+        
+        # Add any remaining categories not in the priority list
+        for cat, articles_list in grouped.items():
+            if cat not in ordered_grouped and articles_list:
+                ordered_grouped[cat] = articles_list
+        
+        return ordered_grouped
     
     @staticmethod
     def _format_date(value: datetime) -> str:

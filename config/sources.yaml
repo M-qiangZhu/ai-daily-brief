@@ -1,14 +1,120 @@
 # AI Daily Brief - Data Sources Configuration
-# 所有信息源均为普通网址，通过网页抓取获取内容
+# 国内权威媒体使用 RSS，国外网站使用网页抓取
 
 sources:
-  # ========== Official Company Blogs ==========
+  # ========== 国内权威媒体 RSS ==========
+  people_ai:
+    name: "人民网科技"
+    url: "http://tech.people.com.cn/"
+    type: "rss"
+    rss_url: "http://www.people.com.cn/rss/tech.xml"
+    category: "chinese_news"
+    enabled: true
+    
+  xinhua_tech:
+    name: "新华网科技"
+    url: "http://www.news.cn/tech/"
+    type: "rss"
+    rss_url: "http://www.xinhuanet.com/politics/news_politics.xml"
+    category: "chinese_news"
+    enabled: true
+    
+  cctv_tech:
+    name: "央视网科技"
+    url: "https://tech.cctv.com/"
+    type: "web"
+    selector: "article, .news-item, [class*='news']"
+    category: "chinese_news"
+    enabled: true
+    
+  netease_tech:
+    name: "网易科技"
+    url: "https://tech.163.com/"
+    type: "rss"
+    rss_url: "https://tech.163.com/special/0009KH/rss_miliao.xml"
+    category: "chinese_news"
+    enabled: true
+    
+  sina_tech:
+    name: "新浪科技"
+    url: "https://tech.sina.com.cn/"
+    type: "rss"
+    rss_url: "https://rss.sina.com.cn/tech/rollnews.xml"
+    category: "chinese_news"
+    enabled: true
+    
+  qq_tech:
+    name: "腾讯科技"
+    url: "https://new.qq.com/ch/tech/"
+    type: "web"
+    selector: "article, .news-item, [class*='news'], .item"
+    category: "chinese_news"
+    enabled: true
+
+  # ========== 国内AI专业媒体 (RSS优先) ==========
+  jiqizhixin:
+    name: "机器之心"
+    url: "https://www.jiqizhixin.com/"
+    type: "rss"
+    rss_url: "https://www.jiqizhixin.com/rss"
+    category: "chinese_ai"
+    enabled: true
+    
+  qbitai:
+    name: "量子位"
+    url: "https://www.qbitai.com/"
+    type: "rss"
+    rss_url: "https://www.qbitai.com/feed"
+    category: "chinese_ai"
+    enabled: true
+    
+  infoq_ai:
+    name: "InfoQ AI"
+    url: "https://www.infoq.cn/ai"
+    type: "rss"
+    rss_url: "https://www.infoq.cn/feed/ai"
+    category: "chinese_ai"
+    enabled: true
+    
+  xinzhiyuan:
+    name: "新智元"
+    url: "https://www.xinzhiyuan.com/"
+    type: "rss"
+    rss_url: "https://www.xinzhiyuan.com/feed"
+    category: "chinese_ai"
+    enabled: true
+    
+  zhidx:
+    name: "智东西"
+    url: "https://www.zhidx.com/"
+    type: "rss"
+    rss_url: "https://www.zhidx.com/feed"
+    category: "chinese_ai"
+    enabled: true
+    
+  paperweekly:
+    name: "PaperWeekly"
+    url: "https://www.paperweekly.cn/"
+    type: "rss"
+    rss_url: "https://www.paperweekly.cn/rss"
+    category: "chinese_ai"
+    enabled: true
+    
+  aibase:
+    name: "AIbase"
+    url: "https://www.aibase.cn/"
+    type: "web"
+    selector: "article, [class*='article'], .post, .news-item"
+    category: "chinese_ai"
+    enabled: true
+
+  # ========== 国外官方 (网页抓取) ==========
   openai:
     name: "OpenAI Blog"
     url: "https://openai.com/news/"
     type: "web"
-    selector: "article, [class*='article'], .post, .blog-post"  # 文章列表选择器
-    category: "official"
+    selector: "article, [class*='article'], .post, .blog-post"
+    category: "foreign_official"
     enabled: true
     
   anthropic:
@@ -16,7 +122,7 @@ sources:
     url: "https://www.anthropic.com/news"
     type: "web"
     selector: "article, [class*='article'], .card"
-    category: "official"
+    category: "foreign_official"
     enabled: true
     
   deepmind:
@@ -24,24 +130,16 @@ sources:
     url: "https://deepmind.google/blog/"
     type: "web"
     selector: "article, .blog-post, [class*='post']"
-    category: "official"
-    enabled: true
-    
-  google_ai:
-    name: "Google AI Blog"
-    url: "https://ai.googleblog.com/"
-    type: "web"
-    selector: "article, .post, .entry"
-    category: "official"
+    category: "foreign_official"
     enabled: true
 
-  # ========== Top Researchers ==========
+  # ========== 国外研究员 (网页抓取) ==========
   karpathy:
     name: "Andrej Karpathy"
     url: "https://karpathy.ai/"
     type: "web"
-    selector: null  # 首页本身就是内容
-    category: "researcher"
+    selector: null
+    category: "foreign_researcher"
     enabled: true
     
   lilian_weng:
@@ -49,7 +147,7 @@ sources:
     url: "https://lilianweng.github.io/"
     type: "web"
     selector: "article, .post, [class*='post']"
-    category: "researcher"
+    category: "foreign_researcher"
     enabled: true
     
   simon_willison:
@@ -57,7 +155,7 @@ sources:
     url: "https://simonwillison.net/"
     type: "web"
     selector: "article, .entry, .blog-post"
-    category: "researcher"
+    category: "foreign_researcher"
     enabled: true
     
   distill:
@@ -65,41 +163,25 @@ sources:
     url: "https://distill.pub/"
     type: "web"
     selector: "article, .post"
-    category: "researcher"
-    enabled: true
-    
-  colah:
-    name: "Christopher Olah"
-    url: "https://colah.github.io/"
-    type: "web"
-    selector: "article, .post"
-    category: "researcher"
-    enabled: true
-    
-  fchollet:
-    name: "François Chollet"
-    url: "https://fchollet.com/"
-    type: "web"
-    selector: "article, .post, [class*='post']"
-    category: "researcher"
+    category: "foreign_researcher"
     enabled: true
     
   dario_amodei:
     name: "Dario Amodei"
     url: "https://darioamodei.com/"
     type: "web"
-    selector: "article, .post, [class*='essay'], [class*='post']"
-    category: "researcher"
+    selector: "article, .post, [class*='essay']"
+    category: "foreign_researcher"
     enabled: true
 
-  # ========== Tech Media & Aggregators ==========
+  # ========== 国外媒体 (网页抓取) ==========
   hackernews:
     name: "Hacker News"
     url: "https://news.ycombinator.com/"
     type: "web"
-    selector: ".athing"  # HN 特有的文章条目 class
-    link_selector: ".titleline > a"  # 链接位置
-    category: "media"
+    selector: ".athing"
+    link_selector: ".titleline > a"
+    category: "foreign_media"
     enabled: true
     
   ai_hub_today:
@@ -107,93 +189,13 @@ sources:
     url: "https://ai.hubtoday.app/"
     type: "web"
     selector: "article, .post, .card"
-    category: "media"
-    enabled: true
-    
-  reddit_machinelearning:
-    name: "Reddit r/MachineLearning"
-    url: "https://www.reddit.com/r/MachineLearning/hot/"
-    type: "web"
-    selector: "[data-testid='post-container'], .Post"
-    category: "media"
+    category: "foreign_media"
     enabled: true
 
-  # ========== Chinese AI Media ==========
-  aibase:
-    name: "AIbase"
-    url: "https://www.aibase.cn/"
-    type: "web"
-    selector: "article, [class*='article'], .post, .news-item, .item"
-    category: "chinese"
-    enabled: true
-    
-  jiqizhineng:
-    name: "机器智能"
-    url: "https://www.jiqizhineng.com/"
-    type: "web"
-    selector: "article, .post, [class*='post']"
-    category: "chinese"
-    enabled: true
-    
-  aijieshuo:
-    name: "AI解说"
-    url: "https://www.aijieshuo.com/"
-    type: "web"
-    selector: "article, .post, [class*='article']"
-    category: "chinese"
-    enabled: true
-    
-  infoq_ai:
-    name: "InfoQ AI"
-    url: "https://www.infoq.cn/ai"
-    type: "web"
-    selector: "article, [class*='article'], .card"
-    category: "chinese"
-    enabled: true
-    
-  jiqizhixin:
-    name: "机器之心"
-    url: "https://www.jiqizhixin.com/"
-    type: "web"
-    selector: "article, [class*='article'], .post-item"
-    category: "chinese"
-    enabled: true
-    
-  qbitai:
-    name: "量子位"
-    url: "https://www.qbitai.com/"
-    type: "web"
-    selector: "article, [class*='article'], .post"
-    category: "chinese"
-    enabled: true
-    
-  xinzhiyuan:
-    name: "新智元"
-    url: "https://www.xinzhiyuan.com/"
-    type: "web"
-    selector: "article, .post, [class*='news']"
-    category: "chinese"
-    enabled: true
-    
-  zhidx:
-    name: "智东西"
-    url: "https://www.zhidx.com/"
-    type: "web"
-    selector: "article, [class*='article'], .item"
-    category: "chinese"
-    enabled: true
-    
-  paperweekly:
-    name: "PaperWeekly"
-    url: "https://www.paperweekly.cn/"
-    type: "web"
-    selector: "article, .post, [class*='paper']"
-    category: "chinese"
-    enabled: true
-
-# Category display names
+# Category display names - 优先级排序（靠前的先展示）
 categories:
-  official: "🏢 大模型公司官方"
-  researcher: "👨‍🔬 顶级研究员"
-  media: "📰 技术媒体"
-  chinese: "🇨🇳 国内 AI 媒体"
+  chinese_news: "🇨🇳 国内权威媒体"      # 最高优先级
+  chinese_ai: "🇨🇳 国内 AI 媒体"        # 第二优先级
+  foreign_official: "🏢 国际公司官方"     # 第三
+  foreign_researcher: "👨‍🔬 国际研究员"    # 第四
+  foreign_media: "📰 国际媒体"           # 第五

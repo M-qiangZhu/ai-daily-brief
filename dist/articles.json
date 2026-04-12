@@ -2,31 +2,241 @@
   {
     "title": "Multimodal Neurons in Artificial Neural Networks",
     "url": "https://github.com/distillpub/post--multimodal/issues?q=is%3Aissue+label%3Apeer-review",
-    "summary": "【原文】Multimodal Neurons in Artificial Neural Networks\n\n【摘要】Gabriel Goh, Nick Cammarata †, Chelsea Voss †, Shan Carter, Michael Petrov, Ludwig Schubert, Alec Radford, and Chris Olah",
-    "published": "2026-04-12T12:34:51.916003",
+    "summary": "Gabriel Goh, Nick Cammarata †, Chelsea Voss †, Shan Carter, Michael Petrov, Ludwig Schubert, Alec Radford, and Chris Olah",
+    "published": "2026-04-12T13:36:55.584968",
     "source_name": "Distill.pub",
     "source_url": "https://distill.pub/",
-    "category": "researcher",
-    "author": null
-  },
-  {
-    "title": "Newsroom",
-    "url": "mailto:press@anthropic.com",
-    "summary": "【原文】Newsroom\n\n【摘要】A new initiative that brings together Amazon Web Services, Anthropic, Apple, Broadcom, Cisco, CrowdStrike, Google, JPMorganChase, the Linux Foundation, Microsoft, NVIDIA, and Palo Alto Networks in an effort to secure the world's most critical software.",
-    "published": "2026-04-12T12:34:11.915308",
-    "source_name": "Anthropic",
-    "source_url": "https://www.anthropic.com/news",
-    "category": "official",
+    "category": "foreign_researcher",
     "author": null
   },
   {
     "title": "Essays",
     "url": "https://www.anthropic.com/",
-    "summary": "【原文】Essays\n\n【摘要】Dario Amodei is the CEO ofAnthropic, a public benefit corporation dedicated to building AI systems that are steerable, interpretable and safe....More",
-    "published": "2026-04-12T12:34:09.915402",
+    "summary": "Dario Amodei is the CEO ofAnthropic, a public benefit corporation dedicated to building AI systems that are steerable, interpretable and safe....More",
+    "published": "2026-04-12T13:36:15.574500",
     "source_name": "Dario Amodei",
     "source_url": "https://darioamodei.com/",
-    "category": "researcher",
+    "category": "foreign_researcher",
     "author": null
+  },
+  {
+    "title": "Newsroom",
+    "url": "mailto:press@anthropic.com",
+    "summary": "A new initiative that brings together Amazon Web Services, Anthropic, Apple, Broadcom, Cisco, CrowdStrike, Google, JPMorganChase, the Linux Foundation, Microsoft, NVIDIA, and Palo Alto Networks in an effort to secure the world's most critical software.",
+    "published": "2026-04-12T13:36:11.585708",
+    "source_name": "Anthropic",
+    "source_url": "https://www.anthropic.com/news",
+    "category": "foreign_official",
+    "author": null
+  },
+  {
+    "title": "中共中央办公厅 国务院办公厅印发《乡村振兴责任制实施办法》",
+    "url": "http://www.news.cn/politics/2022-12/14/c_1129206017.htm",
+    "summary": "近日，中共中央办公厅、国务院办公厅印发了《乡村振兴责任制实施办法》，并发出通知，要求各地区各部门认真遵照执行。",
+    "published": "2026-04-12T13:36:01.456269",
+    "source_name": "新华网科技",
+    "source_url": "http://www.news.cn/tech/",
+    "category": "chinese_news",
+    "author": "www.xinhuanet.com"
+  },
+  {
+    "title": "2亿年前蝈蝈嗓门有多高？化石研究得出答案",
+    "url": "http://www.news.cn/politics/2022-12/14/c_1129206396.htm",
+    "summary": "12月13日，《美国科学院院报》（PNAS）在线发表了一项中国科学院南京地质古生物研究所的成果，科研人员对全球各大博物馆1000多块螽斯化石进行研究，重建了其鸣声频率的宏演化历史，发现在2.4亿年前的三叠纪，螽斯可以发出高达12—16kHz的鸣声,这也是整个动物界最古老的高频声音记录。",
+    "published": "2026-04-12T13:36:01.456104",
+    "source_name": "新华网科技",
+    "source_url": "http://www.news.cn/tech/",
+    "category": "chinese_news",
+    "author": "www.xinhuanet.com"
+  },
+  {
+    "title": "北京今天最高温0℃山区有零星小雪 明起三天冷空气又将来降温",
+    "url": "http://www.news.cn/politics/2022-12/14/c_1129206415.htm",
+    "summary": "今天（12月14日），北京气温将有所回升，最高气温0℃，下午天空云量增多，山区有零星小雪。明起三天，又有冷空气影响北京，北风将再度增大，气温逐渐下降。本周冷空气频繁，气温持续较低，公众请注意防寒保暖。",
+    "published": "2026-04-12T13:36:01.455979",
+    "source_name": "新华网科技",
+    "source_url": "http://www.news.cn/tech/",
+    "category": "chinese_news",
+    "author": "www.xinhuanet.com"
+  },
+  {
+    "title": "加强和完善现代金融监管（认真学习宣传贯彻党的二十大精神）",
+    "url": "http://www.news.cn/politics/2022-12/14/c_1129206432.htm",
+    "summary": "党的二十大报告提出，加强和完善现代金融监管，强化金融稳定保障体系，依法将各类金融活动全部纳入监管，守住不发生系统性风险底线。必须按照党中央决策部署，深化金融体制改革，推进金融安全网建设，持续强化金融风险防控能力。",
+    "published": "2026-04-12T13:36:01.455850",
+    "source_name": "新华网科技",
+    "source_url": "http://www.news.cn/tech/",
+    "category": "chinese_news",
+    "author": "www.xinhuanet.com"
+  },
+  {
+    "title": "学习进行时｜二十大后重要外交活动，这些关键词习近平总书记反复提及",
+    "url": "http://www.news.cn/politics/2022-12/14/c_1129206651.htm",
+    "summary": "新华网 > 时政 > 正文 2022 12 / 14 09:12:29 来源：新华网 学习进行时｜二十大后重要外交活动，这些关键词习近平总书记反复提及 字体： 小 中 大 分享到： 学习进行时｜二十大后重要外交活动，这些关键词习近平总书记反复提及 2022-12-14 09:12:29 来源： 新华网 【纠错】 【责任编辑:吴咏玲 】 阅读下一篇： 31 010020020110000000000000011100001129206651。",
+    "published": "2026-04-12T13:36:01.455499",
+    "source_name": "新华网科技",
+    "source_url": "http://www.news.cn/tech/",
+    "category": "chinese_news",
+    "author": "www.xinhuanet.com"
+  },
+  {
+    "title": "明起新一轮冷空气接踵而至 我国大部将迎大风降温",
+    "url": "http://www.news.cn/politics/2022-12/14/c_1129206671.htm",
+    "summary": "今天（12月14日），全国大部降水仍稀少，雨雪零散分布，冷空气影响也进入尾声阶段。不过，从明天开始，新一轮实力更强的冷空气接踵而至，将率先从新疆北部展开，随后逐渐给我国大部地区带来大风降温天气，同时西南、江汉等地降水也将增多。",
+    "published": "2026-04-12T13:36:01.327651",
+    "source_name": "新华网科技",
+    "source_url": "http://www.news.cn/tech/",
+    "category": "chinese_news",
+    "author": "www.xinhuanet.com"
+  },
+  {
+    "title": "习近平将向《生物多样性公约》第十五次缔约方大会第二阶段高级别会议开幕式致辞",
+    "url": "http://www.news.cn/politics/2022-12/14/c_1129206906.htm",
+    "summary": "外交部发言人华春莹14日宣布：国家主席习近平将于12月15日以视频方式向《生物多样性公约》第十五次缔约方大会第二阶段高级别会议开幕式致辞。",
+    "published": "2026-04-12T13:36:01.327486",
+    "source_name": "新华网科技",
+    "source_url": "http://www.news.cn/tech/",
+    "category": "chinese_news",
+    "author": "www.xinhuanet.com"
+  },
+  {
+    "title": "6年、10年、12年，他们都经历了什么？",
+    "url": "http://www.news.cn/politics/2022-12/14/c_1129206833.htm",
+    "summary": "为了再次“飞天”圆梦，指令长陈冬准备了6年，刘洋已经准备整整10年，而首次飞向太空的蔡旭哲为了这一天，已经刻苦训练了12年。",
+    "published": "2026-04-12T13:36:01.327323",
+    "source_name": "新华网科技",
+    "source_url": "http://www.news.cn/tech/",
+    "category": "chinese_news",
+    "author": "www.xinhuanet.com"
+  },
+  {
+    "title": "关于BQ.1，你需要知道的几件事——",
+    "url": "http://www.news.cn/politics/2022-12/14/c_1129206954.htm",
+    "summary": "近日网络流传：代号“地狱犬”的新冠变异毒株，在日本“杀疯了”？消息称，一种名为BQ.1.1的新型变异毒株已经出现。该毒株的传染性和致死率都很高，被称作“地狱犬”，已经在日本“杀疯了”。",
+    "published": "2026-04-12T13:36:01.327135",
+    "source_name": "新华网科技",
+    "source_url": "http://www.news.cn/tech/",
+    "category": "chinese_news",
+    "author": "www.xinhuanet.com"
+  },
+  {
+    "title": "为什么不再公布无症状感染者相关信息？中疾控专家解读",
+    "url": "http://www.news.cn/politics/2022-12/14/c_1129207083.htm",
+    "summary": "新华网 > > 正文 2022 12 / 14 10:47:02 来源：中国疾控动态微信公众号 为什么不再公布无症状感染者相关信息？中疾控专家解读 字体： 小 中 大 分享到： 为什么不再公布无症状感染者相关信息？中疾控专家解读 2022-12-14 10:47:02 来源： 中国疾控动态微信公众号 新冠肺炎疫情数据的专家解读 近日，我们接到群众对新冠肺炎疫情数据的有关疑问，现请中国疾控中心应急中心李群主任作出解答。一、近期我们从国家公布的新冠肺炎疫情数据，发现呈现下降趋势，和群众感知不一致，是什么原因？ 2020年1月20日，新型冠状病毒肺炎纳入《传染病防治法》规定的乙类传染病，并采取甲类传...",
+    "published": "2026-04-12T13:36:01.326824",
+    "source_name": "新华网科技",
+    "source_url": "http://www.news.cn/tech/",
+    "category": "chinese_news",
+    "author": "www.xinhuanet.com"
+  },
+  {
+    "title": "老年人现在打疫苗晚不晚？受基础病影响的能不能打？独居老人是否有必要接种？【科学防疫小贴士】",
+    "url": "http://www.news.cn/politics/2022-12/14/c_1129207047.htm",
+    "summary": "在目前新冠流行的情况下，建议没有完成接种的老年人尽快接种，尽快按照程序完成全程和加强免疫，使疫苗的保护作用得到更好发挥。",
+    "published": "2026-04-12T13:36:01.126522",
+    "source_name": "新华网科技",
+    "source_url": "http://www.news.cn/tech/",
+    "category": "chinese_news",
+    "author": "www.xinhuanet.com"
+  },
+  {
+    "title": "心血管病患者一旦感染新冠病毒，居家应该注意什么，如何避免基础病加重，何时需要去就医……【科学防疫小贴士】",
+    "url": "http://www.news.cn/politics/2022-12/14/c_1129207057.htm",
+    "summary": "心血管病患者如何做好防护避免被新冠病毒感染。一旦感染应该注意什么，基础病病情加重怎么办，如何评估是否需要去医院……北京安贞医院常务副院长周玉杰来解答。",
+    "published": "2026-04-12T13:36:01.126463",
+    "source_name": "新华网科技",
+    "source_url": "http://www.news.cn/tech/",
+    "category": "chinese_news",
+    "author": "www.xinhuanet.com"
+  },
+  {
+    "title": "国家卫健委发布新冠病毒疫苗第二剂次加强免疫接种实施方案",
+    "url": "http://www.news.cn/politics/2022-12/14/c_1129207117.htm",
+    "summary": "为深入贯彻落实党中央、国务院决策部署，进一步做好新冠肺炎疫情应对工作，保障人民群众生命安全和身体健康，经研究，现提出新冠病毒疫苗第二剂次加强免疫接种实施方案。",
+    "published": "2026-04-12T13:36:01.126393",
+    "source_name": "新华网科技",
+    "source_url": "http://www.news.cn/tech/",
+    "category": "chinese_news",
+    "author": "www.xinhuanet.com"
+  },
+  {
+    "title": "疫情防控措施优化 各地复商复市进行时",
+    "url": "http://www.news.cn/politics/2022-12/14/c_1129207168.htm",
+    "summary": "新华网 > > 正文 2022 12 / 14 11:19:03 来源：新华社 疫情防控措施优化 各地复商复市进行时 字体： 小 中 大 分享到： 疫情防控措施优化 各地复商复市进行时 2022-12-14 11:19:03 来源： 新华社 12月7日，国务院联防联控机制综合组公布优化落实疫情防控的“新十条”。城市景区重新开放、派发消费券……近日，全国多地加大复商复市力度，有序恢复正常生产生活秩序。编辑：韩依格 记者：徐伟、王学涛、王怿文、李涛、张海舟、胡拿云、张嘉晋、岳文婷、陈思 报道员：王俊、瑜焕 部分视频来源：绍兴新闻综合频道 新华社音视频部制作 【纠错】 【责任编辑:王佳宁 】 阅读下...",
+    "published": "2026-04-12T13:36:01.126261",
+    "source_name": "新华网科技",
+    "source_url": "http://www.news.cn/tech/",
+    "category": "chinese_news",
+    "author": "www.xinhuanet.com"
+  },
+  {
+    "title": "微视频｜“新”在中国",
+    "url": "http://www.news.cn/politics/2022-12/14/c_1129207254.htm",
+    "summary": "新华网 > > 正文 2022 12 / 14 11:37:37 来源：新华社 微视频｜“新”在中国 字体： 小 中 大 分享到： 微视频｜“新”在中国 2022-12-14 11:37:37 来源： 新华社 新时代的中国，日新月异。今年以来，我国邮政快递业顶住多重压力，加大保通保畅，快递业务量比去年提前7天达到千亿件。千亿件包裹里藏着致富的梦想，也藏着消费的新趋势、新方向。工信部数据显示，工业APP数量超过了28万个。...",
+    "published": "2026-04-12T13:36:00.974445",
+    "source_name": "新华网科技",
+    "source_url": "http://www.news.cn/tech/",
+    "category": "chinese_news",
+    "author": "www.xinhuanet.com"
+  },
+  {
+    "title": "Aspire 13.2 正式发布，带来扩展版 CLI、预览版 TypeScript AppHost 及仪表盘改进",
+    "url": "https://www.infoq.cn/article/gXDZZmbAobi5TfwKUxLH?utm_source=rss&utm_medium=article",
+    "summary": "上月底，微软 发布 了 Aspire 13.2，为其云原生开发技术栈带来了大量的更新。这次发布主要致力于提升命令行体验、扩展多语言支持，为开发者和 AI 编码代理简化本地开发流程。在这个版本中，最值得关注的新增功能是 Aspire CLI 的重大扩展。据报道，开发者现在可以使用一种新的分离模式（detached mode）在后台运行应用程序，通过专用的启动、停止和进程列表命令管理正在运行的实例，并直接在终端中监控资源。# 使用交互式模板选择器创建一个新的启动程序 aspire new # 或者，在现有代码库中新创建一个空的 apphost aspire init # 恢复集成包并启动 apph...",
+    "published": "2026-04-12T11:00:00",
+    "source_name": "InfoQ AI",
+    "source_url": "https://www.infoq.cn/ai",
+    "category": "chinese_ai",
+    "author": "作者：Almir Vuk"
+  },
+  {
+    "title": "谷歌开源 Colab MCP Server，AI 智能体可云端运行代码",
+    "url": "https://www.infoq.cn/article/Z71AB0lSu0DcEhSNFXqQ?utm_source=rss&utm_medium=article",
+    "summary": "谷歌开源 Colab MCP Server ，让 AI 智能体能够通过模型上下文协议（MCP）直接与谷歌 Colab 发生交互。该项目旨在将本地智能体工作流与云端执行环境打通，让开发者可以将计算密集型或存在潜在安全风险的任务从本地设备迁移至云端执行。Colab MCP Server 将 Colab 作为可编程环境对外提供。兼容 MCP 的智能体（如 Gemini CLI 和 Claude Code）可创建和整理笔记本、执行代码单元、管理依赖项并整理输出内容，从而能够生成完整可运行的笔记本，而非仅输出静态代码片段。这种方式解决了本地智能体部署中的一个常见的局限：计算资源不足与安全问题制约了自动化...",
+    "published": "2026-04-12T10:00:00",
+    "source_name": "InfoQ AI",
+    "source_url": "https://www.infoq.cn/ai",
+    "category": "chinese_ai",
+    "author": "作者：Robert Krzaczyński"
+  },
+  {
+    "title": "可复制的 AI Coding 全栈实战：比 OpenSpec 更轻量、更丝滑｜QCon北京",
+    "url": "https://www.infoq.cn/article/4wNXLbIeHGEWrGNUwOjc?utm_source=rss&utm_medium=article",
+    "summary": "从「AI For What」到「Value From AI」，100+可落地实践案例打通 AI 实战最后一公里！ 4 月 16 日-4 月 18 日， QCon 全球软件开发大会 将在北京举办。本届大会锚定 Agentic AI 时代的软件工程重塑，聚焦 Agentic AI、多智能体协作、算力优化、技术债治理、多模态和 AI 原生基础设施等前沿话题，邀请来自腾讯、阿里、百度、华为、蚂蚁、小米、网易等企业技术专家，带来百余项真实落地案例，系统性分享前沿洞察与实战干货，以技术共创探索 AI 落地新路径。淘宝闪购高级技术专家邓立山已确认出席 “ Coding Agent 驱动的研发新范式 ” 专题...",
+    "published": "2026-04-12T10:00:00",
+    "source_name": "InfoQ AI",
+    "source_url": "https://www.infoq.cn/ai",
+    "category": "chinese_ai",
+    "author": "QCon全球软件开发大会"
+  },
+  {
+    "title": "Cloudflare 推出 EmDash，瞄准 WordPress 的下一个十年",
+    "url": "https://www.infoq.cn/article/17v8NjjI4NFp0uwMr27S?utm_source=rss&utm_medium=article",
+    "summary": "Cloudflare 近日宣布推出 EmDash 预览版 ，这是一款新的开源 CMS，被描述为“WordPress 的精神继任者”。EmDash 旨在以无服务器、开发者优先的架构重塑 CMS 模型，集成原生 AI 能力、开发者工具以及从 WordPress 迁移的路径，并在 WordPress 及更广泛的 CMS 社区中引发了关于架构选择、安全权衡和潜在平台锁定的讨论。EmDash 使用 TypeScript 构建，并由 Astro 6.0 驱动，运行在边缘平台上，并通过显式权限将插件隔离在安全沙箱（ Dynamic Workers ）中。这一设计的目的是解决 WordPress 插件长期存在...",
+    "published": "2026-04-12T08:00:00",
+    "source_name": "InfoQ AI",
+    "source_url": "https://www.infoq.cn/ai",
+    "category": "chinese_ai",
+    "author": "作者：Renato Losio"
+  },
+  {
+    "title": "Tailwind CSS 4.2 发布 Webpack 插件、新配色方案以及逻辑属性工具类",
+    "url": "https://www.infoq.cn/article/50T48b3TOSJZRAa4GGx9?utm_source=rss&utm_medium=article",
+    "summary": "Tailwind CSS 发布 4.2.0 版本，对于这个“工具类优先（ utility-first ）”的 CSS 框架，这是一次幅度不大但意义重大的更新，其构建基础是 v4.0 版本中做过重大改版的架构。该版本于 2026 年 2 月 18 日发布，包含一个原生 Webpack 插件、四套新的默认配色方案、经过扩展的逻辑属性工具类，以及显著提升的重新编译速度——这些改进在前端社区引起了广泛的的关注。对许多团队而言，这次更新的 最大亮点 是新增的 @tailwindcss/webpack 插件，它能将 Tailwind 集成到 webpack 构建流程中，而且不需手动配置 PostCSS。此...",
+    "published": "2026-04-11T15:00:00",
+    "source_name": "InfoQ AI",
+    "source_url": "https://www.infoq.cn/ai",
+    "category": "chinese_ai",
+    "author": "作者：Daniel Curtis"
+  },
+  {
+    "title": "GitHub Actions 正式发布自定义 Runner 镜像",
+    "url": "https://www.infoq.cn/article/z7y47sADu9SrwgSgr3V1?utm_source=rss&utm_medium=article",
+    "summary": "GitHub 刚刚 宣布 ，其托管 Runner 现已支持自定义镜像。该功能终于结束了自去年 10 月开始的公开预览阶段。借助这一功能，团队可以使用经过 GitHub 批准的基础镜像，构建真正符合其工作流需求的虚拟机镜像。其原理很简单，而它所解决的问题对任何管理过大规模持续集成（CI）的人来说都并不陌生。每当在 GitHub 托管的标准 Runner 上运行工作流时，它都会从头开始安装工具。...",
+    "published": "2026-04-11T14:00:00",
+    "source_name": "InfoQ AI",
+    "source_url": "https://www.infoq.cn/ai",
+    "category": "chinese_ai",
+    "author": "作者：Claudio Masolo"
   }
 ]
