@@ -1,5 +1,35 @@
 [
   {
+    "title": "谷歌开源 Colab MCP Server，AI 智能体可云端运行代码",
+    "url": "https://www.infoq.cn/article/Z71AB0lSu0DcEhSNFXqQ?utm_source=rss&utm_medium=article",
+    "summary": "点击查看原文>",
+    "published": "2026-04-12T10:00:00",
+    "source_name": "InfoQ AI",
+    "source_url": "https://www.infoq.cn/ai",
+    "category": "chinese",
+    "author": "作者：Robert Krzaczyński"
+  },
+  {
+    "title": "可复制的 AI Coding 全栈实战：比 OpenSpec 更轻量、更丝滑｜QCon北京",
+    "url": "https://www.infoq.cn/article/4wNXLbIeHGEWrGNUwOjc?utm_source=rss&utm_medium=article",
+    "summary": "点击查看原文>",
+    "published": "2026-04-12T10:00:00",
+    "source_name": "InfoQ AI",
+    "source_url": "https://www.infoq.cn/ai",
+    "category": "chinese",
+    "author": "QCon全球软件开发大会"
+  },
+  {
+    "title": "Cloudflare 推出 EmDash，瞄准 WordPress 的下一个十年",
+    "url": "https://www.infoq.cn/article/17v8NjjI4NFp0uwMr27S?utm_source=rss&utm_medium=article",
+    "summary": "点击查看原文>",
+    "published": "2026-04-12T08:00:00",
+    "source_name": "InfoQ AI",
+    "source_url": "https://www.infoq.cn/ai",
+    "category": "chinese",
+    "author": "作者：Renato Losio"
+  },
+  {
     "title": "Tailwind CSS 4.2 发布 Webpack 插件、新配色方案以及逻辑属性工具类",
     "url": "https://www.infoq.cn/article/50T48b3TOSJZRAa4GGx9?utm_source=rss&utm_medium=article",
     "summary": "点击查看原文>",
@@ -48,25 +78,5 @@
     "source_url": "https://www.qbitai.com/",
     "category": "chinese",
     "author": "量子位的朋友们"
-  },
-  {
-    "title": "面向 AI 智能体的有状态接续：传输层为何至关重要",
-    "url": "https://www.infoq.cn/article/P3Ko14uHlmRMm50rIhXs?utm_source=rss&utm_medium=article",
-    "summary": "点击查看原文>",
-    "published": "2026-04-11T10:00:00",
-    "source_name": "InfoQ AI",
-    "source_url": "https://www.infoq.cn/ai",
-    "category": "chinese",
-    "author": "作者：Anirudh Mendiratta"
-  },
-  {
-    "title": "让每个员工都有一个 Coding Agent：蚂蚁 Vibe Coding 平台落地半年后的实践经验｜QCon北京",
-    "url": "https://www.infoq.cn/article/zwsaRqiZ99H7l3y8G9Lc?utm_source=rss&utm_medium=article",
-    "summary": "点击查看原文>",
-    "published": "2026-04-11T10:00:00",
-    "source_name": "InfoQ AI",
-    "source_url": "https://www.infoq.cn/ai",
-    "category": "chinese",
-    "author": "QCon全球软件开发大会"
   }
 ]

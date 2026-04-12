@@ -344,8 +344,14 @@
                     <div class="logo-icon">🤖</div>
                     <h1 class="logo-text">AI Daily Brief</h1>
                 </div>
-                <div class="date-badge">
-                    📅 {{ date.strftime('%Y年%m月%d日') }} · {{ ['周一','周二','周三','周四','周五','周六','周日'][date.weekday()] }}
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <nav class="nav-links" style="display: flex; gap: 0.5rem;">
+                        <a href="index.html" style="color: var(--accent-blue); text-decoration: none; padding: 0.5rem 1rem; border-radius: 8px; background: var(--bg-card); font-size: 0.875rem;">今日日报</a>
+                        <a href="history.html" style="color: var(--text-secondary); text-decoration: none; padding: 0.5rem 1rem; border-radius: 8px; transition: all 0.2s; font-size: 0.875rem;">历史归档</a>
+                    </nav>
+                    <div class="date-badge">
+                        📅 {{ date.strftime('%Y年%m月%d日') }} · {{ ['周一','周二','周三','周四','周五','周六','周日'][date.weekday()] }}
+                    </div>
                 </div>
             </div>
         </div>

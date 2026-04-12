@@ -34,8 +34,11 @@ class HTMLGenerator:
         self.env.filters['format_date'] = self._format_date
         self.env.filters['format_time'] = self._format_time
         
-    def generate(self, articles: List[Article], categories: Dict[str, str]) -> str:
+    def generate(self, articles: List[Article], categories: Dict[str, str], date: datetime = None) -> str:
         """Generate HTML newsletter"""
+        
+        if date is None:
+            date = datetime.now()
         
         # Group articles by category
         grouped = self._group_by_category(articles)
@@ -50,12 +53,13 @@ class HTMLGenerator:
         
         # Prepare template data
         template_data = {
-            'title': f"AI Daily Brief - {datetime.now().strftime('%Y-%m-%d')}",
-            'date': datetime.now(),
+            'title': f"AI Daily Brief - {date.strftime('%Y-%m-%d')}",
+            'date': date,
             'stats': stats,
             'categories': categories,
             'grouped_articles': grouped,
             'articles_json': json.dumps([a.to_dict() for a in articles], ensure_ascii=False, default=str),
+            'history_page': 'history.html',
         }
         
         # Render template
@@ -73,6 +77,44 @@ class HTMLGenerator:
         
         logger.info(f"Saved HTML to {output_path}")
         return output_path
+    
+    def generate_history_index(self):
+        """Generate history index page listing all archived newsletters"""
+        
+        # Find all dated HTML files
+        history_files = []
+        for html_file in self.output_dir.glob("*.html"):
+            filename = html_file.name
+            if filename == "index.html" or filename == "history.html":
+                continue
+            # Try to parse date from filename (YYYY-MM-DD.html)
+            try:
+                date_str = filename.replace('.html', '')
+                file_date = datetime.strptime(date_str, '%Y-%m-%d')
+                history_files.append({
+                    'date': file_date,
+                    'filename': filename,
+                    'display_date': file_date.strftime('%Y年%m月%d日'),
+                    'weekday': ['周一','周二','周三','周四','周五','周六','周日'][file_date.weekday()]
+                })
+            except ValueError:
+                continue
+        
+        # Sort by date descending
+        history_files.sort(key=lambda x: x['date'], reverse=True)
+        
+        # Generate history page HTML
+        template = self.env.get_template('history.html.j2')
+        html = template.render(
+            title="AI Daily Brief - 历史归档",
+            history_files=history_files,
+            total_count=len(history_files)
+        )
+        
+        history_path = self.output_dir / "history.html"
+        history_path.write_text(html, encoding='utf-8')
+        logger.info(f"Saved history index to {history_path}")
+        return history_path
     
     def _group_by_category(self, articles: List[Article]) -> Dict[str, List[Article]]:
         """Group articles by category"""

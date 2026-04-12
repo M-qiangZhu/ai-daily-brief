@@ -46,8 +46,18 @@ async def generate_newsletter(days_back: int = 1, notify: bool = False) -> dict:
     
     # Generate HTML
     generator = HTMLGenerator("templates", "dist")
-    html = generator.generate(articles, categories)
+    today = datetime.now()
+    date_str = today.strftime('%Y-%m-%d')
+    
+    # Generate dated version for archive
+    html = generator.generate(articles, categories, date=today)
+    dated_path = generator.save(html, f"{date_str}.html")
+    
+    # Also save as index.html (latest)
     output_path = generator.save(html, "index.html")
+    
+    # Generate history index page
+    generator.generate_history_index()
     
     # Also save JSON for potential API use
     json_path = Path("dist") / "articles.json"
