@@ -220,13 +220,29 @@
 
         .article-summary {
             color: var(--text-secondary);
-            font-size: 0.9rem;
-            line-height: 1.6;
-            margin-bottom: 0.75rem;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin: 0.75rem 0;
+            padding: 0.75rem 0;
+            border-top: 1px dashed var(--border-color);
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .article-summary.empty {
+            color: var(--text-muted);
+            font-style: italic;
+            border: none;
+            padding: 0.5rem 0;
+        }
+
+        .read-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            color: var(--accent-blue);
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-top: 0.5rem;
         }
 
         .article-meta {
@@ -393,14 +409,17 @@
                             <h3 class="article-title">{{ article.title }}</h3>
                             <span class="article-source">{{ article.source_name }}</span>
                         </div>
-                        {% if article.summary %}
+                        {% if article.summary and article.summary|length > 30 %}
                         <p class="article-summary">{{ article.summary }}</p>
+                        {% else %}
+                        <p class="article-summary empty">暂无摘要，点击查看原文阅读完整内容 →</p>
                         {% endif %}
                         <div class="article-meta">
                             <span class="article-date">📅 {{ article.published|format_date }}</span>
                             {% if article.author %}
                             <span class="article-author">👤 {{ article.author }}</span>
                             {% endif %}
+                            <span class="read-more">阅读全文 →</span>
                         </div>
                     </a>
                     {% endfor %}

@@ -127,17 +127,24 @@ class ContentFetcher:
         cutoff_date = datetime.now() - timedelta(days=days_back)
         articles = []
         
-        for entry in feed.entries[:20]:  # Limit to 20 most recent
+        for entry in feed.entries[:15]:  # Limit to 15 most recent
             try:
                 # Parse publication date
                 published = self._parse_date(entry)
                 if published and published < cutoff_date:
                     continue
                 
+                url = entry.get('link', '')
+                summary = self._extract_summary(entry)
+                
+                # If no summary from RSS, try to fetch from URL
+                if not summary or len(summary) < 50:
+                    summary = await self._fetch_article_summary(url)
+                
                 article = Article(
                     title=self._clean_text(entry.get('title', 'Untitled')),
-                    url=entry.get('link', ''),
-                    summary=self._extract_summary(entry),
+                    url=url,
+                    summary=summary,
                     published=published or datetime.now(),
                     source_name=config.get('name', source_id),
                     source_url=config.get('url', ''),
@@ -245,6 +252,72 @@ class ContentFetcher:
                     continue
         
         return None
+    
+    async def _fetch_article_summary(self, url: str, max_length: int = 300) -> str:
+        """Fetch article page and extract summary text"""
+        if not self.session or not url:
+            return ''
+        
+        try:
+            async with self.session.get(url, headers=self._get_headers(), timeout=aiohttp.ClientTimeout(total=10)) as response:
+                if response.status != 200:
+                    return ''
+                
+                html = await response.text()
+                soup = BeautifulSoup(html, 'lxml')
+                
+                # Remove script and style elements
+                for script in soup(['script', 'style', 'nav', 'header', 'footer', 'aside']):
+                    script.decompose()
+                
+                # Try to find main content
+                content_selectors = [
+                    'article', '[class*="article"]', '[class*="post-content"]',
+                    '[class*="entry-content"]', '[class*="content"]', 'main',
+                    '.post', '.entry', '.blog-post'
+                ]
+                
+                content_text = ''
+                for selector in content_selectors:
+                    element = soup.select_one(selector)
+                    if element:
+                        content_text = element.get_text(separator=' ', strip=True)
+                        if len(content_text) > 100:
+                            break
+                
+                # Fallback to body if no content found
+                if not content_text:
+                    body = soup.find('body')
+                    if body:
+                        content_text = body.get_text(separator=' ', strip=True)
+                
+                # Clean and truncate
+                content_text = ' '.join(content_text.split())
+                
+                # Skip if too short (probably not article content)
+                if len(content_text) < 100:
+                    return ''
+                
+                # Return first meaningful paragraph (not just title/author)
+                sentences = content_text.split('。')
+                summary_parts = []
+                current_length = 0
+                
+                for sentence in sentences[:5]:  # Check first 5 sentences
+                    sentence = sentence.strip()
+                    if len(sentence) > 20:  # Meaningful sentence
+                        summary_parts.append(sentence)
+                        current_length += len(sentence)
+                        if current_length >= max_length:
+                            break
+                
+                summary = '。'.join(summary_parts) + '。' if summary_parts else content_text[:max_length] + '...'
+                
+                return summary[:max_length] + ('...' if len(content_text) > max_length else '')
+                
+        except Exception as e:
+            logger.debug(f"Error fetching article summary from {url}: {e}")
+            return ''
     
     def _extract_summary(self, entry: Dict) -> str:
         """Extract summary from RSS entry"""
