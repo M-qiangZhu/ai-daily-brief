@@ -2,231 +2,31 @@
   {
     "title": "Multimodal Neurons in Artificial Neural Networks",
     "url": "https://github.com/distillpub/post--multimodal/issues?q=is%3Aissue+label%3Apeer-review",
-    "summary": "Gabriel Goh, Nick Cammarata †, Chelsea Voss †, Shan Carter, Michael Petrov, Ludwig Schubert, Alec Radford, and Chris Olah",
-    "published": "2026-04-12T11:50:37.406200",
+    "summary": "【原文】Multimodal Neurons in Artificial Neural Networks\n\n【摘要】Gabriel Goh, Nick Cammarata †, Chelsea Voss †, Shan Carter, Michael Petrov, Ludwig Schubert, Alec Radford, and Chris Olah",
+    "published": "2026-04-12T12:34:51.916003",
     "source_name": "Distill.pub",
     "source_url": "https://distill.pub/",
     "category": "researcher",
-    "author": null
-  },
-  {
-    "title": "Lyria 3 Pro: Create longer tracks in more",
-    "url": "https://blog.google/innovation-and-ai/technology/ai/lyria-3-pro",
-    "summary": "点击查看原文阅读完整内容",
-    "published": "2026-04-12T11:50:37.405250",
-    "source_name": "Google DeepMind",
-    "source_url": "https://deepmind.google/blog/",
-    "category": "official",
-    "author": null
-  },
-  {
-    "title": "Untitled",
-    "url": "http://vision.stanford.edu/",
-    "summary": "点击查看原文阅读完整内容",
-    "published": "2026-04-12T11:50:37.403302",
-    "source_name": "Andrej Karpathy",
-    "source_url": "https://karpathy.ai/",
-    "category": "researcher",
-    "author": null
-  },
-  {
-    "title": "Protecting people from harmful manipulation",
-    "url": "https://deepmind.google/blog/protecting-people-from-harmful-manipulation/",
-    "summary": "点击查看原文阅读完整内容",
-    "published": "2026-04-12T11:50:26.402183",
-    "source_name": "Google DeepMind",
-    "source_url": "https://deepmind.google/blog/",
-    "category": "official",
-    "author": null
-  },
-  {
-    "title": "Untitled",
-    "url": "https://openai.com/index/introducing-openai/",
-    "summary": "点击查看原文阅读完整内容",
-    "published": "2026-04-12T11:50:26.401482",
-    "source_name": "Andrej Karpathy",
-    "source_url": "https://karpathy.ai/",
-    "category": "researcher",
-    "author": null
-  },
-  {
-    "title": "Distill Hiatus",
-    "url": "https://distill.pub/2021/distill-hiatus",
-    "summary": "Editorial Team",
-    "published": "2026-04-12T11:50:26.399757",
-    "source_name": "Distill.pub",
-    "source_url": "https://distill.pub/",
-    "category": "researcher",
-    "author": null
-  },
-  {
-    "title": "The Axios supply chain attack used individually targeted social engineering",
-    "url": "https://simonwillison.net/2026/Apr/3/supply-chain-social-engineering/",
-    "summary": "点击查看原文阅读完整内容",
-    "published": "2026-04-12T11:50:17.396976",
-    "source_name": "Simon Willison",
-    "source_url": "https://simonwillison.net/",
-    "category": "researcher",
-    "author": null
-  },
-  {
-    "title": "Untitled",
-    "url": "https://techcrunch.com/2017/06/20/tesla-hires-deep-learning-expert-andrej-karpathy-to-lead-autopilot-vision/",
-    "summary": "点击查看原文阅读完整内容",
-    "published": "2026-04-12T11:50:15.401393",
-    "source_name": "Andrej Karpathy",
-    "source_url": "https://karpathy.ai/",
-    "category": "researcher",
-    "author": null
-  },
-  {
-    "title": "A Gentle Introduction to Graph Neural Networks",
-    "url": "https://github.com/distillpub/post--gnn-intro/issues?q=is%3Aissue+label%3Apeer-review",
-    "summary": "Benjamin Sanchez-Lengeling, Emily Reif, Adam Pearce, and Alexander B. Wiltschko",
-    "published": "2026-04-12T11:50:15.400730",
-    "source_name": "Distill.pub",
-    "source_url": "https://distill.pub/",
-    "category": "researcher",
-    "author": null
-  },
-  {
-    "title": "Gemini 3.1 Flash Live: Making audio AI more natural and reliable",
-    "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-1-flash-live/",
-    "summary": "点击查看原文阅读完整内容",
-    "published": "2026-04-12T11:50:15.398949",
-    "source_name": "Google DeepMind",
-    "source_url": "https://deepmind.google/blog/",
-    "category": "official",
-    "author": null
-  },
-  {
-    "title": "Anthropic’s Project Glasswing—restricting Claude Mythos to security researchers—sounds necessary to me",
-    "url": "https://simonwillison.net/2026/Apr/7/project-glasswing/",
-    "summary": "点击查看原文阅读完整内容",
-    "published": "2026-04-12T11:50:06.395168",
-    "source_name": "Simon Willison",
-    "source_url": "https://simonwillison.net/",
-    "category": "researcher",
-    "author": null
-  },
-  {
-    "title": "Untitled",
-    "url": "https://openai.com/",
-    "summary": "点击查看原文阅读完整内容",
-    "published": "2026-04-12T11:50:04.399395",
-    "source_name": "Andrej Karpathy",
-    "source_url": "https://karpathy.ai/",
-    "category": "researcher",
-    "author": null
-  },
-  {
-    "title": "Understanding Convolutions on Graphs",
-    "url": "https://github.com/distillpub/post--understanding-gnns/issues?q=is%3Aissue+label%3Apeer-review",
-    "summary": "Ameya Daigavane, Balaraman Ravindran, and Gaurav Aggarwal",
-    "published": "2026-04-12T11:50:04.399131",
-    "source_name": "Distill.pub",
-    "source_url": "https://distill.pub/",
-    "category": "researcher",
-    "author": null
-  },
-  {
-    "title": "Gemma 4: Byte for byte, the most capable open models",
-    "url": "https://blog.google/innovation-and-ai/technology/developers-tools/gemma-4/",
-    "summary": "点击查看原文阅读完整内容",
-    "published": "2026-04-12T11:50:04.398186",
-    "source_name": "Google DeepMind",
-    "source_url": "https://deepmind.google/blog/",
-    "category": "official",
     "author": null
   },
   {
     "title": "Newsroom",
     "url": "mailto:press@anthropic.com",
-    "summary": "A new initiative that brings together Amazon Web Services, Anthropic, Apple, Broadcom, Cisco, CrowdStrike, Google, JPMorganChase, the Linux Foundation, Microsoft, NVIDIA, and Palo Alto Networks in an effort to secure the world's most critical software.",
-    "published": "2026-04-12T11:49:56.402121",
+    "summary": "【原文】Newsroom\n\n【摘要】A new initiative that brings together Amazon Web Services, Anthropic, Apple, Broadcom, Cisco, CrowdStrike, Google, JPMorganChase, the Linux Foundation, Microsoft, NVIDIA, and Palo Alto Networks in an effort to secure the world's most critical software.",
+    "published": "2026-04-12T12:34:11.915308",
     "source_name": "Anthropic",
     "source_url": "https://www.anthropic.com/news",
     "category": "official",
     "author": null
   },
   {
-    "title": "Meta’s new model is Muse Spark, and meta.ai chat has some interesting tools",
-    "url": "https://simonwillison.net/2026/Apr/8/muse-spark/",
-    "summary": "点击查看原文阅读完整内容",
-    "published": "2026-04-12T11:49:55.397375",
-    "source_name": "Simon Willison",
-    "source_url": "https://simonwillison.net/",
-    "category": "researcher",
-    "author": null
-  },
-  {
     "title": "Essays",
     "url": "https://www.anthropic.com/",
-    "summary": "Dario Amodei is the CEO ofAnthropic, a public benefit corporation dedicated to building AI systems that are steerable, interpretable and safe....More",
-    "published": "2026-04-12T11:49:54.397645",
+    "summary": "【原文】Essays\n\n【摘要】Dario Amodei is the CEO ofAnthropic, a public benefit corporation dedicated to building AI systems that are steerable, interpretable and safe....More",
+    "published": "2026-04-12T12:34:09.915402",
     "source_name": "Dario Amodei",
     "source_url": "https://darioamodei.com/",
     "category": "researcher",
-    "author": null
-  },
-  {
-    "title": "何夕2077的AI资讯站",
-    "url": "https://ai.hubtoday.app/2026-04/2026-04-11",
-    "summary": "初次访问？请先阅读AI 周报。它可以帮你快速梳理近期行业最重要的变化，避免陷入信息碎片的海洋。",
-    "published": "2026-04-12T11:49:54.397266",
-    "source_name": "AI Hub Today",
-    "source_url": "https://ai.hubtoday.app/",
-    "category": "media",
-    "author": null
-  },
-  {
-    "title": "Untitled",
-    "url": "https://www.youtube.com/@AndrejKarpathy",
-    "summary": "点击查看原文阅读完整内容",
-    "published": "2026-04-12T11:49:53.400587",
-    "source_name": "Andrej Karpathy",
-    "source_url": "https://karpathy.ai/",
-    "category": "researcher",
-    "author": null
-  },
-  {
-    "title": "Project Genie: Experimenting with infinite, interactive worlds",
-    "url": "https://blog.google/innovation-and-ai/models-and-research/google-deepmind/project-genie",
-    "summary": "点击查看原文阅读完整内容",
-    "published": "2026-04-12T11:49:53.399864",
-    "source_name": "Google DeepMind",
-    "source_url": "https://deepmind.google/blog/",
-    "category": "official",
-    "author": null
-  },
-  {
-    "title": "Understanding Convolutions on Graphs",
-    "url": "https://github.com/distillpub/post--understanding-gnns/issues?q=is%3Aissue+label%3Apeer-review",
-    "summary": "Ameya Daigavane, Balaraman Ravindran, and Gaurav Aggarwal",
-    "published": "2026-04-12T11:49:53.398541",
-    "source_name": "Distill.pub",
-    "source_url": "https://distill.pub/",
-    "category": "researcher",
-    "author": null
-  },
-  {
-    "title": "Untitled",
-    "url": "https://www.jiqizhixin.com/short_urls/a9e00748-7c44-4a6e-bdcb-b0da9e8b6686",
-    "summary": "点击查看原文阅读完整内容",
-    "published": "2026-04-12T11:49:52.398317",
-    "source_name": "机器之心",
-    "source_url": "https://www.jiqizhixin.com/",
-    "category": "chinese",
-    "author": null
-  },
-  {
-    "title": "滴滴自动驾驶张博：聚焦安全和体验 推动自动驾驶全球化落地",
-    "url": "https://www.qbitai.com/2026/04/399675.html",
-    "summary": "点击查看原文阅读完整内容",
-    "published": "2026-04-12T11:49:52.397598",
-    "source_name": "量子位",
-    "source_url": "https://www.qbitai.com/",
-    "category": "chinese",
     "author": null
   }
 ]

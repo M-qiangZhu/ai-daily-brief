@@ -1,23 +1,15 @@
 {
   "success": true,
-  "total_articles": 23,
+  "total_articles": 3,
   "categories": {
-    "researcher": 14,
-    "official": 6,
-    "media": 1,
-    "chinese": 2
+    "researcher": 2,
+    "official": 1
   },
   "sources": [
-    "Anthropic",
-    "Andrej Karpathy",
-    "Simon Willison",
-    "机器之心",
-    "量子位",
+    "Distill.pub",
     "Dario Amodei",
-    "Google DeepMind",
-    "AI Hub Today",
-    "Distill.pub"
+    "Anthropic"
   ],
   "output_path": "dist/index.html",
-  "generated_at": "2026-04-12T11:50:37.440553"
+  "generated_at": "2026-04-12T12:35:09.955197"
 }

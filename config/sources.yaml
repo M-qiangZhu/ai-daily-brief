@@ -119,6 +119,30 @@ sources:
     enabled: true
 
   # ========== Chinese AI Media ==========
+  aibase:
+    name: "AIbase"
+    url: "https://www.aibase.cn/"
+    type: "web"
+    selector: "article, [class*='article'], .post, .news-item, .item"
+    category: "chinese"
+    enabled: true
+    
+  jiqizhineng:
+    name: "机器智能"
+    url: "https://www.jiqizhineng.com/"
+    type: "web"
+    selector: "article, .post, [class*='post']"
+    category: "chinese"
+    enabled: true
+    
+  aijieshuo:
+    name: "AI解说"
+    url: "https://www.aijieshuo.com/"
+    type: "web"
+    selector: "article, .post, [class*='article']"
+    category: "chinese"
+    enabled: true
+    
   infoq_ai:
     name: "InfoQ AI"
     url: "https://www.infoq.cn/ai"

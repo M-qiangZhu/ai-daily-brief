@@ -196,9 +196,12 @@ class ContentFetcher:
                 article_links = []
                 for elem in article_elements:
                     try:
-                        # Find title
-                        title_elem = elem.find(['h1', 'h2', 'h3', 'h4', '.title', '.headline'])
-                        title = title_elem.get_text(strip=True) if title_elem else ''
+                        # Find title - 改进标题提取逻辑
+                        title = self._extract_title(elem, soup)
+                        
+                        # Skip if no valid title (过滤无标题内容)
+                        if not title or len(title) < 5:
+                            continue
                         
                         # Find link
                         if link_selector:
@@ -211,8 +214,8 @@ class ContentFetcher:
                             if article_url and not article_url.startswith('http'):
                                 article_url = urljoin(url, article_url)
                             
-                            # Skip non-article links (pagination, etc.)
-                            if article_url and ('/page/' not in article_url and '/tag/' not in article_url):
+                            # Skip non-article links
+                            if article_url and ('/page/' not in article_url and '/tag/' not in article_url and '/category/' not in article_url):
                                 article_links.append({
                                     'url': article_url,
                                     'title': title,
@@ -222,28 +225,41 @@ class ContentFetcher:
                         continue
                 
                 # Step 4: Fetch detailed content for each article
-                for article_info in article_links[:5]:  # Limit to 5 articles per source
+                category = config.get('category', 'unknown')
+                is_foreign = category in ['official', 'researcher', 'media']  # 国外网站标记
+                
+                for article_info in article_links[:5]:
                     try:
                         # Use jina.ai to get article content
-                        summary = await self._fetch_jina_content(article_info['url'])
+                        content = await self._fetch_jina_content(article_info['url'])
                         
                         # If jina fails, try to extract from the element itself
-                        if not summary:
+                        if not content:
                             summary_elem = article_info['element'].find(['p', '.summary', '.excerpt', '.description'])
                             if summary_elem:
-                                summary = summary_elem.get_text(strip=True)[:300]
+                                content = summary_elem.get_text(strip=True)[:300]
                         
-                        if not summary:
-                            summary = "点击查看原文阅读完整内容"
+                        # 过滤无效内容：没有有效摘要的文章不要
+                        if not content or len(content) < 80:
+                            logger.debug(f"Skipping article from {source_id}: content too short ({len(content) if content else 0} chars)")
+                            continue
+                        
+                        # 国外网站添加翻译标记
+                        if is_foreign:
+                            # 添加英文原文标题和中文占位符
+                            original_title = article_info['title']
+                            summary_text = f"【原文】{original_title}\n\n【摘要】{content[:350]}"
+                        else:
+                            summary_text = content[:400]
                         
                         articles.append(Article(
-                            title=self._clean_text(article_info['title'] or 'Untitled'),
+                            title=self._clean_text(article_info['title']),
                             url=article_info['url'],
-                            summary=summary[:400],
+                            summary=summary_text,
                             published=datetime.now(),
                             source_name=config.get('name', source_id),
                             source_url=url,
-                            category=config.get('category', 'unknown'),
+                            category=category,
                         ))
                     except Exception as e:
                         logger.debug(f"Error processing article from {source_id}: {e}")
@@ -305,22 +321,67 @@ class ContentFetcher:
                         elif line and not line.startswith('URL:') and not line.startswith('---'):
                             content_lines.append(line)
                     
-                    if title and content_lines:
-                        summary = ' '.join(content_lines)[:400]
+                    # 过滤无效标题
+                    if not title or len(title) < 5:
+                        return []
+                    
+                    if content_lines:
+                        content = ' '.join(content_lines)
+                        # 过滤无效内容
+                        if len(content) < 80:
+                            return []
+                        
+                        category = config.get('category', 'unknown')
+                        is_foreign = category in ['official', 'researcher', 'media']
+                        
+                        if is_foreign:
+                            summary_text = f"【原文】{title}\n\n【摘要】{content[:350]}"
+                        else:
+                            summary_text = content[:400]
+                        
                         logger.info(f"Fetched 1 article from {source_id} via jina.ai fallback")
                         return [Article(
                             title=self._clean_text(title),
                             url=url,
-                            summary=summary,
+                            summary=summary_text,
                             published=datetime.now(),
                             source_name=config.get('name', source_id),
                             source_url=url,
-                            category=config.get('category', 'unknown'),
+                            category=category,
                         )]
         except Exception as e:
             logger.debug(f"jina.ai fallback failed for {source_id}: {e}")
         
         return []
+    
+    def _extract_title(self, elem: BeautifulSoup, soup: BeautifulSoup) -> str:
+        """Extract title from article element with multiple fallback strategies"""
+        title = ''
+        
+        # Strategy 1: Look for heading tags within element
+        for tag in ['h1', 'h2', 'h3', 'h4']:
+            heading = elem.find(tag)
+            if heading:
+                title = heading.get_text(strip=True)
+                if len(title) > 5:
+                    return title
+        
+        # Strategy 2: Look for title class
+        for cls in ['title', 'headline', 'entry-title', 'post-title']:
+            title_elem = elem.find(class_=lambda x: x and cls in x.lower())
+            if title_elem:
+                title = title_elem.get_text(strip=True)
+                if len(title) > 5:
+                    return title
+        
+        # Strategy 3: Look in link text
+        link = elem.find('a')
+        if link:
+            title = link.get_text(strip=True)
+            if len(title) > 5:
+                return title
+        
+        return title
     
     def _parse_article_element(self, elem: BeautifulSoup, config: Dict) -> Optional[Article]:
         """Parse a single article element from HTML"""
