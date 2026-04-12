@@ -1,42 +1,37 @@
 # AI Daily Brief - Data Sources Configuration
+# 所有信息源均为普通网址，通过网页抓取获取内容
 
 sources:
   # ========== Official Company Blogs ==========
   openai:
-    name: "OpenAI"
+    name: "OpenAI Blog"
     url: "https://openai.com/news/"
-    type: "web"  # OpenAI RSS 不稳定，改用网页抓取
-    category: "official"
-    enabled: true
-    
-  sam_altman:
-    name: "Sam Altman"
-    url: "https://blog.samaltman.com/"
-    type: "rss"
-    rss_url: "https://blog.samaltman.com/rss"
+    type: "web"
+    selector: "article, [class*='article'], .post, .blog-post"  # 文章列表选择器
     category: "official"
     enabled: true
     
   anthropic:
     name: "Anthropic"
-    url: "https://www.anthropic.com/research"
-    type: "web"  # RSS 404，改用网页抓取
+    url: "https://www.anthropic.com/news"
+    type: "web"
+    selector: "article, [class*='article'], .card"
     category: "official"
     enabled: true
     
   deepmind:
     name: "Google DeepMind"
     url: "https://deepmind.google/blog/"
-    type: "rss"
-    rss_url: "https://deepmind.google/blog/rss.xml"
+    type: "web"
+    selector: "article, .blog-post, [class*='post']"
     category: "official"
     enabled: true
     
-  dario_amodei:
-    name: "Dario Amodei"
-    url: "https://www.darioamodei.com/"
-    type: "rss"
-    rss_url: "https://www.darioamodei.com/feed"
+  google_ai:
+    name: "Google AI Blog"
+    url: "https://ai.googleblog.com/"
+    type: "web"
+    selector: "article, .post, .entry"
     category: "official"
     enabled: true
 
@@ -44,113 +39,131 @@ sources:
   karpathy:
     name: "Andrej Karpathy"
     url: "https://karpathy.ai/"
-    type: "web"  # 改为网页抓取，他的rss.xml实际是html
-    category: "researcher"
-    enabled: true
-    
-  greg_brockman:
-    name: "Greg Brockman"
-    url: "https://blog.gregbrockman.com/"
-    type: "rss"
-    rss_url: "https://blog.gregbrockman.com/rss"
+    type: "web"
+    selector: null  # 首页本身就是内容
     category: "researcher"
     enabled: true
     
   lilian_weng:
     name: "Lilian Weng"
     url: "https://lilianweng.github.io/"
-    type: "rss"
-    rss_url: "https://lilianweng.github.io/feed.xml"  # 修正链接
-    category: "researcher"
-    enabled: true
-    
-  colah:
-    name: "Christopher Olah"
-    url: "https://colah.github.io/"
-    type: "rss"
-    rss_url: "https://colah.github.io/rss.xml"
+    type: "web"
+    selector: "article, .post, [class*='post']"
     category: "researcher"
     enabled: true
     
   simon_willison:
     name: "Simon Willison"
     url: "https://simonwillison.net/"
-    type: "rss"
-    rss_url: "https://simonwillison.net/feed/everything/"  # 修正链接
+    type: "web"
+    selector: "article, .entry, .blog-post"
+    category: "researcher"
+    enabled: true
+    
+  distill:
+    name: "Distill.pub"
+    url: "https://distill.pub/"
+    type: "web"
+    selector: "article, .post"
+    category: "researcher"
+    enabled: true
+    
+  colah:
+    name: "Christopher Olah"
+    url: "https://colah.github.io/"
+    type: "web"
+    selector: "article, .post"
     category: "researcher"
     enabled: true
     
   fchollet:
     name: "François Chollet"
     url: "https://fchollet.com/"
-    type: "rss"
-    rss_url: "https://fchollet.com/feed"
+    type: "web"
+    selector: "article, .post, [class*='post']"
+    category: "researcher"
+    enabled: true
+    
+  dario_amodei:
+    name: "Dario Amodei"
+    url: "https://darioamodei.com/"
+    type: "web"
+    selector: "article, .post, [class*='essay'], [class*='post']"
     category: "researcher"
     enabled: true
 
-  # ========== Tech Media ==========
-  ai_hub_today:
-    name: "AI Hub Today"
-    url: "https://ai.hubtoday.app/"
-    type: "rss"
-    rss_url: "https://ai.hubtoday.app/feed"
+  # ========== Tech Media & Aggregators ==========
+  hackernews:
+    name: "Hacker News"
+    url: "https://news.ycombinator.com/"
+    type: "web"
+    selector: ".athing"  # HN 特有的文章条目 class
+    link_selector: ".titleline > a"  # 链接位置
     category: "media"
     enabled: true
     
-  hn_chinese:
-    name: "Hacker News 中文"
-    url: "https://hn.buzzing.cc/"
-    type: "rss"
-    rss_url: "https://hn.buzzing.cc/feed"
+  ai_hub_today:
+    name: "AI Hub Today"
+    url: "https://ai.hubtoday.app/"
+    type: "web"
+    selector: "article, .post, .card"
+    category: "media"
+    enabled: true
+    
+  reddit_machinelearning:
+    name: "Reddit r/MachineLearning"
+    url: "https://www.reddit.com/r/MachineLearning/hot/"
+    type: "web"
+    selector: "[data-testid='post-container'], .Post"
     category: "media"
     enabled: true
 
   # ========== Chinese AI Media ==========
+  infoq_ai:
+    name: "InfoQ AI"
+    url: "https://www.infoq.cn/ai"
+    type: "web"
+    selector: "article, [class*='article'], .card"
+    category: "chinese"
+    enabled: true
+    
   jiqizhixin:
     name: "机器之心"
     url: "https://www.jiqizhixin.com/"
-    type: "rss"
-    rss_url: "https://www.jiqizhixin.com/rss"
+    type: "web"
+    selector: "article, [class*='article'], .post-item"
     category: "chinese"
     enabled: true
     
   qbitai:
     name: "量子位"
     url: "https://www.qbitai.com/"
-    type: "rss"
-    rss_url: "https://www.qbitai.com/feed"
+    type: "web"
+    selector: "article, [class*='article'], .post"
     category: "chinese"
     enabled: true
     
   xinzhiyuan:
     name: "新智元"
     url: "https://www.xinzhiyuan.com/"
-    type: "rss"
-    rss_url: "https://www.xinzhiyuan.com/feed"
+    type: "web"
+    selector: "article, .post, [class*='news']"
     category: "chinese"
     enabled: true
     
   zhidx:
     name: "智东西"
     url: "https://www.zhidx.com/"
-    type: "rss"
-    rss_url: "https://www.zhidx.com/feed"
+    type: "web"
+    selector: "article, [class*='article'], .item"
     category: "chinese"
     enabled: true
     
   paperweekly:
     name: "PaperWeekly"
     url: "https://www.paperweekly.cn/"
-    type: "rss"
-    rss_url: "https://www.paperweekly.cn/rss"
-    category: "chinese"
-    enabled: true
-    
-  infoq_ai:
-    name: "InfoQ AI"
-    url: "https://www.infoq.cn/ai"
-    type: "rss"
-    rss_url: "https://www.infoq.cn/feed/ai"
+    type: "web"
+    selector: "article, .post, [class*='paper']"
     category: "chinese"
     enabled: true
 

@@ -160,20 +160,141 @@ class ContentFetcher:
         return articles
     
     async def _fetch_web(self, source_id: str, config: Dict, days_back: int) -> List[Article]:
-        """Fetch by scraping webpage using jina.ai for content extraction"""
+        """Fetch by scraping webpage - extract multiple articles from listing page"""
         url = config.get('url')
+        selector = config.get('selector', 'article, .post, .entry, [class*="article"]')
+        link_selector = config.get('link_selector', 'a[href]')
         if not url or not self.session:
             return []
         
         articles = []
         
-        # Try jina.ai first for better content extraction
+        try:
+            # Step 1: Fetch the listing page
+            async with self.session.get(url, headers=self._get_headers(), timeout=aiohttp.ClientTimeout(total=15)) as response:
+                if response.status != 200:
+                    logger.warning(f"HTTP {response.status} for {source_id}")
+                    # Try jina.ai as fallback for the whole page
+                    return await self._fetch_web_jina_fallback(url, source_id, config)
+                
+                html = await response.text()
+                soup = BeautifulSoup(html, 'lxml')
+                
+                # Step 2: Find article elements
+                article_elements = []
+                if selector:
+                    article_elements = soup.select(selector)[:10]  # Limit to 10
+                
+                # If no selector or no elements found, try common patterns
+                if not article_elements:
+                    for sel in ['article', '.post', '.entry', '.blog-post', '[class*="post"]', '[class*="article"]', '.card', '.item']:
+                        article_elements = soup.select(sel)[:10]
+                        if article_elements:
+                            break
+                
+                # Step 3: Extract article info from each element
+                article_links = []
+                for elem in article_elements:
+                    try:
+                        # Find title
+                        title_elem = elem.find(['h1', 'h2', 'h3', 'h4', '.title', '.headline'])
+                        title = title_elem.get_text(strip=True) if title_elem else ''
+                        
+                        # Find link
+                        if link_selector:
+                            link_elem = elem.select_one(link_selector)
+                        else:
+                            link_elem = elem.find('a', href=True)
+                        
+                        if link_elem:
+                            article_url = link_elem['href']
+                            if article_url and not article_url.startswith('http'):
+                                article_url = urljoin(url, article_url)
+                            
+                            # Skip non-article links (pagination, etc.)
+                            if article_url and ('/page/' not in article_url and '/tag/' not in article_url):
+                                article_links.append({
+                                    'url': article_url,
+                                    'title': title,
+                                    'element': elem
+                                })
+                    except Exception as e:
+                        continue
+                
+                # Step 4: Fetch detailed content for each article
+                for article_info in article_links[:5]:  # Limit to 5 articles per source
+                    try:
+                        # Use jina.ai to get article content
+                        summary = await self._fetch_jina_content(article_info['url'])
+                        
+                        # If jina fails, try to extract from the element itself
+                        if not summary:
+                            summary_elem = article_info['element'].find(['p', '.summary', '.excerpt', '.description'])
+                            if summary_elem:
+                                summary = summary_elem.get_text(strip=True)[:300]
+                        
+                        if not summary:
+                            summary = "点击查看原文阅读完整内容"
+                        
+                        articles.append(Article(
+                            title=self._clean_text(article_info['title'] or 'Untitled'),
+                            url=article_info['url'],
+                            summary=summary[:400],
+                            published=datetime.now(),
+                            source_name=config.get('name', source_id),
+                            source_url=url,
+                            category=config.get('category', 'unknown'),
+                        ))
+                    except Exception as e:
+                        logger.debug(f"Error processing article from {source_id}: {e}")
+                        continue
+                
+                # If no articles extracted, fallback to jina.ai whole page
+                if not articles:
+                    return await self._fetch_web_jina_fallback(url, source_id, config)
+                
+                logger.info(f"Fetched {len(articles)} articles from {source_id}")
+                return articles
+                
+        except Exception as e:
+            logger.error(f"Error scraping {source_id}: {e}")
+            # Final fallback
+            return await self._fetch_web_jina_fallback(url, source_id, config)
+    
+    async def _fetch_jina_content(self, url: str, max_length: int = 400) -> str:
+        """Fetch article content using jina.ai"""
+        if not self.session or not url:
+            return ''
+        
+        try:
+            jina_url = f"https://r.jina.ai/{url}"
+            async with self.session.get(jina_url, timeout=aiohttp.ClientTimeout(total=10)) as response:
+                if response.status == 200:
+                    text = await response.text()
+                    lines = text.split('\n')
+                    content_lines = []
+                    
+                    for line in lines:
+                        # Skip metadata lines
+                        if line.startswith('Title:') or line.startswith('URL:') or line.startswith('---'):
+                            continue
+                        if line.strip():
+                            content_lines.append(line.strip())
+                    
+                    content = ' '.join(content_lines)
+                    return content[:max_length] + ('...' if len(content) > max_length else '')
+        except Exception as e:
+            logger.debug(f"jina.ai fetch failed for {url}: {e}")
+        
+        return ''
+    
+    async def _fetch_web_jina_fallback(self, url: str, source_id: str, config: Dict) -> List[Article]:
+        """Fallback: use jina.ai to extract content from whole page"""
         try:
             jina_url = f"https://r.jina.ai/{url}"
             async with self.session.get(jina_url, timeout=aiohttp.ClientTimeout(total=15)) as response:
                 if response.status == 200:
                     text = await response.text()
-                    # Parse jina.ai output (title and content)
                     lines = text.split('\n')
                     title = ''
                     content_lines = []
@@ -185,8 +306,9 @@ class ContentFetcher:
                             content_lines.append(line)
                     
                     if title and content_lines:
-                        summary = '\n'.join(content_lines)[:400]
-                        articles.append(Article(
+                        summary = ' '.join(content_lines)[:400]
+                        logger.info(f"Fetched 1 article from {source_id} via jina.ai fallback")
+                        return [Article(
                             title=self._clean_text(title),
                             url=url,
                             summary=summary,
@@ -194,56 +316,11 @@ class ContentFetcher:
                             source_name=config.get('name', source_id),
                             source_url=url,
                             category=config.get('category', 'unknown'),
-                        ))
-                        logger.info(f"Fetched {len(articles)} articles from {source_id} via jina.ai")
-                        return articles
+                        )]
         except Exception as e:
-            logger.debug(f"jina.ai fetch failed for {source_id}: {e}")
+            logger.debug(f"jina.ai fallback failed for {source_id}: {e}")
         
-        # Fallback to direct scraping
-        try:
-            async with self.session.get(url, headers=self._get_headers(), timeout=aiohttp.ClientTimeout(total=10)) as response:
-                if response.status != 200:
-                    logger.warning(f"HTTP {response.status} for {source_id}")
-                    return []
-                
-                html = await response.text()
-                soup = BeautifulSoup(html, 'lxml')
-                
-                # Look for common article patterns
-                article_selectors = [
-                    'article', '.post', '.entry', '.blog-post',
-                    '[class*="article"]', '[class*="post"]', '.card'
-                ]
-                
-                for selector in article_selectors:
-                    elements = soup.select(selector)
-                    if elements:
-                        for elem in elements[:5]:
-                            article = self._parse_article_element(elem, config)
-                            if article:
-                                articles.append(article)
-                        break
-                
-                # If no articles found, try to get page title as single article
-                if not articles:
-                    title_elem = soup.find('title')
-                    if title_elem:
-                        articles.append(Article(
-                            title=self._clean_text(title_elem.get_text()),
-                            url=url,
-                            summary="点击查看官网最新内容",
-                            published=datetime.now(),
-                            source_name=config.get('name', source_id),
-                            source_url=url,
-                            category=config.get('category', 'unknown'),
-                        ))
-                
-                return articles[:5]
-                
-        except Exception as e:
-            logger.error(f"Error scraping {source_id}: {e}")
-            return []
+        return []
     
     def _parse_article_element(self, elem: BeautifulSoup, config: Dict) -> Optional[Article]:
         """Parse a single article element from HTML"""
