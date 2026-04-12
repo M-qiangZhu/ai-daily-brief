@@ -1,57 +1,40 @@
 # AI Daily Brief - Data Sources Configuration
-# 国内权威媒体使用 RSS，国外网站使用网页抓取
+# 国内AI媒体使用RSS或网页抓取，国外网站使用网页抓取
 
 sources:
-  # ========== 国内权威媒体 RSS ==========
-  people_ai:
-    name: "人民网科技"
-    url: "http://tech.people.com.cn/"
-    type: "rss"
-    rss_url: "http://www.people.com.cn/rss/tech.xml"
-    category: "chinese_news"
-    enabled: true
-    
-  xinhua_tech:
-    name: "新华网科技"
-    url: "http://www.news.cn/tech/"
-    type: "rss"
-    rss_url: "http://www.xinhuanet.com/politics/news_politics.xml"
-    category: "chinese_news"
-    enabled: true
-    
-  cctv_tech:
-    name: "央视网科技"
-    url: "https://tech.cctv.com/"
+  # ========== 国内AI专业媒体 ==========
+  aibase:
+    name: "AIbase"
+    url: "https://www.aibase.cn/"
     type: "web"
-    selector: "article, .news-item, [class*='news']"
-    category: "chinese_news"
+    selector: "article, [class*='article'], .post, .news-item"
+    category: "chinese_ai"
     enabled: true
     
-  netease_tech:
+  netease_ai:
     name: "网易科技"
     url: "https://tech.163.com/"
-    type: "rss"
-    rss_url: "https://tech.163.com/special/0009KH/rss_miliao.xml"
-    category: "chinese_news"
-    enabled: true
+    type: "web"
+    selector: ".news-item, .item, article, [class*='news'], .post"
+    category: "chinese_ai"
+    enabled: false  # 暂时禁用，需要专门的AI筛选逻辑
     
-  sina_tech:
+  sina_ai:
     name: "新浪科技"
     url: "https://tech.sina.com.cn/"
-    type: "rss"
-    rss_url: "https://rss.sina.com.cn/tech/rollnews.xml"
-    category: "chinese_news"
-    enabled: true
+    type: "web"
+    selector: ".news-item, .item, article, [class*='news'], .post"
+    category: "chinese_ai"
+    enabled: false  # 暂时禁用，需要专门的AI筛选逻辑
     
-  qq_tech:
+  qq_ai:
     name: "腾讯科技"
     url: "https://new.qq.com/ch/tech/"
     type: "web"
-    selector: "article, .news-item, [class*='news'], .item"
-    category: "chinese_news"
-    enabled: true
-
-  # ========== 国内AI专业媒体 (RSS优先) ==========
+    selector: ".item, article, [class*='item'], .news-item"
+    category: "chinese_ai"
+    enabled: false  # 暂时禁用，需要专门的AI筛选逻辑
+    
   jiqizhixin:
     name: "机器之心"
     url: "https://www.jiqizhixin.com/"
@@ -97,14 +80,6 @@ sources:
     url: "https://www.paperweekly.cn/"
     type: "rss"
     rss_url: "https://www.paperweekly.cn/rss"
-    category: "chinese_ai"
-    enabled: true
-    
-  aibase:
-    name: "AIbase"
-    url: "https://www.aibase.cn/"
-    type: "web"
-    selector: "article, [class*='article'], .post, .news-item"
     category: "chinese_ai"
     enabled: true
 
@@ -194,8 +169,7 @@ sources:
 
 # Category display names - 优先级排序（靠前的先展示）
 categories:
-  chinese_news: "🇨🇳 国内权威媒体"      # 最高优先级
-  chinese_ai: "🇨🇳 国内 AI 媒体"        # 第二优先级
-  foreign_official: "🏢 国际公司官方"     # 第三
-  foreign_researcher: "👨‍🔬 国际研究员"    # 第四
-  foreign_media: "📰 国际媒体"           # 第五
+  chinese_ai: "🇨🇳 国内 AI 媒体"           # 第一优先级
+  foreign_official: "🏢 国际公司官方"      # 第二
+  foreign_researcher: "👨‍🔬 国际研究员"     # 第三
+  foreign_media: "📰 国际媒体"            # 第四

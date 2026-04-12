@@ -1,19 +1,18 @@
 {
   "success": true,
-  "total_articles": 24,
+  "total_articles": 10,
   "categories": {
     "foreign_researcher": 2,
     "foreign_official": 1,
-    "chinese_news": 15,
-    "chinese_ai": 6
+    "chinese_ai": 7
   },
   "sources": [
-    "Anthropic",
+    "Dario Amodei",
     "Distill.pub",
     "InfoQ AI",
-    "新华网科技",
-    "Dario Amodei"
+    "Anthropic",
+    "量子位"
   ],
   "output_path": "dist/index.html",
-  "generated_at": "2026-04-12T13:37:12.617806"
+  "generated_at": "2026-04-12T14:15:54.162301"
 }
