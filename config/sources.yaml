@@ -159,6 +159,39 @@ sources:
     category: "foreign_media"
     enabled: true
     
+  # ========== 国外AI搜索与媒体 ==========
+  exa_ai:
+    name: "Exa AI Search"
+    url: "https://exa.ai/"
+    type: "web"
+    selector: "article, .post, [class*='result'], .card"
+    category: "foreign_media"
+    enabled: true
+    
+  business_today:
+    name: "BusinessToday AI"
+    url: "https://www.businesstoday.in/artificial-intelligence"
+    type: "web"
+    selector: "article, .story, .news-item, [class*='story']"
+    category: "foreign_media"
+    enabled: true
+    
+  the_register:
+    name: "The Register AI"
+    url: "https://www.theregister.com/ai/"
+    type: "web"
+    selector: "article, .story, .news-item, [class*='article']"
+    category: "foreign_media"
+    enabled: true
+    
+  entrepreneur_ai:
+    name: "Entrepreneur AI"
+    url: "https://www.entrepreneur.com/topic/artificial-intelligence"
+    type: "web"
+    selector: "article, .post, .card, [class*='article']"
+    category: "foreign_media"
+    enabled: true
+    
   ai_hub_today:
     name: "AI Hub Today"
     url: "https://ai.hubtoday.app/"
