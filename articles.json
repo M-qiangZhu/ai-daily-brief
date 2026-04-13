@@ -1,0 +1,112 @@
+[
+  {
+    "title": "Multimodal Neurons in Artificial Neural Networks",
+    "url": "https://github.com/distillpub/post--multimodal/issues?q=is%3Aissue+label%3Apeer-review",
+    "summary": "Gabriel Goh, Nick Cammarata †, Chelsea Voss †, Shan Carter, Michael Petrov, Ludwig Schubert, Alec Radford, and Chris Olah",
+    "published": "2026-04-13T09:48:21.801287",
+    "source_name": "Distill.pub",
+    "source_url": "https://distill.pub/",
+    "category": "foreign_researcher",
+    "author": null
+  },
+  {
+    "title": "Newsroom",
+    "url": "mailto:press@anthropic.com",
+    "summary": "A new initiative that brings together Amazon Web Services, Anthropic, Apple, Broadcom, Cisco, CrowdStrike, Google, JPMorganChase, the Linux Foundation, Microsoft, NVIDIA, and Palo Alto Networks in an effort to secure the world's most critical software.",
+    "published": "2026-04-13T09:47:41.795676",
+    "source_name": "Anthropic",
+    "source_url": "https://www.anthropic.com/news",
+    "category": "foreign_official",
+    "author": null
+  },
+  {
+    "title": "Essays",
+    "url": "https://www.anthropic.com/",
+    "summary": "Dario Amodei is the CEO ofAnthropic, a public benefit corporation dedicated to building AI systems that are steerable, interpretable and safe....More",
+    "published": "2026-04-13T09:47:38.797071",
+    "source_name": "Dario Amodei",
+    "source_url": "https://darioamodei.com/",
+    "category": "foreign_researcher",
+    "author": null
+  },
+  {
+    "title": "Uber Hive联邦架构：1.6万数据集、10PB数据去中心化，支撑大规模分析零停机",
+    "url": "https://www.infoq.cn/article/bFwjzUqLXLZCmqz7pBNJ?utm_source=rss&utm_medium=article",
+    "summary": "Uber 对其 Hive 数据仓库进行了 重新设计 ，将超过 16000 个数据集（总量超 10 PB）实现去中心化部署，以此解决可扩展性、运维及安全方面的挑战。此前，所有配送业务数据集都集中在单一 Hive 实例的同一命名空间下，存在级联故障、资源争抢与治理瓶颈等风险。通过对 Hive 数据库进行联邦化改造，Uber 得以保障服务高可用、落实最小权限访问控制，同时支持各领域数据集独立扩容，为业务团队赋予运维自主权。此次迁移采用了基于指针的方案，利用 Hive Metastore 将数据集重定向到新的 HDFS 路径，无需复制 PB 级数据。每个数据集仅需复制一次到去中心化目标位置，随后更新原...",
+    "published": "2026-04-12T15:00:00",
+    "source_name": "InfoQ AI",
+    "source_url": "https://www.infoq.cn/ai",
+    "category": "chinese_ai",
+    "author": "作者：Leela Kumili"
+  },
+  {
+    "title": "「Claude Code之父」其实是野路子来的……",
+    "url": "https://www.qbitai.com/2026/04/400306.html",
+    "summary": "「Claude Code之父」其实是野路子来的…… 鹭羽 2026-04-12 22:11:53 来源： 量子位 一生都在试图逃离原生公司（bushi） 鹭羽 发自 凹非寺 量子位 | 公众号 QbitAI 谁能想到，用 Claude Code 砸了程序员饭碗的人，还是个自学成才的野路子。这下真是端起碗吃饭，放下碗砸锅（bushi） 说起「Claude Code之父」 Boris Cherny ，职业生涯主打的就是浪～ 经济学专业出身，从零开始自学编程，一路杀到Meta首席，还顺手写了本TypeScript圈的顶级“圣经”…… 去年他还一度出逃Anthropic，结果又被立马请了回来，好一出抓...",
+    "published": "2026-04-12T14:11:53",
+    "source_name": "量子位",
+    "source_url": "https://www.qbitai.com/",
+    "category": "chinese_ai",
+    "author": "鹭羽"
+  },
+  {
+    "title": "养虾人看哭了！字节扣子2.5出生即满级，手机对话就能Vibe Coding",
+    "url": "https://www.qbitai.com/2026/04/400197.html",
+    "summary": "养虾人看哭了！字节扣子2.5出生即满级，手机对话就能Vibe Coding 闻乐 2026-04-12 22:06:46 来源： 量子位 有自己的网盘和邮箱，产出还能自动归档 闻乐 发自 凹非寺 量子位 | 公众号 QbitAI 字节扣子悄悄升级了，全新上线2.5版本。看我刚拿扣子2.5做的运势抽签小程序，直接就是一个大吉大利！ 扣子这次直接给Agent全套武装到了牙齿： 不光塞了云电脑、云手机让它自己能操作设备；还整了长期记忆、专属邮箱搞起了数字身份；视频创作、编程开发这些技能也一并解锁。甚至连专属日程、共用文件系统都安排上了，能7×24小时后台自己忙活，还搭了个开放生态Agent Worl...",
+    "published": "2026-04-12T14:06:46",
+    "source_name": "量子位",
+    "source_url": "https://www.qbitai.com/",
+    "category": "chinese_ai",
+    "author": "闻乐"
+  },
+  {
+    "title": "HTML-in-Canvas引爆前端！AI时代互联网视觉效果完全不一样了",
+    "url": "https://www.qbitai.com/2026/04/399996.html",
+    "summary": "HTML-in-Canvas引爆前端！AI时代互联网视觉效果完全不一样了 一水 2026-04-12 22:02:36 来源： 量子位 HTML也能跑Doom游戏了？？ 一水 发自 凹非寺 量子位 | 公众号 QbitAI word天，前端现在都高级成这样了吗？！ 小手轻轻一指，被选中的区域就立马出现了碎片效果，炫酷感一整个扑面而来。渲染真人还不算，设计游戏更是一把好手，同款射击破碎效果这就上桌。还有高手，直接将网页设计成鱼眼效果，还是想怎么调就怎么调那种。不止这些，（前推特）上此刻正有一大堆酷炫的前端作品刷屏，直让人眼花缭乱。而它们，统统来自一种正悄然走红的实验性玩法—— HTML-in-C...",
+    "published": "2026-04-12T14:02:36",
+    "source_name": "量子位",
+    "source_url": "https://www.qbitai.com/",
+    "category": "chinese_ai",
+    "author": "一水"
+  },
+  {
+    "title": "首席工程师之路：培养领导力",
+    "url": "https://www.infoq.cn/article/Bbmfyay4kg5Hx2ATMdMC?utm_source=rss&utm_medium=article",
+    "summary": "Sophie Weston 在 QCon 伦敦大会的演讲 “首席工程师之路” 中提到，工作并非培养宝贵领导技能的唯一场所。她建议大家思考在工作之外有哪些可以学习和实践实用领导技能的途径。成为首席工程师不仅需要技术能力，还需要影响力、沟通能力与战略思维。Weston 表示，成功意味着通过塑造文化来赋能团队。她建议 在多个领域培养扎实的专业能力 ，工作之外的生活技能，如体育运动、志愿服务或游戏，都能带来宝贵的视角，并进一步提升领导潜力。...",
+    "published": "2026-04-12T14:00:00",
+    "source_name": "InfoQ AI",
+    "source_url": "https://www.infoq.cn/ai",
+    "category": "chinese_ai",
+    "author": "Ben Linders"
+  },
+  {
+    "title": "Aspire 13.2 正式发布，带来扩展版 CLI、预览版 TypeScript AppHost 及仪表盘改进",
+    "url": "https://www.infoq.cn/article/gXDZZmbAobi5TfwKUxLH?utm_source=rss&utm_medium=article",
+    "summary": "上月底，微软 发布 了 Aspire 13.2，为其云原生开发技术栈带来了大量的更新。这次发布主要致力于提升命令行体验、扩展多语言支持，为开发者和 AI 编码代理简化本地开发流程。在这个版本中，最值得关注的新增功能是 Aspire CLI 的重大扩展。据报道，开发者现在可以使用一种新的分离模式（detached mode）在后台运行应用程序，通过专用的启动、停止和进程列表命令管理正在运行的实例，并直接在终端中监控资源。# 使用交互式模板选择器创建一个新的启动程序 aspire new # 或者，在现有代码库中新创建一个空的 apphost aspire init # 恢复集成包并启动 apph...",
+    "published": "2026-04-12T11:00:00",
+    "source_name": "InfoQ AI",
+    "source_url": "https://www.infoq.cn/ai",
+    "category": "chinese_ai",
+    "author": "作者：Almir Vuk"
+  },
+  {
+    "title": "谷歌开源 Colab MCP Server，AI 智能体可云端运行代码",
+    "url": "https://www.infoq.cn/article/Z71AB0lSu0DcEhSNFXqQ?utm_source=rss&utm_medium=article",
+    "summary": "谷歌开源 Colab MCP Server ，让 AI 智能体能够通过模型上下文协议（MCP）直接与谷歌 Colab 发生交互。该项目旨在将本地智能体工作流与云端执行环境打通，让开发者可以将计算密集型或存在潜在安全风险的任务从本地设备迁移至云端执行。Colab MCP Server 将 Colab 作为可编程环境对外提供。兼容 MCP 的智能体（如 Gemini CLI 和 Claude Code）可创建和整理笔记本、执行代码单元、管理依赖项并整理输出内容，从而能够生成完整可运行的笔记本，而非仅输出静态代码片段。这种方式解决了本地智能体部署中的一个常见的局限：计算资源不足与安全问题制约了自动化...",
+    "published": "2026-04-12T10:00:00",
+    "source_name": "InfoQ AI",
+    "source_url": "https://www.infoq.cn/ai",
+    "category": "chinese_ai",
+    "author": "作者：Robert Krzaczyński"
+  },
+  {
+    "title": "可复制的 AI Coding 全栈实战：比 OpenSpec 更轻量、更丝滑｜QCon北京",
+    "url": "https://www.infoq.cn/article/4wNXLbIeHGEWrGNUwOjc?utm_source=rss&utm_medium=article",
+    "summary": "从「AI For What」到「Value From AI」，100+可落地实践案例打通 AI 实战最后一公里！ 4 月 16 日-4 月 18 日， QCon 全球软件开发大会 将在北京举办。本届大会锚定 Agentic AI 时代的软件工程重塑，聚焦 Agentic AI、多智能体协作、算力优化、技术债治理、多模态和 AI 原生基础设施等前沿话题，邀请来自腾讯、阿里、百度、华为、蚂蚁、小米、网易等企业技术专家，带来百余项真实落地案例，系统性分享前沿洞察与实战干货，以技术共创探索 AI 落地新路径。淘宝闪购高级技术专家邓立山已确认出席 “ Coding Agent 驱动的研发新范式 ” 专题...",
+    "published": "2026-04-12T10:00:00",
+    "source_name": "InfoQ AI",
+    "source_url": "https://www.infoq.cn/ai",
+    "category": "chinese_ai",
+    "author": "QCon全球软件开发大会"
+  }
+]
