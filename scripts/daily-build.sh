@@ -26,6 +26,15 @@ echo "🚀 开始推送到 GitHub Pages..."
 # 保存当前分支
 CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 
+# 添加 venv 到 gitignore（如果还没添加）
+if ! grep -q "^venv/" .gitignore 2>/dev/null; then
+    echo "venv/" >> .gitignore
+fi
+
+# 储藏所有未提交的变更（包括 dist 目录）
+git add -A
+git stash push -m "deploy-stash-$(date +%s)"
+
 # 保存 dist 内容到临时目录
 TEMP_DIR=$(mktemp -d)
 cp -r dist/* "$TEMP_DIR/"
@@ -60,8 +69,9 @@ fi
 # 清理临时目录
 rm -rf "$TEMP_DIR"
 
-# 切回原分支
+# 切回原分支并恢复储藏
 git checkout "$CURRENT_BRANCH"
+git stash pop || true
 
 echo ""
 echo "✅ GitHub Pages 部署完成！"
