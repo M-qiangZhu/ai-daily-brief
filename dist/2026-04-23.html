@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Daily Brief - 2026-04-23</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #1a1a24;
+            --bg-hover: #22222e;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0b0;
+            --text-muted: #6b6b7b;
+            --accent-blue: #3b82f6;
+            --accent-purple: #8b5cf6;
+            --accent-cyan: #06b6d4;
+            --accent-green: #10b981;
+            --border-color: #2a2a3a;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+            border-bottom: 1px solid var(--border-color);
+            padding: 2rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--text-primary), var(--accent-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .date-badge {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        /* Stats */
+        .stats-bar {
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 0.75rem;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-cyan);
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Main Content */
+        .main {
+            padding: 2rem 0;
+        }
+
+        /* Category Sections */
+        .category-section {
+            margin-bottom: 3rem;
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .category-icon {
+            font-size: 1.25rem;
+        }
+
+        .category-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .category-count {
+            background: var(--bg-hover);
+            color: var(--text-secondary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.875rem;
+        }
+
+        /* Article Cards */
+        .articles-grid {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .article-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.25rem;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .article-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+            border-color: var(--accent-blue);
+        }
+
+        .article-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .article-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.4;
+            flex: 1;
+        }
+
+        .article-card:hover .article-title {
+            color: var(--accent-blue);
+        }
+
+        .article-source {
+            font-size: 0.75rem;
+            color: var(--accent-purple);
+            background: rgba(139, 92, 246, 0.1);
+            padding: 0.25rem 0.5rem;
+            border-radius: 6px;
+            white-space: nowrap;
+        }
+
+        .article-summary {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin: 0.75rem 0;
+            padding: 0.75rem 0;
+            border-top: 1px dashed var(--border-color);
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .article-summary.empty {
+            color: var(--text-muted);
+            font-style: italic;
+            border: none;
+            padding: 0.5rem 0;
+        }
+
+        .read-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            color: var(--accent-blue);
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-top: 0.5rem;
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .article-date {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .article-author {
+            color: var(--accent-green);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .footer-text {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+
+        .footer-links {
+            margin-top: 0.5rem;
+        }
+
+        .footer-links a {
+            color: var(--accent-blue);
+            text-decoration: none;
+            margin: 0 0.5rem;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .article-header {
+                flex-direction: column;
+            }
+
+            .article-source {
+                align-self: flex-start;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .article-card {
+            animation: fadeIn 0.3s ease forwards;
+        }
+
+        /* Scroll to top */
+        .scroll-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--accent-blue);
+            color: white;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s, transform 0.3s;
+            border: none;
+            font-size: 1.25rem;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-3px);
+            background: var(--accent-purple);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">🤖</div>
+                    <h1 class="logo-text">AI Daily Brief</h1>
+                </div>
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <nav class="nav-links" style="display: flex; gap: 0.5rem;">
+                        <a href="index.html" style="color: var(--accent-blue); text-decoration: none; padding: 0.5rem 1rem; border-radius: 8px; background: var(--bg-card); font-size: 0.875rem;">今日日报</a>
+                        <a href="history.html" style="color: var(--text-secondary); text-decoration: none; padding: 0.5rem 1rem; border-radius: 8px; transition: all 0.2s; font-size: 0.875rem;">历史归档</a>
+                    </nav>
+                    <div class="date-badge">
+                        📅 2026年04月23日 · 周四
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="stats-bar">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-value">20</div>
+                    <div class="stat-label">今日文章</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">3</div>
+                    <div class="stat-label">分类</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">5</div>
+                    <div class="stat-label">来源</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main class="main">
+        <div class="container">
+            
+            
+            <section class="category-section">
+                <div class="category-header">
+                    
+                    <span class="category-icon">🇨🇳</span>
+                    <h2 class="category-title">国内 AI 媒体</h2>
+                    <span class="category-count">17 篇</span>
+                </div>
+                <div class="articles-grid">
+                    
+                    <a href="https://www.infoq.cn/video/UJySiBqf8hEsjBTWqpHS?utm_source=rss&amp;utm_medium=article" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">高能研讨会｜端侧 AI 正在重写实时感知效率上限</h3>
+                            <span class="article-source">InfoQ AI</span>
+                        </div>
+                        
+                        <p class="article-summary empty">暂无摘要，点击查看原文阅读完整内容 →</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-04-22</span>
+                            
+                            <span class="article-author">👤 王玮</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.infoq.cn/article/ZFewc2btPEr4qiQfO2We?utm_source=rss&amp;utm_medium=article" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">2050大会看这篇就够了｜报名、交通食宿指引大全</h3>
+                            <span class="article-source">InfoQ AI</span>
+                        </div>
+                        
+                        <p class="article-summary">2050 大会 倒计时 2 天！ ⏰活动时间 | 2026 年 4 月 24 日-26 日 🏠活动地点 | 杭州市云栖小镇国际会展中心 今年的 2050 有点狠：两天一夜，130+场论坛、500+分享者，从早 8 点一路讲到深夜。全球最有趣的年轻开发者、创客、AI 爱好者将齐聚杭州。截至 4.22 18:00 这里刻意去掉了大会常见的那套：没有主办方架子、没有 Logo 墙铺满、没有 VIP 标签。...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-04-22</span>
+                            
+                            <span class="article-author">👤 木子</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.infoq.cn/article/dMvHmak3G8a7zYhdjaR9?utm_source=rss&amp;utm_medium=article" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">Java 近期资讯：OpenJDK JEP、Jakarta EE 12、Spring Framework、Micrometer、Camel、JBang</h3>
+                            <span class="article-source">InfoQ AI</span>
+                        </div>
+                        
+                        <p class="article-summary">OpenJDK JEP 534（ 默认采用紧凑对象头 ）已从 JEP Draft 8361187 升级 为 候选 状态。该提案将 JEP 519（ 紧凑对象头 ）（已随 JDK 25 发布）设为 HotSpot JVM 中的默认对象头布局。要了解有关紧凑对象头的更多详情，请参阅 InfoQ 的这篇新闻报道。JEP 533（ 结构化并发第七个预览版 ）已从 JEP Draft 8373610 升级 为 候选 状态。...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-04-22</span>
+                            
+                            <span class="article-author">👤 Michael Redlich</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.infoq.cn/article/LIb7POBCMo8213s9lk0T?utm_source=rss&amp;utm_medium=article" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">金融智能的架构编排：基于 Snowflake Cortex Agents 实现结构化与非结构化数据统一分析 ｜ 技术实践</h3>
+                            <span class="article-source">InfoQ AI</span>
+                        </div>
+                        
+                        <p class="article-summary">2026 年，智能体将在企业级应用中取得哪些实质性突破？ 点击下载 《2026 年 AI 与数据发展预测》白皮书，获悉专家一手前瞻，抢先拥抱新的工作方式！ 在企业数据版图内，生成式人工智能的演进已超越简单的聊天界面，迈入自主编排的领域。对金融机构而言，这项技术的前景在于弥合一个历史性鸿沟：一端是高度结构化的交易数据（如总账分录），另一端是非结构化文档的庞大存储库（如监管手册和 ERP 系统指南）。Snowflake Cortex 智能体代表了这一范式的根本转变，它提供了一个托管框架，用于构建不仅能检索数据、还能规划复杂任务、执行专用工具，并以高精度和可验证的引用综合生成洞察的智能助手。Cort...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-04-22</span>
+                            
+                            <span class="article-author">👤 Eylon Steiner</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.infoq.cn/article/IPZaVe2hAKCougHa1zAm?utm_source=rss&amp;utm_medium=article" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">在AK大神爆火的任务里，摸清国产AI真实水平</h3>
+                            <span class="article-source">InfoQ AI</span>
+                        </div>
+                        
+                        <p class="article-summary">4 月 20 日深夜，Kimi K2.6 发布并开源。它最值得被探讨的，并非又赢了几个 Benchmark，跑分逼平乃至反超海外三巨头。这些数字反映的更多是理论上限，而非你我实际上手时的真实水平。在 DeepSearchQA、SWE-Bench Pro 等核心 Agent 与代码评测项目中位居第一，在 Humanity&#39;s Last Exam 等博士级难度测试中持平或优于三巨头（GPT-5.4、Claude Opus 4.6 和 Gemini 3.1 Pro），整体成绩处于同级别模型的第一梯队。...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-04-22</span>
+                            
+                            <span class="article-author">👤 四月</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.infoq.cn/article/haZgR6XNQhh7r448wxPP?utm_source=rss&amp;utm_medium=article" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">百灵Ling-2.6-flash 正式发布：高 Token 效率，以 1/10 消耗实现 SOTA 级 Agent 能力</h3>
+                            <span class="article-source">InfoQ AI</span>
+                        </div>
+                        
+                        <p class="article-summary">4 月 22 日，蚂蚁百灵正式推出 Ling-2.6-flash —— 一款总参数量 104B、激活参数 7.4B 的 Instruct 模型。该模型主打“Token 效率（Token Efficiency）”，在保持竞争力智能水平的同时，更快、更省以及更适合大规模真实应用。据权威三方评测 Artificial Analysis 数据，Ling-2.6-flash 展现了突出的 Token Efficiency 优势，以 15M output tokens 实现了 26 分的 Intelligence Index，在保持较强智能水平的同时，将输出消耗控制在相对更低的位置。相比部分依赖更长输出换...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-04-22</span>
+                            
+                            <span class="article-author">👤 杨过</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.infoq.cn/article/PGUEKqa88emfLiIL1Mwz?utm_source=rss&amp;utm_medium=article" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">当 PM 懂AI，当技术懂产品：AI 时代产品力的双向进化｜PM x AI产品力领航者大会即将开幕</h3>
+                            <span class="article-source">InfoQ AI</span>
+                        </div>
+                        
+                        <p class="article-summary">当 PM 懂 AI，当技术懂产品：AI 时代产品力的双向进化｜PM x AI 产品力领航者大会即将开幕 当 AI 浪潮席卷产品行业，产品构建早已不再是单一维度的能力博弈，而是产品思维与 AI 技术的双向奔赴、双向进化。大厂如何用 Agent 驱动组织进化？ 海外 AI 产品有哪些值得借鉴的前沿思路？ ToB 场景下，AI 如何真正为企业增长提效？ 从 0 到 1 打造 AI Native 产品，有哪些可复用的方法论？ 4 月 24-25 日，中国·杭州，PM×AI 产品力领航者大会重磅来袭！ 我们以「重塑产品力·共启 AI 势能」为主题，精心设计 11 大垂直论坛专场，覆盖从大厂实践到硅谷视野...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-04-22</span>
+                            
+                            <span class="article-author">👤 作者：苏杰</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.qbitai.com/2026/04/404721.html" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">“不造车的特斯拉”亮出“舱驾一体”全家桶，汽车长出“主动理解力”，奇瑞比亚迪等10+巨头力挺</h3>
+                            <span class="article-source">量子位</span>
+                        </div>
+                        
+                        <p class="article-summary">“不造车的特斯拉”亮出“舱驾一体”全家桶，汽车长出“主动理解力”，奇瑞比亚迪等10+巨头力挺 杰西卡 2026-04-22 22:26:18 来源： 量子位 智能车时代的Wintel已出现 杰西卡 发自 副驾寺 智能车参考 | 公众号 AI4Auto 智能汽车，很可能不会再出现一个 “微软+英特尔” 式的 Wintel组合 了。原因很简单—— 软件、硬件分属两家，只是 PC时代的阶段性产物。当时软件硬件之间有清晰的边界，也有足够时间进行协同。但在智能汽车时代，软件开始直接驱动物理世界， 软硬件之间的边界正在迅速消失。自动驾驶需要在毫秒级做出决策，座舱系统需要理解用户意图，大模型开始尝试调度整车...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-04-22</span>
+                            
+                            <span class="article-author">👤 杰西卡</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.qbitai.com/2026/04/404713.html" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">科大讯飞发布燎原N30m笔记本，重塑全栈国产AIPC新标杆</h3>
+                            <span class="article-source">量子位</span>
+                        </div>
+                        
+                        <p class="article-summary">科大讯飞发布燎原N30m笔记本，重塑全栈国产AIPC新标杆 量子位的朋友们 2026-04-22 21:15:52 来源： 量子位 4月21日，科大讯飞正式发布讯飞星火· 燎原N30m笔记本。作为一款面向移动办公场景打造的AIPC新品，燎原N30m以“自主可控、轻盈智能”为核心主张，具备极致轻薄、超长续航、AI原生、智能协同等优势，开启移动办公新未来。燎原N30m带来的不只是一台更轻、更快、更安全的笔记本电脑，更带来对AIPC价值的一次重新定义：当市面上的AIPC还在做“工具的加法”时，讯飞星火AIPC则实现了“角色的进化”，它并非简单叠加应用，而是以“耀天智能体”为核心，将“三办两问”能力注...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-04-22</span>
+                            
+                            <span class="article-author">👤 量子位的朋友们</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.infoq.cn/article/SCh9qpVmgQ1ObT3eVR17?utm_source=rss&amp;utm_medium=article" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">为 AI 智能体设计记忆机制：揭秘 LinkedIn 的认知记忆智能体</h3>
+                            <span class="article-source">InfoQ AI</span>
+                        </div>
+                        
+                        <p class="article-summary">LinkedIn 推出认知记忆智能体（Cognitive Memory Agent，CMA） ，作为其生成式 AI 技术栈的组成部分，旨在构建具备状态感知与上下文理解能力的 AI 系统，使其能够在交互过程中留存并复用知识。该系统主要用于支撑招聘助手（Hiring Assistant）等应用，解决了大语言模型工作流中的一个核心问题：缺乏状态记忆，进而导致无法跨会话保持连贯交互。CMA 充当应用智能体与底层语言模型之间的共享记忆基础设施层。应用智能体无需通过重复提示词来重建上下文，而是通过这套专用系统来实现记忆的持久化存储、检索与更新。这既实现了跨会话连贯的交互，减少了冗余推理，也能在用户上下文持...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-04-22</span>
+                            
+                            <span class="article-author">👤 作者：Leela Kumili</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.infoq.cn/article/tHiX6Qmxzmq6BGd9mQtb?utm_source=rss&amp;utm_medium=article" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">下一代数据工程：动态表与五大关键能力，重塑构建范式 ｜ 技术趋势</h3>
+                            <span class="article-source">InfoQ AI</span>
+                        </div>
+                        
+                        <p class="article-summary">2026 年，智能体将在企业级应用中取得哪些实质性突破？ 点击下载 《2026 年 AI 与数据发展预测》白皮书，获悉专家一手前瞻，抢先拥抱新的工作方式！ 数据工程师的角色正在经历一场深刻的变革。如今，数据工程师的工作早已超越单纯编写脚本、将数据从 A 点迁移至 B 点的范畴，而是逐步演变为“全栈构建者”。在应对海量数据的同时，他们还需兼顾复杂的 DevOps 工作流与语义建模。随着技能体系的演进，编程范式也明显向声明式编程转变。工程师不再需要耗费大量时间管理脆弱且逐步执行的命令式指令，而是转而定义数据的期望最终状态，由底层平台自主决定如何实现这一目标。...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-04-22</span>
+                            
+                            <span class="article-author">👤 Jena Donlin</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.infoq.cn/article/rhxzeqEsJKQBQkpU4KbA?utm_source=rss&amp;utm_medium=article" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">谷歌Java版ADK 1.0发布：全新的应用与插件架构以及外部工具支持</h3>
+                            <span class="article-source">InfoQ AI</span>
+                        </div>
+                        
+                        <p class="article-summary">谷歌的 Java 版 Agent Development Kit（ADK）正式发布 1.0 版本 ，新增外部工具集成、新的应用与插件架构、高级上下文工程、人机协同工作流等功能。新增支持的工具包括： GoogleMapsTool （提供谷歌地图数据访问能力）、 UrlContextTool （可直接获取并总结网页内容）、 ContainerCodeExecutor 与 VertexAICodeExecutor （支持通过 Docker 容器在本地或借助 Vertex AI 在云端安全稳定地执行代码），以及 ComputerUseTool （可操控网页浏览器或计算机，需集成 Playwright ...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-04-22</span>
+                            
+                            <span class="article-author">👤 Sergio De Simone</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.infoq.cn/article/XqhLJyRQ7ZMIPXqVlwsh?utm_source=rss&amp;utm_medium=article" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">谷歌 Aletheia 推动全自主代理式数学研究迈向新高度</h3>
+                            <span class="article-source">InfoQ AI</span>
+                        </div>
+                        
+                        <p class="article-summary">谷歌发布了 Aletheia ，这是一套基于 Gemini 3 Deep Think 的 AI 系统，在 FirstProof 挑战 中成功解决了 10 道全新数学问题中的 6 道。与此同时，Aletheia 在 IMO-ProofBench 上取得了约 91.9% 的成绩，这表明在无需人工干预的研究级证明自动发现方面出现了显著进展。与传统基准测试常见的数据污染问题（即模型无意中记住训练数据）不同， FirstProof 挑战 包含了十个尚未发表的研究级数学引理。这些问题来源于数学家正在进行的研究工作，从未在网上发布，因此几乎可以确定 AI 不可能提前见过这些题目。...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-04-22</span>
+                            
+                            <span class="article-author">👤 Bruno Couriol</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.qbitai.com/2026/04/404645.html" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">神秘模型「大象」：仅100B拿下SOTA，Token效率超高！</h3>
+                            <span class="article-source">量子位</span>
+                        </div>
+                        
+                        <p class="article-summary">神秘模型「大象」：仅100B拿下SOTA，Token效率超高！ 十三 2026-04-22 18:29:00 来源： 量子位 金磊 发自 凹非寺 量子位 | 公众号 QbitAI 神秘模型 Elephant 的面纱，终于被揭开了。前一阵子 OpenRouters 在自家官方上提到了一个神秘模型Elephant Alpha，并且给到的评价是这样的： 仅 100B 大小，在同规模模型里是 SOTA ，还巨 省Token。话题一出，立即引来不少网友们的围观，他们纷纷开始猜测这又是哪家的模型。不过非常微妙的一点是，这次网友们猜测的对象，统一地指向了中国大模型： 是MiniMax、Kimi、DeepSe...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-04-22</span>
+                            
+                            <span class="article-author">👤 十三</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.infoq.cn/article/kqX8oCFVhIJG2pXR7dix?utm_source=rss&amp;utm_medium=article" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">亚马逊云科技宣布DevOps Agent正式可用，可自动化开展事件排查</h3>
+                            <span class="article-source">InfoQ AI</span>
+                        </div>
+                        
+                        <p class="article-summary">亚马逊云科技宣布 DevOps Agent 正式可用 ，这是一款由生成式 AI 驱动的智能助手，旨在帮助开发者和运维人员排查问题、分析部署，并在 AWS 环境中自动化执行运维任务。该服务在 2025 年的 re:Invent 大会上预览发布 ，基于 Amazon Bedrock AgentCore 构建。DevOps Agent 通过学习应用关联关系并集成可观测性工具、运行手册、代码仓库和 CI/CD 管道来分析事件。该智能体 可将遥测数据、代码和部署数据关联起来，自主完成问题分类与排查，加快故障解决，并从历史事件中识别规律、给出优化建议，助力防范后续故障。AWS 高级解决方案架构师 Madh...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-04-22</span>
+                            
+                            <span class="article-author">👤 Renato Losio</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.qbitai.com/2026/04/404631.html" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">香港科创标杆奖项！商汤首席科学家林达华荣获中银香港科创奖</h3>
+                            <span class="article-source">量子位</span>
+                        </div>
+                        
+                        <p class="article-summary">香港科创标杆奖项！商汤首席科学家林达华荣获中银香港科创奖 量子位的朋友们 2026-04-22 17:52:49 来源： 量子位 发表论文被引用逾90000次 近日， 商汤科技 联合创始人兼首席科学家林达华教授，荣获第四届中银香港科技创新奖（人工智能及机器人领域），以表彰其于科研创新及成果转化方面的卓越贡献。林达华教授在计算机视觉与多模态智能领域进行系统性创新，并在图像视频理解、多模态大模型与空间智能等方向实现多项突破，推动关键核心技术自主创新与开源生态建设，促进人工智能研究成果高水平赋能产业，为中国人工智能技术进步与产业升级作出重要贡献。林达华教授表示：“十分荣幸获此殊荣，这是对团队长期坚持...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-04-22</span>
+                            
+                            <span class="article-author">👤 量子位的朋友们</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.qbitai.com/2026/04/404798.html" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">RGB-Mini LED电视普及风暴，海信正式发布小墨E5S Pro</h3>
+                            <span class="article-source">量子位</span>
+                        </div>
+                        
+                        <p class="article-summary">RGB-Mini LED电视普及风暴，海信正式发布小墨E5S Pro 量子位的朋友们 2026-04-22 17:13:55 来源： 量子位 重塑Mini LED品质标杆 4月22日，海信举行了主题为“好电视的新答案”2026海信电视小墨E5系列新品发布会，正式推出全新一代产品——RGB-Mini LED电视爆款王小墨E5S Pro，以及Mini LED电视口碑王小墨E5S。作为2025年全网销冠的全新进化之作，小墨E5S Pro以革命性的RGB-Mini LED显示技术普及为核心，带来原生色彩、舒适视觉、绿色节能全方位跨代体验；小墨E5S则将过往Pro级的满血配置全面普及为标配，精准解决了传...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-04-22</span>
+                            
+                            <span class="article-author">👤 量子位的朋友们</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                </div>
+            </section>
+            
+            
+            
+            <section class="category-section">
+                <div class="category-header">
+                    
+                    <span class="category-icon">🏢</span>
+                    <h2 class="category-title">国际公司官方</h2>
+                    <span class="category-count">1 篇</span>
+                </div>
+                <div class="articles-grid">
+                    
+                    <a href="mailto:press@anthropic.com" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">Newsroom</h3>
+                            <span class="article-source">Anthropic</span>
+                        </div>
+                        
+                        <p class="article-summary">Our latest Opus model brings stronger performance across coding, agents, vision, and multi-step tasks, with greater thoroughness and consistency on the work that matters most.</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-04-23</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                </div>
+            </section>
+            
+            
+            
+            <section class="category-section">
+                <div class="category-header">
+                    
+                    <span class="category-icon">👨‍🔬</span>
+                    <h2 class="category-title">国际研究员</h2>
+                    <span class="category-count">2 篇</span>
+                </div>
+                <div class="articles-grid">
+                    
+                    <a href="https://github.com/distillpub/post--multimodal/issues?q=is%3Aissue+label%3Apeer-review" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">Multimodal Neurons in Artificial Neural Networks</h3>
+                            <span class="article-source">Distill.pub</span>
+                        </div>
+                        
+                        <p class="article-summary">Gabriel Goh, Nick Cammarata †, Chelsea Voss †, Shan Carter, Michael Petrov, Ludwig Schubert, Alec Radford, and Chris Olah</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-04-23</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.anthropic.com/" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">Essays</h3>
+                            <span class="article-source">Dario Amodei</span>
+                        </div>
+                        
+                        <p class="article-summary">Dario Amodei is the CEO ofAnthropic, a public benefit corporation dedicated to building AI systems that are steerable, interpretable and safe....More</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-04-23</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                </div>
+            </section>
+            
+            
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">
+                AI Daily Brief · 每日 AI 资讯聚合
+            </p>
+            <p class="footer-text" style="margin-top: 0.5rem; font-size: 0.75rem;">
+                生成于 2026-04-23 08:01
+            </p>
+        </div>
+    </footer>
+
+    <button class="scroll-top" onclick="scrollToTop()" id="scrollTop">↑</button>
+
+    <script>
+        // Scroll to top button
+        const scrollTopBtn = document.getElementById('scrollTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+        
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Add stagger animation to cards
+        document.querySelectorAll('.article-card').forEach((card, index) => {
+            card.style.animationDelay = `${index * 0.05}s`;
+        });
+    </script>
+</body>
+</html>

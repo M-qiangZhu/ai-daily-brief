@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Daily Brief - 2026-04-22</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #1a1a24;
+            --bg-hover: #22222e;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0b0;
+            --text-muted: #6b6b7b;
+            --accent-blue: #3b82f6;
+            --accent-purple: #8b5cf6;
+            --accent-cyan: #06b6d4;
+            --accent-green: #10b981;
+            --border-color: #2a2a3a;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+            border-bottom: 1px solid var(--border-color);
+            padding: 2rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--text-primary), var(--accent-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .date-badge {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        /* Stats */
+        .stats-bar {
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 0.75rem;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-cyan);
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Main Content */
+        .main {
+            padding: 2rem 0;
+        }
+
+        /* Category Sections */
+        .category-section {
+            margin-bottom: 3rem;
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .category-icon {
+            font-size: 1.25rem;
+        }
+
+        .category-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .category-count {
+            background: var(--bg-hover);
+            color: var(--text-secondary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.875rem;
+        }
+
+        /* Article Cards */
+        .articles-grid {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .article-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.25rem;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .article-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+            border-color: var(--accent-blue);
+        }
+
+        .article-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .article-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.4;
+            flex: 1;
+        }
+
+        .article-card:hover .article-title {
+            color: var(--accent-blue);
+        }
+
+        .article-source {
+            font-size: 0.75rem;
+            color: var(--accent-purple);
+            background: rgba(139, 92, 246, 0.1);
+            padding: 0.25rem 0.5rem;
+            border-radius: 6px;
+            white-space: nowrap;
+        }
+
+        .article-summary {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin: 0.75rem 0;
+            padding: 0.75rem 0;
+            border-top: 1px dashed var(--border-color);
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .article-summary.empty {
+            color: var(--text-muted);
+            font-style: italic;
+            border: none;
+            padding: 0.5rem 0;
+        }
+
+        .read-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            color: var(--accent-blue);
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-top: 0.5rem;
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .article-date {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .article-author {
+            color: var(--accent-green);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .footer-text {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+
+        .footer-links {
+            margin-top: 0.5rem;
+        }
+
+        .footer-links a {
+            color: var(--accent-blue);
+            text-decoration: none;
+            margin: 0 0.5rem;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .article-header {
+                flex-direction: column;
+            }
+
+            .article-source {
+                align-self: flex-start;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .article-card {
+            animation: fadeIn 0.3s ease forwards;
+        }
+
+        /* Scroll to top */
+        .scroll-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--accent-blue);
+            color: white;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s, transform 0.3s;
+            border: none;
+            font-size: 1.25rem;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-3px);
+            background: var(--accent-purple);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">🤖</div>
+                    <h1 class="logo-text">AI Daily Brief</h1>
+                </div>
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <nav class="nav-links" style="display: flex; gap: 0.5rem;">
+                        <a href="index.html" style="color: var(--accent-blue); text-decoration: none; padding: 0.5rem 1rem; border-radius: 8px; background: var(--bg-card); font-size: 0.875rem;">今日日报</a>
+                        <a href="history.html" style="color: var(--text-secondary); text-decoration: none; padding: 0.5rem 1rem; border-radius: 8px; transition: all 0.2s; font-size: 0.875rem;">历史归档</a>
+                    </nav>
+                    <div class="date-badge">
+                        📅 2026年04月22日 · 周三
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="stats-bar">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-value">22</div>
+                    <div class="stat-label">今日文章</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">3</div>
+                    <div class="stat-label">分类</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">5</div>
+                    <div class="stat-label">来源</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main class="main">
+        <div class="container">
+            
+            
+            <section class="category-section">
+                <div class="category-header">
+                    
+                    <span class="category-icon">🇨🇳</span>
+                    <h2 class="category-title">国内 AI 媒体</h2>
+                    <span class="category-count">19 篇</span>
+                </div>
+                <div class="articles-grid">
+                    
+                    <a href="https://www.infoq.cn/article/fKc0YsLc9aDjzk1V81oW?utm_source=rss&amp;utm_medium=article" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">模力工场 037 周 AI 应用周榜：生态意识增强，多模态已成AI应用标配</h3>
+                            <span class="article-source">InfoQ AI</span>
+                        </div>
+                        
+                        <p class="article-summary">模力工场 新鲜事 4 月 24 日（本周五）-4 月 26 日（本周日），2050 大会将盛大开启！ 地点：中国杭州 · 云栖小镇国际会展中心 今年的 2050 大会干货超满！两天一夜，130+场论坛、500+分享者，从早 8 点讲到深夜。2050 大会，是王坚院士在 2018 年发起了一个面向年轻人的“科技乌托邦式聚会”。极客邦科技创始人兼 CEO 霍太稳（Kevin）也是最早的共创者之一。10 年前，几人在上海的一间酒店会议室里聊天，聊着聊着就冒出一个问题——能不能做一个规模大一点、真正属于年轻人的科技聚会？名字反复打磨，形式一再推敲，这些想法一点点长成了今天的 2050 大会。2017 ...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-04-21</span>
+                            
+                            <span class="article-author">👤 木子</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.infoq.cn/article/aqYPpJBPlvaJDQDCNlrJ?utm_source=rss&amp;utm_medium=article" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">中国具身智能最高单轮融资出炉！前华为、百度高管联手创业，打造真干活、真量产的机器人</h3>
+                            <span class="article-source">InfoQ AI</span>
+                        </div>
+                        
+                        <p class="article-summary">整理｜华卫 日前，它石智航宣布完成超 4.55 亿美元 Pre-A 轮融资，创下中国具身智能有史以来最高单轮融资纪录。值得注意的是，这已经是它石智航第二次刷新行业融资纪录。在 2025 年第二季度，它石智航以 2.42 亿美金完成中国具身智能有史以来最大天使轮融资。时隔一年，它石智航进一步打破了中国具身智能有史以来最大 Pre-A 轮融资纪录及行业最大单轮融资纪录。它石智航董事长李震宇表示，“本轮融资将用于加速打造通用具身大模型 AWE 和持续吸引行业顶尖人才，下一轮融资将重点用于打造真干活、真量产的机器人。...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-04-21</span>
+                            
+                            <span class="article-author">👤 华卫</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.infoq.cn/article/2bUZm9d80lzXWSHxqqYG?utm_source=rss&amp;utm_medium=article" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">智能与互联：AI 数据治理时代的数据目录关键能力 ｜ 技术趋势</h3>
+                            <span class="article-source">InfoQ AI</span>
+                        </div>
+                        
+                        <p class="article-summary">2026 年，智能体将在企业级应用中取得哪些实质性突破？ 点击下载 《2026 年 AI 与数据发展预测》白皮书，获悉专家一手前瞻，抢先拥抱新的工作方式！ 那种将数据目录仅视为记录系统的观念已经过时，随之消亡的还有为创建和维护该目录所需的纯手工劳动。在智能体、副驾驶与自主分析的时代，我们需要的是一个通用型人工智能目录——它内嵌于系统之中、具备互操作性、富有韧性，并且专为以机器速度进行推理而构建。“通用型人工智能目录”并非一个花哨的流行词。“人工智能目录”指的是一种具备上下文知识的智能目录，能够使人机智能体工作得更快、更高效。而“通用型”则指向互操作性，其视野能够超越像 Snowflake、AW...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-04-21</span>
+                            
+                            <span class="article-author">👤 Danielle Kucera</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.infoq.cn/article/PxmVh2miqDZB6jDbAqeK?utm_source=rss&amp;utm_medium=article" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">“守成者”库克卸任CEO：除了离开，他再没有什么能贡献给苹果了</h3>
+                            <span class="article-source">InfoQ AI</span>
+                        </div>
+                        
+                        <p class="article-summary">昨晚，总部位于加州库比蒂诺的 Apple 公司宣布，现任首席执行官 Tim Cook 将于 2026 年 9 月 1 日起转任董事会执行主席；现任硬件工程高级副总裁 John Ternus 将接任公司下一任 CEO。苹果告别库克时代，硬件副总裁接任 CEO 苹果表示，此次人事变动已获得董事会一致批准，是“经过深思熟虑的长期继任计划”的结果。几个月来，外界一直猜测库克可能会卸任，而特纳斯被认为是接替他的热门人选。盘后交易中，苹果股价小幅下跌 0.5%，至 271 美元左右。...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-04-21</span>
+                            
+                            <span class="article-author">👤 李冬梅</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.infoq.cn/article/QyXUMEdTVvStcoE1bBZK?utm_source=rss&amp;utm_medium=article" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">构建可信数据智能体的上下文层 ｜ 技术趋势</h3>
+                            <span class="article-source">InfoQ AI</span>
+                        </div>
+                        
+                        <p class="article-summary">2026 年，智能体将在企业级应用中取得哪些实质性突破？ 点击下载 《2026 年 AI 与数据发展预测》白皮书，获悉专家一手前瞻，抢先拥抱新的工作方式！ 为什么“与数据对话”只是入门基础——以及为什么赢家将构建上下文，而不仅仅是模型？ 对于我们这些在数据领域深耕数十年的人来说，近期业界对“上下文层”日益增长的兴趣，既令人欣慰，也引人深思。语义层之所以重新浮出水面，是因为大多数企业都发现了一个同样令人不安的现实：模型听起来很聪明，但仍然会生成那些“确信的错误答案”。这种失败模式，与其说是模型推理能力的问题——因为模型实际上已经变得非常聪明，且仍在持续进步——不如说，瓶颈在于能否获取正确的上下文...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-04-21</span>
+                            
+                            <span class="article-author">👤 Josh Klahr</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.infoq.cn/article/dGEQOcGXJRdBxkvXzhCl?utm_source=rss&amp;utm_medium=article" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">湖仓建设中的巴别塔：跨数据库引擎处理标识符解析规则</h3>
+                            <span class="article-source">InfoQ AI</span>
+                        </div>
+                        
+                        <p class="article-summary">现代湖仓架构的愿景是构建一个统一的数据层，使 Snowflake、Spark、Trino 和 Flink 等各类计算引擎都能够借助 Apache Iceberg 等开放标准实现无缝互操作。尽管数据存储和元数据格式标准化方面已经取得了显著的进展，但仍然存在严重的互操作障碍：不同数据库引擎之间没有一种通用的语言。由于各厂商支持的功能存在差异，所以支持一种通用的 SQL 方言是一件很有挑战性的事，但我们要指出的是，即便在标识符（数据库、模式、表、表列等）这种最基础的方面，也存在不一致之处。每种引擎在处理和规范化标识符时都有自己的历史规则，从而形成了一种“巴别塔”效应：各个工具之间无法在数据库对象命名...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-04-21</span>
+                            
+                            <span class="article-author">👤 作者：Maninder Parmar</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.infoq.cn/article/5mM7VODr7TttHPVwklzl?utm_source=rss&amp;utm_medium=article" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">Vibe Coding 的边界：3000 万开发者，实现不了 80 亿人的灵光</h3>
+                            <span class="article-source">InfoQ AI</span>
+                        </div>
+                        
+                        <p class="article-summary">特斯拉前 AI 总监、OpenAI 创始成员 Andrej Karpathy 在去年随口提出 Vibe Coding 的时候，或许也没想到，它会变成一场运动，并从 240 亿个词汇中脱颖而出，成为 2025 年柯林斯词典年度词汇。Vibe Coding 之所以出圈，在于它击中了一个时代情绪：在 AI 技术的持续迭代升级下，编程可以不再是工程师的专属能力。但问题也很快开始浮现：Vibe Coding 虽然降低了编程门槛，但本质上，加速的还是“程序员写代码”，整个流程仍然假设用户知道什么是 IDE、什么是依赖管理、什么是部署。...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-04-21</span>
+                            
+                            <span class="article-author">👤 凌敏</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.qbitai.com/2026/04/404124.html" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">前小鹏汽车自动驾驶一号位李力耘出任众擎CTO，加速打造具身大脑</h3>
+                            <span class="article-source">量子位</span>
+                        </div>
+                        
+                        <p class="article-summary">通过将自动驾驶领域成熟的“工业化AI”打法、高效的数据飞轮与极强的工程部署能力引入具身赛道，众擎加速打造原生多模态驱动、大小脑与神经末梢协同的全集成架构。</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-04-21</span>
+                            
+                            <span class="article-author">👤 田, 晏林</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.infoq.cn/article/TH0QVHpvVGZ7VP3hAEmm?utm_source=rss&amp;utm_medium=article" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">Anthropic 发布 Claude Design，一句话生成 UI，设计圈变天了</h3>
+                            <span class="article-source">InfoQ AI</span>
+                        </div>
+                        
+                        <p class="article-summary">写代码、做表格、搞分析……大模型把这些活儿干完之后，终于腾出手来对付设计了。这个曾经最依赖专业工具和手艺的领域，终究没能逃掉被重做的命运。周末，Anthropic 宣布推出一款新产品——Claude Design，试图把“设计”这件事从专业软件中解放出来，变成一种可以通过对话完成的协作过程。这项功能目前由其刚刚发布的最新模型 Claude Opus 4.7 提供支持，并以研究预览的形式向 Claude Pro、Max、Team 和 Enterprise 用户逐步开放。说几句话就能完成设计的时代来了 Anthropic 对 Claude Design 的定位很明确：不是一个简单的设计生成器，做“...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-04-21</span>
+                            
+                            <span class="article-author">👤 李冬梅</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.infoq.cn/article/ho3Qjql4dzSwA1loVMMY?utm_source=rss&amp;utm_medium=article" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">Claude封号潮失控！300 万用户企业一夜断供，无理由、无回应，受害者被迫抱团反抗</h3>
+                            <span class="article-source">InfoQ AI</span>
+                        </div>
+                        
+                        <p class="article-summary">” “Claude AI，你们无缘无故封掉了我们整个组织，涉及 60 多个属于正规公司的账号，却没有给出任何解释。申诉这件事居然只能通过填写一个 Google 表单来处理？这用户体验和客户服务也太差了。” Belo App CTO Pato Molina 发贴控诉，并配上了 Claude 回复的邮件。...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-04-21</span>
+                            
+                            <span class="article-author">👤 褚杏娟</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.qbitai.com/2026/04/404096.html" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">5月20日，马上AI起来！中国AIGC产业峰会报名已启动｜首波嘉宾官宣</h3>
+                            <span class="article-source">量子位</span>
+                        </div>
+                        
+                        <p class="article-summary">5月20日，马上AI起来！中国AIGC产业峰会报名已启动｜首波嘉宾官宣 林樾 2026-04-21 20:02:52 来源： 量子位 欢迎报名，北京线下见！ 组委会 发自 凹非寺 公众号｜量子位 QbitAI “龙虾”、“爱马仕”接连爆火，你用上了吗？ 可以看到，AI正在从少数人的工具，变成所有人的日常。今年 5月20日 ，我们将在 北京金茂万丽酒店 举办一年一度的中国AIGC产业峰会。这次峰会主题是 「@所有人，马上AI起来」 ，邀请你和我们一起，不再只是讨论AI的未来，而是现在就用起来。报名参会：https://hdxu.cn/1Hjr1 这次，将会有一群真正站在AI一线的人来到现场： 他...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-04-21</span>
+                            
+                            <span class="article-author">👤 林樾</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.infoq.cn/article/LJBaR3H17qK6XVwTNVH0?utm_source=rss&amp;utm_medium=article" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">平台即产品：平衡相互冲突的优先事项并创造价值</h3>
+                            <span class="article-source">InfoQ AI</span>
+                        </div>
+                        
+                        <p class="article-summary">在哥本哈根 GOTO 大会上，Abby Bangser 在题为“ 平台即产品 ”的演讲中指出，要想取得成功，必须在工程、设计、易用性、安全性以及为内部客户和组织创造价值之间取得平衡。产品思维、明确的责任归属以及持续的投资，能够避免瓶颈、平台老化和资源浪费，并随着时间的推移实现可扩展、可持续的价值交付。软件产品不是孤立存在的，它们需要采取一种平衡的跨学科方法。Bangser 指出，人们与系统互动不是因为喜欢它们的界面或 API。...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-04-21</span>
+                            
+                            <span class="article-author">👤 Ben Linders</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.infoq.cn/article/z4MLOC3NU0xbYcYaVVQL?utm_source=rss&amp;utm_medium=article" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">OpenTelemetry 声明式配置迎来稳定性里程碑</h3>
+                            <span class="article-source">InfoQ AI</span>
+                        </div>
+                        
+                        <p class="article-summary">OpenTelemetry 项目 宣布，其声明式配置规范的关键部分已经达到稳定状态。该可观测性框架针对遥测数据采集提供了一种供应商中立且语言无关的配置方式。InfoQ 近期曾经对此做过报道，包括 Airbnb 在内的一些知名企业正 利用 OpenTelemetry 构建高流量指标管道 ，而 OpenTelemetry 项目组也 发布了一篇“揭秘”文章 来推动该框架的广泛采用。在 最近的一篇博文 中，Grafana Labs 首席工程师 Jack Berg 记录了相关变更。Berg 解释说，这个稳定版本的更新内容涵盖了数据模型的 JSON 模式、配置文件的 YAML 表示，以及配置数据的内存表示...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-04-21</span>
+                            
+                            <span class="article-author">👤 作者：Matt Saunders</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.infoq.cn/article/NMxQFeHUc6EPw9QERWQj?utm_source=rss&amp;utm_medium=article" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">GitHub Copilot CLI 正式进入全面可用阶段</h3>
+                            <span class="article-source">InfoQ AI</span>
+                        </div>
+                        
+                        <p class="article-summary">GitHub 已正式将 Copilot CLI 推向全面可用 ，这标志着其在将生成式 AI 融入整个软件开发生命周期方面迈出了重要一步。这一举措也体现出 GitHub 正在进一步推动，将终端打造为 AI 辅助开发的一等入口。该工具作为 GitHub CLI 的扩展，提供了两种主要的交互模式，旨在提升开发者的工作效率。开发者可以使用 suggest 功能，将自然语言提示转换为复杂的 shell 命令或 Git 操作。该能力旨在减少开发者为查找不常用任务所需的特定参数和语法而频繁查阅文档的时间。...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-04-21</span>
+                            
+                            <span class="article-author">👤 作者：Mark Silvester</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.infoq.cn/article/mYPV4DrAJfvixheSs6XK?utm_source=rss&amp;utm_medium=article" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">QCon 2026 北京站收官：以 AI 之力，重塑软件工程新生态</h3>
+                            <span class="article-source">InfoQ AI</span>
+                        </div>
+                        
+                        <p class="article-summary">4 月 16 至 18 日，由极客邦科技旗下 InfoQ 中国主办的 QCon 全球软件开发大会·北京站（2026） 圆满落地。为期三天的盛会共吸引了 超过 2000 位 开发者、技术专家与行业从业者齐聚一堂，共话前沿技术趋势与产业落地实践，现场交流热烈、思想碰撞不断。本次大会邀请到来自腾讯、阿里巴巴、蚂蚁集团、火山引擎、字节跳动、快猫星云、华为、百度、地瓜机器人、北银金科、白海科技、哔哩哔哩、菜鸟集团、滴滴出行、阶跃星辰、京东、科大讯飞、快手、蓝耘科技、乐享科技、良仓孵化器、联想、美团、美图、小米、网易、平安科技、去哪儿旅行、清程极智、智谱、云深处科技、腾讯云、容联云、58 同城、无问芯穹、...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-04-21</span>
+                            
+                            <span class="article-author">👤 QCon全球软件开发大会</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.infoq.cn/article/KlrsHcFeBKWu9RW85u0a?utm_source=rss&amp;utm_medium=article" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">100个产品原型同时跑、新模型Mythos断层领先，连skills效果都好到让团队意外：Anthropic内部到底在发生什么？</h3>
+                            <span class="article-source">InfoQ AI</span>
+                        </div>
+                        
+                        <p class="article-summary">一个还没发布的新模型，已经让 Anthropic 内部感受到了“断层式”的变化。在最新的播客对话里，Claude Cowork 工程负责人 Felix Rieseberg 提到，他们内部正在用的一款新模型 Mythos Preview，带来的不是常规提升，而是一次明显的“断层式跃迁”。对工程师来说，这种差别很直观：同样是读代码、找漏洞、写实现，这一代模型的理解深度和解题方式，已经和上一代拉开了一截。随着执行成本被压到很低，Anthropic 内部已经可以同时跑上百个产品原型。...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-04-21</span>
+                            
+                            <span class="article-author">👤 傅宇琪</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.infoq.cn/article/E3v5OSXbSsKLoqXLBKvP?utm_source=rss&amp;utm_medium=article" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">Claude Code 桌面版烂爆了，Anthropic 终于把 “100% AI 编码”演砸了</h3>
+                            <span class="article-source">InfoQ AI</span>
+                        </div>
+                        
+                        <p class="article-summary">Anthropic 推出了最新的 Claude Code 桌面应用。CLI 当然有它的价值，但如果真要把 agentic coding 推向更大规模、更高频、更接近日常开发的使用场景，图形界面几乎是绕不过去的。尤其是在你同时处理多个任务、多个线程、多个上下文的时候，一个慢、卡、状态又不透明的命令行界面，确实很难说是“最终形态”。从这个意义上说，Claude Code 桌面版的发布，本来是一个值得期待的节点。Anthropic 显然也对它寄予厚望，官方账号亲自下场发推，外界预热已经持续了几个月，整个发布姿态都在传递一个信号：他们终于要把 Claude Code 从一个“能用的 CLI 工具”，推...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-04-21</span>
+                            
+                            <span class="article-author">👤 Tina</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.qbitai.com/2026/04/404086.html" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">物理优先+VLA闭环进化：高德ABot-World世界模型，破解具身智能零样本泛化难题</h3>
+                            <span class="article-source">量子位</span>
+                        </div>
+                        
+                        <p class="article-summary">物理优先+VLA闭环进化：高德ABot-World世界模型，破解具身智能零样本泛化难题 量子位的朋友们 2026-04-21 16:45:58 来源： 量子位 高精渲染引擎，解决”数据稀缺” 随着高德公开全球首款开放环境全自主具身机器人“途途”，，其背后的数据及训练基座——ABot-World世界模型同步引发行业关注。该模型实现了具身智能底层训练范式完成了从“传统视觉渲染”向“可微分物理引擎”的根本性迁移，为机器人从仿真走向真实物理世界提供了统一且可进化的操作系统。ABot-World 创新性采用双引擎架构，在物理合规性、动作可控性与零样本泛化三大核心维度上同步实现突破，成为全球唯一在此三项关...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-04-21</span>
+                            
+                            <span class="article-author">👤 量子位的朋友们</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.qbitai.com/2026/04/404082.html" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">ISC.AI 2026创新独角兽沙盒大赛在京启动 聚焦智能体 共筑AI创新生态</h3>
+                            <span class="article-source">量子位</span>
+                        </div>
+                        
+                        <p class="article-summary">ISC.AI 2026创新独角兽沙盒大赛在京启动 聚焦智能体 共筑AI创新生态 量子位的朋友们 2026-04-21 16:31:55 来源： 量子位 深挖人工智能与数字安全领域创新成果 4月20日，ISC.AI 2026创新独角兽沙盒大赛启动仪式于北京举办。本届大赛以智能体创新实践为核心，面向全球开启数字安全创新、AI应用创新、高校创新新星三大赛道招募，覆盖AI安全、安全智能体等前沿领域，致力于搭建起技术、产业、资本、人才共生共融的创新生态，推动智能化发展迈向更深层次的价值重构与场景落地。360数字安全集团副总裁、ISC.AI品牌主理人卜思南表示，当前人工智能快速迭代、智能体加速落地，大赛聚...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-04-21</span>
+                            
+                            <span class="article-author">👤 量子位的朋友们</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                </div>
+            </section>
+            
+            
+            
+            <section class="category-section">
+                <div class="category-header">
+                    
+                    <span class="category-icon">🏢</span>
+                    <h2 class="category-title">国际公司官方</h2>
+                    <span class="category-count">1 篇</span>
+                </div>
+                <div class="articles-grid">
+                    
+                    <a href="mailto:press@anthropic.com" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">Newsroom</h3>
+                            <span class="article-source">Anthropic</span>
+                        </div>
+                        
+                        <p class="article-summary">Our latest Opus model brings stronger performance across coding, agents, vision, and multi-step tasks, with greater thoroughness and consistency on the work that matters most.</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-04-22</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                </div>
+            </section>
+            
+            
+            
+            <section class="category-section">
+                <div class="category-header">
+                    
+                    <span class="category-icon">👨‍🔬</span>
+                    <h2 class="category-title">国际研究员</h2>
+                    <span class="category-count">2 篇</span>
+                </div>
+                <div class="articles-grid">
+                    
+                    <a href="https://github.com/distillpub/post--multimodal/issues?q=is%3Aissue+label%3Apeer-review" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">Multimodal Neurons in Artificial Neural Networks</h3>
+                            <span class="article-source">Distill.pub</span>
+                        </div>
+                        
+                        <p class="article-summary">Gabriel Goh, Nick Cammarata †, Chelsea Voss †, Shan Carter, Michael Petrov, Ludwig Schubert, Alec Radford, and Chris Olah</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-04-22</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.anthropic.com/" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">Essays</h3>
+                            <span class="article-source">Dario Amodei</span>
+                        </div>
+                        
+                        <p class="article-summary">Dario Amodei is the CEO ofAnthropic, a public benefit corporation dedicated to building AI systems that are steerable, interpretable and safe....More</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-04-22</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                </div>
+            </section>
+            
+            
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">
+                AI Daily Brief · 每日 AI 资讯聚合
+            </p>
+            <p class="footer-text" style="margin-top: 0.5rem; font-size: 0.75rem;">
+                生成于 2026-04-22 08:23
+            </p>
+        </div>
+    </footer>
+
+    <button class="scroll-top" onclick="scrollToTop()" id="scrollTop">↑</button>
+
+    <script>
+        // Scroll to top button
+        const scrollTopBtn = document.getElementById('scrollTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+        
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Add stagger animation to cards
+        document.querySelectorAll('.article-card').forEach((card, index) => {
+            card.style.animationDelay = `${index * 0.05}s`;
+        });
+    </script>
+</body>
+</html>
