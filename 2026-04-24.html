@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Daily Brief - 2026-04-24</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #1a1a24;
+            --bg-hover: #22222e;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0b0;
+            --text-muted: #6b6b7b;
+            --accent-blue: #3b82f6;
+            --accent-purple: #8b5cf6;
+            --accent-cyan: #06b6d4;
+            --accent-green: #10b981;
+            --border-color: #2a2a3a;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+            border-bottom: 1px solid var(--border-color);
+            padding: 2rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--text-primary), var(--accent-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .date-badge {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        /* Stats */
+        .stats-bar {
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 0.75rem;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-cyan);
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Main Content */
+        .main {
+            padding: 2rem 0;
+        }
+
+        /* Category Sections */
+        .category-section {
+            margin-bottom: 3rem;
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .category-icon {
+            font-size: 1.25rem;
+        }
+
+        .category-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .category-count {
+            background: var(--bg-hover);
+            color: var(--text-secondary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.875rem;
+        }
+
+        /* Article Cards */
+        .articles-grid {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .article-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.25rem;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .article-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+            border-color: var(--accent-blue);
+        }
+
+        .article-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .article-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.4;
+            flex: 1;
+        }
+
+        .article-card:hover .article-title {
+            color: var(--accent-blue);
+        }
+
+        .article-source {
+            font-size: 0.75rem;
+            color: var(--accent-purple);
+            background: rgba(139, 92, 246, 0.1);
+            padding: 0.25rem 0.5rem;
+            border-radius: 6px;
+            white-space: nowrap;
+        }
+
+        .article-summary {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin: 0.75rem 0;
+            padding: 0.75rem 0;
+            border-top: 1px dashed var(--border-color);
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .article-summary.empty {
+            color: var(--text-muted);
+            font-style: italic;
+            border: none;
+            padding: 0.5rem 0;
+        }
+
+        .read-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            color: var(--accent-blue);
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-top: 0.5rem;
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .article-date {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .article-author {
+            color: var(--accent-green);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .footer-text {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+
+        .footer-links {
+            margin-top: 0.5rem;
+        }
+
+        .footer-links a {
+            color: var(--accent-blue);
+            text-decoration: none;
+            margin: 0 0.5rem;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .article-header {
+                flex-direction: column;
+            }
+
+            .article-source {
+                align-self: flex-start;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .article-card {
+            animation: fadeIn 0.3s ease forwards;
+        }
+
+        /* Scroll to top */
+        .scroll-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--accent-blue);
+            color: white;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s, transform 0.3s;
+            border: none;
+            font-size: 1.25rem;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-3px);
+            background: var(--accent-purple);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">🤖</div>
+                    <h1 class="logo-text">AI Daily Brief</h1>
+                </div>
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <nav class="nav-links" style="display: flex; gap: 0.5rem;">
+                        <a href="index.html" style="color: var(--accent-blue); text-decoration: none; padding: 0.5rem 1rem; border-radius: 8px; background: var(--bg-card); font-size: 0.875rem;">今日日报</a>
+                        <a href="history.html" style="color: var(--text-secondary); text-decoration: none; padding: 0.5rem 1rem; border-radius: 8px; transition: all 0.2s; font-size: 0.875rem;">历史归档</a>
+                    </nav>
+                    <div class="date-badge">
+                        📅 2026年04月24日 · 周五
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="stats-bar">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-value">15</div>
+                    <div class="stat-label">今日文章</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">3</div>
+                    <div class="stat-label">分类</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">5</div>
+                    <div class="stat-label">来源</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main class="main">
+        <div class="container">
+            
+            
+            <section class="category-section">
+                <div class="category-header">
+                    
+                    <span class="category-icon">🇨🇳</span>
+                    <h2 class="category-title">国内 AI 媒体</h2>
+                    <span class="category-count">12 篇</span>
+                </div>
+                <div class="articles-grid">
+                    
+                    <a href="https://www.qbitai.com/2026/04/406221.html" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">刚刚，GPT-5.5发布！内测英伟达工程师：失去它像被截肢</h3>
+                            <span class="article-source">量子位</span>
+                        </div>
+                        
+                        <p class="article-summary">刚刚，GPT-5.5发布！内测英伟达工程师：失去它像被截肢 梦晨 2026-04-24 04:44:39 来源： 量子位 与上个版本GPT5.4相比，新模型在代码、知识工作、科学研究三个领域全部拉开身位 梦晨 发自 凹非寺 量子位 | 公众号 QbitAI GPT-5.5 ，刚刚降临。官方定位，“ 一种面向实际工作和智能体的新型智能。这次奥特曼没有自己站出来说“初体验被吓到眩晕瘫坐，那一刻就像看到原子弹爆炸”了，而是请了一群嘴替（早期测试用户）。其中有一位英伟达工程师，他在早期测试结束后短暂的失去了GPT-5.5的访问权限，然后说了这样一句话： 失去GPT-5.5，就像被截肢。...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-04-23</span>
+                            
+                            <span class="article-author">👤 梦晨</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.infoq.cn/article/muFy49vXpNUHW09hxt7G?utm_source=rss&amp;utm_medium=article" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">姚顺雨腾讯模型首秀！不卷参数只做 “听话打工人”，Hy3 preview登场 | 附实测</h3>
+                            <span class="article-source">InfoQ AI</span>
+                        </div>
+                        
+                        <p class="article-summary">今天，腾讯正式发布了新模型 Hy3 preview，这是姚顺雨加入腾讯后带领团队发布的首个模型。Hy3 preview 是一个快慢思考融合的 MoE 语言模型，总参数 295B，激活参数 21B，最大支持 256K 上下文长度，主打性价比。Hy3 preview 的模型能力提升，适用于 Coding 和智能体（例如龙虾）类场景，是一个在实际应用中具备实用性和高性价比的基础模型。Hy3 preview 是腾讯尝试解决真实世界复杂工程问题的开端。...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-04-23</span>
+                            
+                            <span class="article-author">👤 褚杏娟,蔡芳芳</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.qbitai.com/2026/04/406191.html" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">河南师傅，左手扳手，右手飞书，竟然能搞数据分析！</h3>
+                            <span class="article-source">量子位</span>
+                        </div>
+                        
+                        <p class="article-summary">河南师傅，左手扳手，右手飞书，竟然能搞数据分析！ 十三 2026-04-23 22:42:18 来源： 量子位 多维表格又升级了 金磊 发自 凹非寺 量子位 | 公众号 QbitAI 说真的，学SQL这件事，可以先放一放了。因为现在，一个汽车 点巡检 的师傅，左手拿着扳手，右手拿着 飞书 ，就能搞专业的 数据分析！ △图片由AI生成 例如面对密密麻麻、图文兼并的海量数据，对计算机技术一窍不通的师傅，现在要做的动作就是 一个导入+一句话 ： 这是一组汽车和工业设备的核心部件数据，请基于这张图表生成一个清晰可分享的产品目录页。然后在稍等片刻过后，一个产品目录页面就这么水灵灵地诞生了！ 除此之外，这...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-04-23</span>
+                            
+                            <span class="article-author">👤 十三</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.qbitai.com/2026/04/406020.html" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">国内首家百亿估值纯推理GPU独角兽诞生！专访曦望联席CEO王湛：谁的推理成本更低谁就是赢家</h3>
+                            <span class="article-source">量子位</span>
+                        </div>
+                        
+                        <p class="article-summary">国内首家百亿估值纯推理GPU独角兽诞生！专访曦望联席CEO王湛：谁的推理成本更低谁就是赢家 十三 2026-04-23 22:28:57 来源： 量子位 百万Token要降到1分钱 金磊 发自 凹非寺 量子位 | 公众号 QbitAI 杭州速度 ，这个词组的含金量还在上升。因为一家 纯推理GPU 公司，在分拆独立仅 1年多 时间里，竟已经完成了 七轮 融资，累计 40亿元！ 而随着前几天最新一轮融资的曝光，还以 10亿元 拿下今年这个赛道里 最大 单笔融资，一举成为国内首家 估值超百亿 的纯推理GPU独角兽。今年英伟达GTC，直接拿收购来的Groq推出LPU，而国内，国产版Groq也在狂飙突进...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-04-23</span>
+                            
+                            <span class="article-author">👤 十三</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.infoq.cn/video/GK8pH4D6EKegYSLsZLgL?utm_source=rss&amp;utm_medium=article" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">老板让你“忽悠”投资人，你敢发给龙虾吗？</h3>
+                            <span class="article-source">InfoQ AI</span>
+                        </div>
+                        
+                        <p class="article-summary empty">暂无摘要，点击查看原文阅读完整内容 →</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-04-23</span>
+                            
+                            <span class="article-author">👤 InfoQ 中文站</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.qbitai.com/2026/04/406036.html" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">印奇站上AI+车浪潮之巅：7个月，千里科技和华为「五五开」</h3>
+                            <span class="article-source">量子位</span>
+                        </div>
+                        
+                        <p class="article-summary">印奇站上AI+车浪潮之巅：7个月，千里科技和华为「五五开」 贾浩楠 2026-04-23 19:37:24 来源： 量子位 L2+上车46万辆 贾浩楠 发自 副驾寺 智能车参考 | 公众号 AI4Auto 名符其实，日行千里。按照北京车展开幕时间计算， 印奇 官宣掌舵 千里科技 ，时间正好1年零5个月。按照千里科技去年9月28日第一次公开披露技术、方案、战略体系计算，时间仅7个月。7个月，足够一个自动驾驶公司初步组建团队、完成早期融资，甚至拿出一个相当惊艳的Demo；也够一个大模型AI玩家刷几个榜单、发数篇顶会论文。但从来没人能够同时完成：高阶智驾量产上车46万辆、还要挑战三年800万辆。...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-04-23</span>
+                            
+                            <span class="article-author">👤 贾浩楠</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.infoq.cn/article/50eZYcehCtQuxKoTcLhS?utm_source=rss&amp;utm_medium=article" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">Gemini CLI 引入子代理机制，实现任务委派与并行代理工作流</h3>
+                            <span class="article-source">InfoQ AI</span>
+                        </div>
+                        
+                        <p class="article-summary">谷歌在 Gemini CLI 中 引入 了子代理（subagents）功能，这是一项新能力，旨在帮助开发者将复杂或重复性的任务委派给在主会话旁协同运行的专用 AI 代理。该功能允许主代理充当“协调者”，将代码分析、调研或测试等子任务分配给不同的专用子代理。每个子代理都在隔离环境中运行，并将汇总后的结果返回主会话，从而减少上下文负载，并在长时间交互过程中提升性能。据谷歌介绍，这种方式旨在解决代理工作流中的常见问题，尤其是中间步骤不断累积所带来的响应变慢和成本上升。通过将细粒度操作下放给子代理，主代理可以专注于更高层级的推理和最终结果输出。...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-04-23</span>
+                            
+                            <span class="article-author">👤 作者：Robert Krzaczyński</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.infoq.cn/article/BSZXO0VGFlBkmIke18ht?utm_source=rss&amp;utm_medium=article" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">清华系团队星工聚将完成数千万天使轮融资，轮式机器人拿下头部制造企业亿级大单</h3>
+                            <span class="article-source">InfoQ AI</span>
+                        </div>
+                        
+                        <p class="article-summary">整理 | 华卫 近日，工业具身智能领域的新锐力量星工聚将（XGSynBot）正式宣布完成数千万元天使轮融资，本轮融资由天空工场创投基金独家投资。星工聚将总经理李梓正表示：&#34;这轮融资不仅是对我们技术路线的认可，更是对&#39;工业场景优先&#39;战略的肯定。我们始终相信，能在工业场景走通的具身智能，才具备真正走向全场景通用化的资格。&#34; 作为一支融合清华和产业基因的创业团队，星工聚将从成立之初就选择了一条&#34;更远&#34;的路。2025 年深入产线、扎根车间，用工程能力而非 Demo 能力定义具身智能并持续迭代到今年 3 月二代 XG Z1 上线。...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-04-23</span>
+                            
+                            <span class="article-author">👤 华卫</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.infoq.cn/article/JYZIHVuwOCUWrE5Pq9av?utm_source=rss&amp;utm_medium=article" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">Pretext.js 绕过 DOM 布局重排，实现 120 FPS 的高级交互体验</h3>
+                            <span class="article-source">InfoQ AI</span>
+                        </div>
+                        
+                        <p class="article-summary">Midjourney 工程师、前 React 核心团队成员 Cheng Lou 近期发布了 Pretext ，这是一个仅 15KB 的开源 TypeScript 库，可以在不触及 DOM 的情况下完成文本测量与布局计算。这种方式避免了昂贵的浏览器布局重排（reflow），从而使无限列表、瀑布流布局以及滚动位置锚定等高级 UI/UX 模式能够以 60 至 120 FPS（帧率）运行。Pretext 通过一个 AI 循环构建，该过程对 DOM 的布局计算机制进行了逆向分析。对于面向消费者的应用（如 B2C），终端用户体验是实现差异化和推动采用的关键因素。Web 应用长期以来依赖多种高级 UI/UX...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-04-23</span>
+                            
+                            <span class="article-author">👤 Bruno Couriol</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.infoq.cn/article/OJN55xPWaVxT2IajEw6G?utm_source=rss&amp;utm_medium=article" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">靠“AI 云”爆红的 Vercel，栽在一个第三方AI工具手里！IPO前夕遭黑，200万美元赎金谈崩？</h3>
+                            <span class="article-source">InfoQ AI</span>
+                        </div>
+                        
+                        <p class="article-summary">整理 | 华卫 近日，支撑数百万生产部署、默默承载代码与用户之间底层连接的云平台 Vercel 遭到入侵，有威胁行为者宣称攻击了其系统，并试图出售窃取的数据。作为面向开发者提供托管与部署基础设施的云平台，Vercel 尤其专注于 JavaScript 框架生态，因开发广泛使用的 React 框架 Next.js 而知名，同时还提供无服务器函数、边缘计算、CI/CD 流水线等服务，帮助开发者构建、预览和部署应用程序。Vercel 在社交平台 X 上发布声明，确认了这起 “安全事件”，称“有未经授权的人员访问了 Vercel 部分内部系统”。该公司表示，攻击者是通过一个被入侵的第三方 AI 工具实...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-04-23</span>
+                            
+                            <span class="article-author">👤 华卫</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.qbitai.com/2026/04/406026.html" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">飞书项目开放平台焕新升级，全面迈向“AI Friendly”</h3>
+                            <span class="article-source">量子位</span>
+                        </div>
+                        
+                        <p class="article-summary">飞书项目开放平台焕新升级，全面迈向“AI Friendly” 量子位的朋友们 2026-04-23 17:55:30 来源： 量子位 能参与协作与执行的超级助手 4月23日，在上海举办的2026飞书项目生态日上，飞书项目集中发布并升级了一批面向AI时代的全新能力，包括全新的MCP能力、飞书项目CLI，以及面向智能体协作的AI应用体系等，进一步推动项目管理从“记录与跟踪”走向“人+Agent协同的行动系统”。飞书项目负责人洪涛表示：AI正在重塑“开发者”的边界——借助AI辅助工具，懂业务的一线PMO、管理员乃至深度用户，也能把想法快速变成可落地的工具与解决方案。飞书项目要做的，是成为这些创新落地...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-04-23</span>
+                            
+                            <span class="article-author">👤 量子位的朋友们</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.qbitai.com/2026/04/405391.html" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">半壁华人！GPT Image 2团队曝光：无锡才俊带队，13人4个月封神</h3>
+                            <span class="article-source">量子位</span>
+                        </div>
+                        
+                        <p class="article-summary">半壁华人！GPT Image 2团队曝光：无锡才俊带队，13人4个月封神 梦晨 2026-04-23 16:04:09 来源： 量子位 底层架构已彻底重构 梦晨 发自 凹非寺 量子位 | 公众号 QbitAI GPT Image2全网刷屏，但效果究竟为什么这么好？ 研究负责人陈博远 揭秘：底层架构已彻底重构。但他又拒绝回答是否采用扩散模型或自回归技术，只是神秘的将其描述为“通用模型”或“图像领域的GPT”。陈博远的一条推文还透露，从去年12月底的GPT Image 1.5算起，只用了四个月就有如此大的改进。整个团队的负责人Gabriel Goh晒出了的团队成员AI全家福。...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-04-23</span>
+                            
+                            <span class="article-author">👤 梦晨</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                </div>
+            </section>
+            
+            
+            
+            <section class="category-section">
+                <div class="category-header">
+                    
+                    <span class="category-icon">🏢</span>
+                    <h2 class="category-title">国际公司官方</h2>
+                    <span class="category-count">1 篇</span>
+                </div>
+                <div class="articles-grid">
+                    
+                    <a href="mailto:press@anthropic.com" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">Newsroom</h3>
+                            <span class="article-source">Anthropic</span>
+                        </div>
+                        
+                        <p class="article-summary">Our latest Opus model brings stronger performance across coding, agents, vision, and multi-step tasks, with greater thoroughness and consistency on the work that matters most.</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-04-24</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                </div>
+            </section>
+            
+            
+            
+            <section class="category-section">
+                <div class="category-header">
+                    
+                    <span class="category-icon">👨‍🔬</span>
+                    <h2 class="category-title">国际研究员</h2>
+                    <span class="category-count">2 篇</span>
+                </div>
+                <div class="articles-grid">
+                    
+                    <a href="https://github.com/distillpub/post--multimodal/issues?q=is%3Aissue+label%3Apeer-review" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">Multimodal Neurons in Artificial Neural Networks</h3>
+                            <span class="article-source">Distill.pub</span>
+                        </div>
+                        
+                        <p class="article-summary">Gabriel Goh, Nick Cammarata †, Chelsea Voss †, Shan Carter, Michael Petrov, Ludwig Schubert, Alec Radford, and Chris Olah</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-04-24</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.anthropic.com/" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">Essays</h3>
+                            <span class="article-source">Dario Amodei</span>
+                        </div>
+                        
+                        <p class="article-summary">Dario Amodei is the CEO ofAnthropic, a public benefit corporation dedicated to building AI systems that are steerable, interpretable and safe....More</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-04-24</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                </div>
+            </section>
+            
+            
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">
+                AI Daily Brief · 每日 AI 资讯聚合
+            </p>
+            <p class="footer-text" style="margin-top: 0.5rem; font-size: 0.75rem;">
+                生成于 2026-04-24 08:02
+            </p>
+        </div>
+    </footer>
+
+    <button class="scroll-top" onclick="scrollToTop()" id="scrollTop">↑</button>
+
+    <script>
+        // Scroll to top button
+        const scrollTopBtn = document.getElementById('scrollTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+        
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Add stagger animation to cards
+        document.querySelectorAll('.article-card').forEach((card, index) => {
+            card.style.animationDelay = `${index * 0.05}s`;
+        });
+    </script>
+</body>
+</html>
