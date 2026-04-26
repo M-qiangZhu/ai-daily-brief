@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Daily Brief - 2026-04-26</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #1a1a24;
+            --bg-hover: #22222e;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0b0;
+            --text-muted: #6b6b7b;
+            --accent-blue: #3b82f6;
+            --accent-purple: #8b5cf6;
+            --accent-cyan: #06b6d4;
+            --accent-green: #10b981;
+            --border-color: #2a2a3a;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+            border-bottom: 1px solid var(--border-color);
+            padding: 2rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--text-primary), var(--accent-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .date-badge {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        /* Stats */
+        .stats-bar {
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 0.75rem;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-cyan);
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Main Content */
+        .main {
+            padding: 2rem 0;
+        }
+
+        /* Category Sections */
+        .category-section {
+            margin-bottom: 3rem;
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .category-icon {
+            font-size: 1.25rem;
+        }
+
+        .category-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .category-count {
+            background: var(--bg-hover);
+            color: var(--text-secondary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.875rem;
+        }
+
+        /* Article Cards */
+        .articles-grid {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .article-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.25rem;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .article-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+            border-color: var(--accent-blue);
+        }
+
+        .article-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .article-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.4;
+            flex: 1;
+        }
+
+        .article-card:hover .article-title {
+            color: var(--accent-blue);
+        }
+
+        .article-source {
+            font-size: 0.75rem;
+            color: var(--accent-purple);
+            background: rgba(139, 92, 246, 0.1);
+            padding: 0.25rem 0.5rem;
+            border-radius: 6px;
+            white-space: nowrap;
+        }
+
+        .article-summary {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin: 0.75rem 0;
+            padding: 0.75rem 0;
+            border-top: 1px dashed var(--border-color);
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .article-summary.empty {
+            color: var(--text-muted);
+            font-style: italic;
+            border: none;
+            padding: 0.5rem 0;
+        }
+
+        .read-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            color: var(--accent-blue);
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-top: 0.5rem;
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .article-date {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .article-author {
+            color: var(--accent-green);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .footer-text {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+
+        .footer-links {
+            margin-top: 0.5rem;
+        }
+
+        .footer-links a {
+            color: var(--accent-blue);
+            text-decoration: none;
+            margin: 0 0.5rem;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .article-header {
+                flex-direction: column;
+            }
+
+            .article-source {
+                align-self: flex-start;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .article-card {
+            animation: fadeIn 0.3s ease forwards;
+        }
+
+        /* Scroll to top */
+        .scroll-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--accent-blue);
+            color: white;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s, transform 0.3s;
+            border: none;
+            font-size: 1.25rem;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-3px);
+            background: var(--accent-purple);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">🤖</div>
+                    <h1 class="logo-text">AI Daily Brief</h1>
+                </div>
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <nav class="nav-links" style="display: flex; gap: 0.5rem;">
+                        <a href="index.html" style="color: var(--accent-blue); text-decoration: none; padding: 0.5rem 1rem; border-radius: 8px; background: var(--bg-card); font-size: 0.875rem;">今日日报</a>
+                        <a href="history.html" style="color: var(--text-secondary); text-decoration: none; padding: 0.5rem 1rem; border-radius: 8px; transition: all 0.2s; font-size: 0.875rem;">历史归档</a>
+                    </nav>
+                    <div class="date-badge">
+                        📅 2026年04月26日 · 周日
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="stats-bar">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-value">8</div>
+                    <div class="stat-label">今日文章</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">3</div>
+                    <div class="stat-label">分类</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">5</div>
+                    <div class="stat-label">来源</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main class="main">
+        <div class="container">
+            
+            
+            <section class="category-section">
+                <div class="category-header">
+                    
+                    <span class="category-icon">🇨🇳</span>
+                    <h2 class="category-title">国内 AI 媒体</h2>
+                    <span class="category-count">5 篇</span>
+                </div>
+                <div class="articles-grid">
+                    
+                    <a href="https://www.infoq.cn/article/WjIGlEGAJUmNw8e3JeXO?utm_source=rss&amp;utm_medium=article" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">北京车展直击：斑马智能甩出车载Agent短剧，比亚迪率先落地，AI让智能座舱又热起来了</h3>
+                            <span class="article-source">InfoQ AI</span>
+                        </div>
+                        
+                        <p class="article-summary">整理｜华卫 4 月 24 日，斑马智能在北京车展上发布车载 Agent 短剧产品“元神小剧”，并宣布该产品将登陆智能座舱，首发落地在比亚迪旗下新能源车型。现场，比亚迪生态负责人王晨被聘任为“元神小剧首席体验官”，并围绕新能源汽车使用场景与内容消费节奏进行了分享。王晨表示，在充电效率持续提升的背景下，比亚迪已实现“3 分钟充好，9 分钟充饱，零下 30 度再多 3 分钟”。而这 9 分钟的碎片时间，恰好与短剧观看节奏完美契合，在斑马智能座舱内，用户利用充电时间可以刚好看完 3 集元神小剧，充电不再是出行的中断，而是沉浸式体验的自然延续。围绕车内观看视频的安全问题，斑马智能给出了明确的解决方案。...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-04-25</span>
+                            
+                            <span class="article-author">👤 华卫</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.infoq.cn/article/GL7YlM38mlEarquKkSE9?utm_source=rss&amp;utm_medium=article" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">Snowflake 作为智能体运行时：从静态管道迈向自主数据系统 ｜ 技术实践</h3>
+                            <span class="article-source">InfoQ AI</span>
+                        </div>
+                        
+                        <p class="article-summary">2026 年，智能体将在企业级应用中取得哪些实质性突破？ 点击下载 《2026 年 AI 与数据发展预测》白皮书，获悉专家一手前瞻，抢先拥抱新的工作方式！ 请勿仅限于查询数据——让数据主动为你服务。本文提供一份实用指南，剖析一个简洁的 Snowflake 智能体架构设计，并通过逐步的代码实现，帮助你构建出第一个自治数据助手。前言 多年来，构建智能数据系统往往意味着编写数以百计的模型、数据流水线、存储过程以及编排脚本。面对每一个新的业务问题，都需要开发新的转换逻辑、新的仪表盘或新的工作流。即使基于现代数据平台，开发模式本质上仍未改变：人工定义每一个步骤，系统机械地执行指令。...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-04-25</span>
+                            
+                            <span class="article-author">👤 Eylon Steiner</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.qbitai.com/2026/04/407363.html" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">华为发布ADS 5！强化世界模型路线，今年投入180亿</h3>
+                            <span class="article-source">量子位</span>
+                        </div>
+                        
+                        <p class="article-summary">华为发布ADS 5！强化世界模型路线，今年投入180亿 一凡 2026-04-25 23:38:18 来源： 量子位 “为自动驾驶而来” 一凡 发自 副驾寺 智能车参考 | 公众号 AI4Auto “为自动驾驶而来！” 刚刚， 华为发布ADS 5 ，明牌冲刺自动驾驶，不仅迭代了算法，走向多智能体博弈，还专为自动驾驶，打造全新的操作系统。为了推进ADS 5落地，华为预计，今年将在 智能辅助驾驶的投入预计超180亿元，超越“国内其他主要供应商总和”。云端算力部分投入 近百亿元 ，未来5年至少再投入700-800亿元。这并不只是一次简单的技术发布会，华为同时还透露了，自己在自动驾驶时代的生态布局。华...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-04-25</span>
+                            
+                            <span class="article-author">👤 一凡</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.infoq.cn/article/ypFQdKZIlSUC12Wm8A9g?utm_source=rss&amp;utm_medium=article" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">Snowflake 上的本体体系：基于 Cortex Code 能力实现从架构到部署 ｜ 技术实践</h3>
+                            <span class="article-source">InfoQ AI</span>
+                        </div>
+                        
+                        <p class="article-summary">2026 年，智能体将在企业级应用中取得哪些实质性突破？ 点击下载 《2026 年 AI 与数据发展预测》白皮书，获悉专家一手前瞻，抢先拥抱新的工作方式！ Cortex Code 技能如何将 Snowflake 本体架构转变为可复用的对话式工作流——在单次会话中，从任意关系型模式生成完整的五层技术栈。从概念到对话 今年早些时候，我发表了一个由三部分组成的系列文章，探讨如何在 Snowflake 上原生构建一个本体驱动的智能平台： 第一部分——概览与数据模型 ： 确立了基本原则，即将事实与语义相分离。内容涵盖物理存储（第 1 层）、以配置形式存在的本体元数据（第 2 层），以及动态生成的抽象视图...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-04-25</span>
+                            
+                            <span class="article-author">👤 Tianxia Jia</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.infoq.cn/article/eWRlmwIT5ApA2OKL9RYh?utm_source=rss&amp;utm_medium=article" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">Cloudflare 公布 MCP 架构方案，应对企业面临的安全与治理风险</h3>
+                            <span class="article-source">InfoQ AI</span>
+                        </div>
+                        
+                        <p class="article-summary">Cloudflare 概要介绍 了一种参考架构，用于在企业范围内扩展 Model Context Protocol（MCP）部署，并将集中式治理、远程服务器基础设施和成本控制视为生产就绪型代理系统的关键要求。该公告发布之际，基于 MCP 的系统正面临着日益严格的审查。近期有研究 指出 ，此类系统存在即时注入、供应链攻击以及服务器暴露或配置错误等风险，部分研究还证实，在 MCP 集成环境中存在任意代码执行和数据外泄的问题。作为一种将 AI 代理与外部工具及数据源连接起来的开放标准，MCP 将面向代理的客户端与对接企业资源的后端服务器进行了分离。这种抽象化设计使代理能够自主检索数据并执行操作，但也...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-04-25</span>
+                            
+                            <span class="article-author">👤 作者：Matt Foster</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                </div>
+            </section>
+            
+            
+            
+            <section class="category-section">
+                <div class="category-header">
+                    
+                    <span class="category-icon">🏢</span>
+                    <h2 class="category-title">国际公司官方</h2>
+                    <span class="category-count">1 篇</span>
+                </div>
+                <div class="articles-grid">
+                    
+                    <a href="mailto:press@anthropic.com" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">Newsroom</h3>
+                            <span class="article-source">Anthropic</span>
+                        </div>
+                        
+                        <p class="article-summary">Our latest Opus model brings stronger performance across coding, agents, vision, and multi-step tasks, with greater thoroughness and consistency on the work that matters most.</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-04-26</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                </div>
+            </section>
+            
+            
+            
+            <section class="category-section">
+                <div class="category-header">
+                    
+                    <span class="category-icon">👨‍🔬</span>
+                    <h2 class="category-title">国际研究员</h2>
+                    <span class="category-count">2 篇</span>
+                </div>
+                <div class="articles-grid">
+                    
+                    <a href="https://github.com/distillpub/post--multimodal/issues?q=is%3Aissue+label%3Apeer-review" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">Multimodal Neurons in Artificial Neural Networks</h3>
+                            <span class="article-source">Distill.pub</span>
+                        </div>
+                        
+                        <p class="article-summary">Gabriel Goh, Nick Cammarata †, Chelsea Voss †, Shan Carter, Michael Petrov, Ludwig Schubert, Alec Radford, and Chris Olah</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-04-26</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.anthropic.com/" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">Essays</h3>
+                            <span class="article-source">Dario Amodei</span>
+                        </div>
+                        
+                        <p class="article-summary">Dario Amodei is the CEO ofAnthropic, a public benefit corporation dedicated to building AI systems that are steerable, interpretable and safe....More</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-04-26</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                </div>
+            </section>
+            
+            
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">
+                AI Daily Brief · 每日 AI 资讯聚合
+            </p>
+            <p class="footer-text" style="margin-top: 0.5rem; font-size: 0.75rem;">
+                生成于 2026-04-26 08:01
+            </p>
+        </div>
+    </footer>
+
+    <button class="scroll-top" onclick="scrollToTop()" id="scrollTop">↑</button>
+
+    <script>
+        // Scroll to top button
+        const scrollTopBtn = document.getElementById('scrollTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+        
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Add stagger animation to cards
+        document.querySelectorAll('.article-card').forEach((card, index) => {
+            card.style.animationDelay = `${index * 0.05}s`;
+        });
+    </script>
+</body>
+</html>
