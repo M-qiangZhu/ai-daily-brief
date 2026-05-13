@@ -1,0 +1,1299 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Daily Brief - 2026-05-13</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #1a1a24;
+            --bg-hover: #22222e;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0b0;
+            --text-muted: #6b6b7b;
+            --accent-blue: #3b82f6;
+            --accent-purple: #8b5cf6;
+            --accent-cyan: #06b6d4;
+            --accent-green: #10b981;
+            --border-color: #2a2a3a;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+            border-bottom: 1px solid var(--border-color);
+            padding: 2rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--text-primary), var(--accent-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .date-badge {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        /* Stats */
+        .stats-bar {
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 0.75rem;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-cyan);
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Main Content */
+        .main {
+            padding: 2rem 0;
+        }
+
+        /* Category Sections */
+        .category-section {
+            margin-bottom: 3rem;
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .category-icon {
+            font-size: 1.25rem;
+        }
+
+        .category-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .category-count {
+            background: var(--bg-hover);
+            color: var(--text-secondary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.875rem;
+        }
+
+        /* Article Cards */
+        .articles-grid {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .article-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.25rem;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .article-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+            border-color: var(--accent-blue);
+        }
+
+        .article-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .article-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.4;
+            flex: 1;
+        }
+
+        .article-card:hover .article-title {
+            color: var(--accent-blue);
+        }
+
+        .article-source {
+            font-size: 0.75rem;
+            color: var(--accent-purple);
+            background: rgba(139, 92, 246, 0.1);
+            padding: 0.25rem 0.5rem;
+            border-radius: 6px;
+            white-space: nowrap;
+        }
+
+        .article-summary {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin: 0.75rem 0;
+            padding: 0.75rem 0;
+            border-top: 1px dashed var(--border-color);
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .article-summary.empty {
+            color: var(--text-muted);
+            font-style: italic;
+            border: none;
+            padding: 0.5rem 0;
+        }
+
+        .read-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            color: var(--accent-blue);
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-top: 0.5rem;
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .article-date {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .article-author {
+            color: var(--accent-green);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .footer-text {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+
+        .footer-links {
+            margin-top: 0.5rem;
+        }
+
+        .footer-links a {
+            color: var(--accent-blue);
+            text-decoration: none;
+            margin: 0 0.5rem;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .article-header {
+                flex-direction: column;
+            }
+
+            .article-source {
+                align-self: flex-start;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .article-card {
+            animation: fadeIn 0.3s ease forwards;
+        }
+
+        /* Scroll to top */
+        .scroll-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--accent-blue);
+            color: white;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s, transform 0.3s;
+            border: none;
+            font-size: 1.25rem;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-3px);
+            background: var(--accent-purple);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">🤖</div>
+                    <h1 class="logo-text">AI Daily Brief</h1>
+                </div>
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <nav class="nav-links" style="display: flex; gap: 0.5rem;">
+                        <a href="index.html" style="color: var(--accent-blue); text-decoration: none; padding: 0.5rem 1rem; border-radius: 8px; background: var(--bg-card); font-size: 0.875rem;">今日日报</a>
+                        <a href="history.html" style="color: var(--text-secondary); text-decoration: none; padding: 0.5rem 1rem; border-radius: 8px; transition: all 0.2s; font-size: 0.875rem;">历史归档</a>
+                    </nav>
+                    <div class="date-badge">
+                        📅 2026年05月13日 · 周三
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="stats-bar">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-value">50</div>
+                    <div class="stat-label">今日文章</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">3</div>
+                    <div class="stat-label">分类</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">7</div>
+                    <div class="stat-label">来源</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main class="main">
+        <div class="container">
+            
+            
+            <section class="category-section">
+                <div class="category-header">
+                    
+                    <span class="category-icon">🇨🇳</span>
+                    <h2 class="category-title">国内 AI 媒体</h2>
+                    <span class="category-count">44 篇</span>
+                </div>
+                <div class="articles-grid">
+                    
+                    <a href="https://www.ithome.com/0/949/564.htm" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">细节微调：神舟二十三号载人飞行任务最新版标识发布</h3>
+                            <span class="article-source">IT之家</span>
+                        </div>
+                        
+                        <p class="article-summary">IT之家 5 月 13 日消息，中国载人航天工程办公室昨晚正式发布神舟二十三号载人飞行任务的最新版标识，相较于此前的版本在细节上进行了微调。IT之家附神舟二十三号载人飞行任务标识官方介绍如下：标识采用圆形设计，展现了神舟二十三号载人飞船即将与中国空间站对接的场景，彰显了中国载人航天的硬核科技实力。标识中三颗五角星对应执行任务的三位航天员；左侧以长征二号 F 运载火箭发射为视觉主体，搭配金色祥云、如意纹样，将传统吉祥元素与现代航天科技相融，寄托任务圆满成功的美好祝愿，彰显传统文化与航天事业的深度融合；右侧融合“飞天”形象与灵动飘带，线条昂扬向上，与圆形轮廓相得益彰，以经典文化符号承载中华民族千年飞天梦想与探索苍穹的坚定信念。标识色彩以科技蓝为主色调，象征着太空探索与科技突破；以中国红点缀，既传承神舟系列标识视觉基因，也寓意着任务顺利、一往无前。根据规划，我国 2026 年将组织实施天舟十号、神舟二十三号、神舟二十四号、梦舟一号等 4 次飞行任务。其中，神舟二十三号飞行乘组 1 名航天员开展 1 年以上长期驻留试验，实施航天员出舱活动和货物气闸舱出舱等任务。相关阅读：《2026 年度载人航</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-12</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.ithome.com/0/949/563.htm" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">微信员工回应微信状态访客记录“截图”：不要瞎 P 图，这是造谣</h3>
+                            <span class="article-source">IT之家</span>
+                        </div>
+                        
+                        <p class="article-summary">IT之家 5 月 13 日消息，有博主昨日凌晨分享了微信状态访客记录的“截图”，并配文“以为是搞抽象，没想到是真的”。微信员工 @客村小蒋 昨晚进行回应，直言：“不要瞎 P 图，这是造谣了。”本月早些时候，“微信状态访客记录”话题冲上热搜，引发网友热议。腾讯客服最新回应称，微信状态的访客记录功能已停止测试。腾讯公司公关总监张军表示，微信已读功能和访客功能已焊死，不会开发、不会提供。此次小范围测试的微信状态浏览人数展示功能，也已停止。大家在IT之家微信号回复“微信”两字，即可获取当前最新官方内部版微信下载。</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-12</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.ithome.com/0/949/562.htm" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">谷歌联手 SpaceX 推进太空数据中心项目，计划 2027 年发射原型卫星</h3>
+                            <span class="article-source">IT之家</span>
+                        </div>
+                        
+                        <p class="article-summary">IT之家 5 月 13 日消息，据华尔街日报今日报道，谷歌正与 SpaceX 就一项火箭发射协议展开谈判，以推进其将数据中心部署至地球轨道的计划。该潜在合作将使两家科技巨头在轨道数据中心领域联手。这是一项尚未得到验证的技术，但 SpaceX 已在计划于今夏进行的首次公开募股（IPO）前，将其作为向投资者重点推介的核心概念之一。此次 IPO 预计将成为有史以来规模最大的公开募股。除 SpaceX 外，谷歌也在与其他火箭发射公司就该项目进行接洽，以保持灵活性。该公司去年公布了名为“Project Suncatcher”的太空计算计划，拟于 2027 年前发射原型卫星，并与卫星影像公司 Planet Labs 合作建造相关设备。谷歌 CEO 孙达尔 · 皮柴在去年 11 月接受采访时表示：“我们将把微型机架送入太空，搭载在卫星上进行测试，然后逐步扩大规模。我毫不怀疑，大约十年后，人们会将这视为建造数据中心的常规方式。”根据监管文件，谷歌是 SpaceX 的早期投资者，持有该公司 6.1% 的股份。另外，谷歌高管唐 · 哈里森目前正担任 SpaceX 董事会成员。据此前报道，SpaceX 已向</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-12</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.ithome.com/0/949/561.htm" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">中国电信量子-经典空芯共纤传输刷新全球纪录，40Tbps 超大容量融合通信获重大突破</h3>
+                            <span class="article-source">IT之家</span>
+                        </div>
+                        
+                        <p class="article-summary">IT之家 5 月 13 日消息，据科创电信公众号消息，中国电信研究院近日依托云网融合新型基础设施中试平台和大科创装置，联合科大国盾量子、长飞、中兴及北京邮电大学等顶尖产学研团队，成功实现 40Tbps（50×800Gbps）超大容量经典光通信与商用量子密钥分发（QKD）系统在百公里空芯光纤的稳定共传。据介绍，此举创下全球量子-经典共传系统新纪录，安全密钥率达 9.56kbps，有效解决了共纤条件下大容量传输与量子信号的噪声抑制难题，为量子安全通信规模化商用部署扫清关键技术障碍。科创电信表示，量子密钥分发（QKD）是保障信息传输绝对安全的核心技术，但长期受限于独占纤芯部署成本高、共纤传输干扰大，难以与现有大容量光通信网络兼容。针对这一瓶颈，团队首创基于空芯光纤的量子-经典联合优化方案，首次将经典信道传输特性纳入优化框架，通过波长分配与发射功率协同配置，精准抑制非线性噪声，在超大容量经典传输与高安全量子密钥之间实现完美平衡。目前，相关成果已发表于国际顶级光学期刊《光子学研究》（SCI 一区，IF:7.2），有利于降低量子通信建网光纤数量、缩短部署周期，助力量子科技规模应用。IT之家查询获悉</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-12</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.ithome.com/0/949/560.htm" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">IT早报 0513：腾讯收购喜马拉雅获市监总局附条件批准；390 万元起宇树发布全球首款载人机甲；微信不会开发已读与访客功能；DeepSeek 灰度聊天记录搜索功能...</h3>
+                            <span class="article-source">IT之家</span>
+                        </div>
+                        
+                        <p class="article-summary">“IT早报”时间，大家好，现在是 2026 年 5 月 13 日星期三，今天的重要科技资讯有：1、市场监管总局附条件批准腾讯收购喜马拉雅股权案为减少收购可能带来的垄断风险，监管要求腾讯不得提高服务价格、降低免费内容比例、达成独家版权、向汽车厂商搭售或限制主播多平台入驻。此举旨在维护市场公平，保障消费者、版权方等多方权益。&gt;&gt;查看详情2、宇树发布全球首款量产版载人机甲 GD01：可变形，售价 390 万元起宇树科技 5 月 12 日发布 GD01 载人变形机甲，390 万元起。&gt;&gt;查看详情3、腾讯张军：微信已读功能和访客功能已焊死，不会开发，不会提供针对日前网友热议的“微信状态访客记录”，腾讯公司公关总监张军 5 月 12 日发文：已读功能和访客功能，我没记错的话，大家其实反复多次都表明，千万不要有。这里，再次特别强调一下：此二项功能已焊死，不会开发，不会提供。至于此次小范围测试的微信状态浏览人数展示功能，也已停止。感谢大家！&gt;&gt;查看详情4、DeepSeek 回应上线聊天记录搜索功能：正在灰度测试中实测发现，DeepSeek 网页版和 App 均已上线聊天记录搜索功能，用户可通过关键词快</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-12</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.v2ex.com/t/1212293#reply0" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">[Ai2You智友社] Ai2You 智友社---让更多的人用上更好的 Ai，解决您的 AI 焦虑</h3>
+                            <span class="article-source">V2EX</span>
+                        </div>
+                        
+                        <p class="article-summary">首先感谢 V 版管理和 V 版各位朋友一直以来的支持！！鉴于目前国外主流 AI 的正价订购价格昂贵，我们发现市面上有不少的特价 AI 渠道，可惜质量参差不齐，为了节省大家的时间跟金钱，我们花了不少精力对各个渠道商的特价 AI 进行了购买评测，再从中选取稳定的渠道上架出售。我们智友社的初衷是帮大家寻找市面上稳定的主流 AI 特价渠道，也欢迎大家随时跟我们推荐稳定的特价 AI 渠道，这样能让更多的人能受益！虽然我们找到的渠道稳定，但是我们定价确非常克制，扣去我们的成本，到手其实微利，但是我们愿意做下去，因为我们觉得这是一件很有意义的事。我们现在的做法是直接放价给您，所以我们无法也无力再为您提供交付以外的任何售后，希望您能理解，但是我们很乐意听到您的使用反馈，不论好坏。目前店铺的特殊渠道特价商品：GPTPlus 成品号、Curser Pro 成品号、Gemini Pro 成品号、Super Grok 和都已经有比较稳定的渠道，欢迎 D 版朋友选购评测。由于目前国外 AI 并不能上架国内主流购物平台，所以我们只能把店铺开在了一个小众平台---链动小铺，您有问题可以随时联系我们 QQ 客服，我们</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-12</span>
+                            
+                            <span class="article-author">👤 Ai2You</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.ithome.com/0/949/559.htm" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">松下推出 LUMIX L10 相机：配 24-75mm 镜头，1499 美元起</h3>
+                            <span class="article-source">IT之家</span>
+                        </div>
+                        
+                        <p class="article-summary">IT之家 5 月 13 日消息，正值 LUMIX 系列诞生 25 周年之际，松下今日宣布推出全新的 LUMIX L10 定焦镜头相机（DC-L10）。这款相机虽然与 LX100II 相似，但采用了 GH7 的传感器，并配备了全新设计的处理器、光学元件和操控系统，它具备光学防抖、30 张 / 秒最高连拍速度，可录制 5.7K60p、4K120P、全高清 240p 视频，使用 SD 卡，重约 508 克，定价 1499 美元（现汇率约合 10207 元人民币）。除了常规的黑色、黑银色，晚些时候还会发售“LUMIX 25 周年钛金色纪念版”。纪念版具有专属配色、旋入式快门按钮、钛金配色主题菜单，附送同色自动开合镜头盖、皮质肩带和定制镜头布，定价 1599 美元（IT之家注：现汇率约合 10888 元人民币）。LUMIX L10 搭载 LEICA DC VARIO-SUMMILUX 24-75mm（等效 35mm）F1.7-2.8 镜头，采用 8 组 11 片光学结构，包含 5 片非球面镜片（共 8 个非球面）和 2 片双面非球面 ED 镜片，在紧凑机身中实现了卓越的光学性能。LUMIX L1</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-12</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.ithome.com/0/949/558.htm" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">一机两用：华为 Pura X Max 横阔折手机推 HarmonyOS 6.1.0.120 SP16 升级，内置平板模式布局</h3>
+                            <span class="article-source">IT之家</span>
+                        </div>
+                        
+                        <p class="article-summary">IT之家 5 月 13 日消息，华为半夜面向 Pura X Max 横向阔折叠手机推送了鸿蒙HarmonyOS 6.1.0.120 SP16版本升级，系统包大小约 5.93GB。据介绍，新版本带来了截屏直达服务、照片编辑贴纸等功能。IT之家附华为 Pura X Max 横向阔折叠手机本次更新内容如下：图库1.图片编辑新增贴纸功能，畅玩 Emoji、舞林萌主等多套贴纸，还可以自定义添加贴纸，让修图更有趣（图库 &gt; 图片编辑 &gt; 贴纸）2.优化涂鸦功能，支持直接添加箭头、直线、方形、圆形，标注更便捷（图库 &gt; 图片编辑 &gt; 涂鸦）3.优化文字功能，新增多种花字和文本框样式，表达更个性（图库 &gt; 图片编辑 &gt; 文字）4.智能相册支持折叠隐藏，在相册页面点击智能相册右侧箭头可进行折叠或展开，相册管理更自由相机1.展开态拍摄支持 AI 辅助构图功能，拍摄风景、人物、建筑等场景时，手机会自动分析画面，当识别到有更好的取景区域或角度时，将引导您调整，助您发掘更多精彩构图，轻松拍出大片感2.优化双屏同显功能，既可以将外屏设置为同步取景预览也可以设置为自己喜欢的图片3.新增“文档矫正”模式，可智能纠正歪</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-12</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.ithome.com/0/949/557.htm" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">雷蛇推出猎魂光蛛 V3 竞技版 8KHz 键盘：保留 Pro TKL 8KHz 核心规格</h3>
+                            <span class="article-source">IT之家</span>
+                        </div>
+                        
+                        <p class="article-summary">IT之家 5 月 13 日消息，Razer（雷蛇）昨晚发布了猎魂光蛛 Huntsman V3 Tenkeyless 竞技版 8KHz 有线光轴键盘。其保留了此前专业竞技版 (Pro TKL) 8KHz 的核心规格，但次要属性有所调整。猎魂光蛛 V3 竞技版 8KHz 键盘依旧搭载第二代 Razer 模拟光轴，可实现 8KHz 轮询率；其未随附磁吸式人造皮革腕托、右上角的旋钮和专用控制键替换为标准按键、由键盘数字行实现快速板载调整的视觉辅助。雷蛇猎魂光蛛 V3 竞技版 8KHz 键盘将于今日 20:00 发售，当前标价 1499 元。</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-12</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.ithome.com/0/949/556.htm" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">奥尔特曼否认背叛 OpenAI 使命：是马斯克想要夺取控制权并从中牟利，2023 年被驱逐时曾考虑不再回来</h3>
+                            <span class="article-source">IT之家</span>
+                        </div>
+                        
+                        <p class="article-summary">5 月 13 日，据路透社报道，OpenAI CEO 萨姆 · 奥尔特曼 (Sam Altman) 周二驳斥了埃隆 · 马斯克 (Elon Musk) 的说法，称真正想要夺取 OpenAI 控制权并从中牟利的人，其实是马斯克。马斯克此前表示，奥尔特曼背叛了 OpenAI 服务公共利益的创始使命。图注：奥尔特曼作证周二，奥尔特曼在加州奥克兰联邦法院接受其律师询问时，否认了马斯克提出的主张。马斯克称，奥尔特曼和同样身为被告的 OpenAI 总裁格雷格 · 布罗克曼 (Greg Brockman) 试图“窃取一个慈善组织”。奥尔特曼表示：“我甚至很难理解这种说法。”他还称，希望“随着 OpenAI 继续发展壮大，其非营利机构也能发展得更好”。此前，马斯克的律师则试图把奥尔特曼塑造成一个在 OpenAI 发展计划上撒谎的人。马斯克要控制权当被自己的律师威廉 · 萨维特 (William Savitt) 问及马斯克是否反对向营利性公司转型的计划时，奥尔特曼表示“恰恰相反”。奥尔特曼回忆说，马斯克曾一度要求获得 OpenAI 90% 的股权，并表示即使马斯克降低了自己的要求，他对于让出多数控制权也</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-12</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.ithome.com/0/949/555.htm" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">SiFive 推出 Performance P570 Gen 3 内核：RVA23 完整合规，性能显著改进</h3>
+                            <span class="article-source">IT之家</span>
+                        </div>
+                        
+                        <p class="article-summary">IT之家 5 月 13 日消息，RISC-V IP 企业 SiFive 美国当地时间 12 日宣布推出 Performance P570 Gen 3，这一 CPU IP 是同类产品中功能最强大、效率最高的乱序执行处理器内核，专为高要求边缘 AI、高端消费电子及商用 IoT 应用打造。Performance P570 Gen 3 内核完全符合 RISC-V RVA23 配置文件要求，其采用 3 发射、13 级全乱序标量执行流水线，集成 128 位 VLEN 向量流水线，已在台积电 12nm 和 3nm 节点实现验证。在传统 CPU 工作负载方面，P570 Gen 3 相较 P550 Gen 1在 SPECint 2017 中 IPC 提升 13%，动态功耗降低 13%（基于 12nm 制程）。对于现代 AI CPU 工作负载，其Geekbench IPC 实现翻倍；而在特定 AI 辅助工作负载中，得益于专门的点积指令，其物体检测的性能较 Gen 1 IP 提升 21 倍、较 Gen 2 IP 提升 4.5 倍。SiFive 联合创始人兼首席架构师 Krste Asanovic 表示：P5</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-12</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.ithome.com/0/949/554.htm" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">Apple Intelligence 画饼迟迟无法交付？巴西再对苹果启动调查</h3>
+                            <span class="article-source">IT之家</span>
+                        </div>
+                        
+                        <p class="article-summary">IT之家 5 月 13 日消息，就在苹果就 Apple Intelligence 和 Siri 功能延迟问题与美国消费者达成 2.5 亿美元集体诉讼和解之后，巴西的消费者保护机构也对苹果发起了类似的调查。据巴西科技媒体 Tecnoblog 报道，里约热内卢的消费者保护机构 Procon Carioca 已于上周五（5 月 8 日）启动行政调查程序，要求苹果在 20 天内就 Apple Intelligence 广告是否误导消费者作出澄清。本次调查的核心争议在于，苹果在发布 iPhone 16 系列时曾大肆宣传 Apple Intelligence 人工智能功能，但承诺的诸多高级功能至今未能完整交付 —— 尤其是新一代 Siri。报道称，iPhone 15 Pro 系列及后续机型均被纳入此次调查范围。Procon Carioca 表示正在调查潜在的“信息遗漏、未能履行承诺、以及违反提供清晰、充分且显著信息的义务”，这些做法均被巴西《消费者保护法》所禁止。知情人士透露，Procon Carioca 要求苹果提供以下信息和材料：实际交付了哪些功能？相关信息是如何向巴西消费者传达的？在巴西投放</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-12</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.ithome.com/0/949/553.htm" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">苹果 iOS 27 前瞻：相机 App 支持全面自定义且 Siri 迎来重大重构，Safari 和天气设计焕新</h3>
+                            <span class="article-source">IT之家</span>
+                        </div>
+                        
+                        <p class="article-summary">IT之家 5 月 13 日消息，彭博社记者马克 · 古尔曼今日报道称，苹果计划在 iOS 27 中对相机 App 进行重大升级，让用户能够完全自定义相机界面的控件布局。据知情人士透露，iOS 27 中的相机 App 界面将支持完全自定义，用户可以选择闪光灯、曝光、定时器和分辨率等控件在屏幕上的显示位置。当然，相机启动时仍默认显示当前的标准控件集，包括分辨率、夜间模式、闪光灯和实况照片等选项，但用户可以切换到“高级”控件阵列，或自行挑选所需控件。据介绍，每种拍摄模式都拥有独立的一组控件，用户可从屏幕底部向上滑出的透明“添加控件”托盘中进行选择。另外，拍照模式的高级控件托盘还将包含景深和曝光控制选项，控件分为“基础”“手动”和“设置”三个类别。用户还可以将定时器和照片风格等控件加入其中。相机 App 内部还新增了网格和水平仪选项。Siri 同样是 iOS 27 的一大更新重点，不过这一点已经是老生常谈的话题了。Siri 将从当前的语音助手转变为一个能够访问个人数据并在各个 App 中执行操作的全时（24 小时全天候在线）智能体，界面也经过重新设计，支持类似聊天机器人的来回对话样式。Siri</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-12</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.v2ex.com/t/1212292#reply5" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">[职场话题] 35 岁，美院毕业，创业十年：从“圈养动物”到“野生动物”的独立开发之路</h3>
+                            <span class="article-source">V2EX</span>
+                        </div>
+                        
+                        <p class="article-summary">背景：08 年上大学，美术专业（八大美院之一）。坐标：目前在老家，折腾独立开发中。1. 阴差阳错的艺考之路我是 08 年上的大学。其实回想起来，我属于那种典型的“被指挥棒拨弄”的学生。那时候信息封闭，高考落榜后听朋友建议说“艺考能考上”，就突击学了半年。其实我骨子里一直对美术有点天分，只是之前一直被圈在文理科的死胡同里。最后顺利考入了八大美院之一，也算是人生第一个转折点。08 年那会儿，国内经济非常有朝气。在美院里，身边同学大多家境优渥，相比之下我属于家庭条件平平的那一类。为了生活，我从大一就开始在校外打工。等别人毕业还在迷茫找实习时，我已经有了 3-4 年的工作经验。2. “35 岁危机”的提前预警毕业后，我在本地工作了一两年，随后开启了“北上深”漂泊模式。20 多岁在单位上班时，我观察到一个细节：当时有些 35 、36 岁的老员工，依然会被年龄并不大的主管当众训斥，说他们思维跟不上、效率低。那一刻我突然意识到：我 35 岁的时候，绝对不要活成这个样子。这个念头直接促成了我在 14 、15 年开始创业。我做过 3D 打印、搞过平面设计、甚至给人做过那种几百页的 PPT 。一旦你自己掌</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-12</span>
+                            
+                            <span class="article-author">👤 hashtome</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.infoq.cn/article/ac0Kvqlz4cS2PhAcwvPP?utm_source=rss&amp;utm_medium=article" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">模力工场039周AI应用周榜：AI 应用正悄悄变“窄”，通用工具之争逐渐退潮，垂直流程开始冒头</h3>
+                            <span class="article-source">InfoQ 中文站</span>
+                        </div>
+                        
+                        <p class="article-summary">模力工场 新鲜事 我们做了个 AI 创业空间：极客部落办了一场 OPC 创业路演，现场项目覆盖十余个方向 5 月 8 日，「极客部落」 OPC 入驻路演评审在北京望京举行，模力工场也在现场看到了不少已经开始“单人成军”的 AI 创业项目。「极客部落」是极客邦科技发起的 AI 创业空间。简而言之，它相当于一个面向 AI 创业者和“一人公司”（OPC，One Person Company）的线下共创空间。本次路演面向 AI 创业者、独立开发者和“一人公司”团队，首批开放约 12 个工位，现场通过 5 分钟快节奏路演+评委提问的方式，筛选第一批正式入驻的 AI 创业共建者。从现场项目来看，方向相当杂...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-12</span>
+                            
+                            <span class="article-author">👤 木子</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.infoq.cn/article/GrHwv4MghR6WkPQdU1FR?utm_source=rss&amp;utm_medium=article" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">知名开源作者呼吁对软件供应链进行验证，而非盲目信任</h3>
+                            <span class="article-source">InfoQ 中文站</span>
+                        </div>
+                        
+                        <p class="article-summary">在 2026年3月发布的一篇博文 中，curl 创建者兼首席开发人员 Daniel Stenberg 指出，软件行业默认信任知名组件的做法已经不再适用。Stenberg 认为，用户和组织应主动验证所使用的软件，并以 curl 自身的实践为例，具体说明了如何做到这一点。据估计，curl 运行在数百亿台设备上，是现存部署最广泛的软件组件之一。Stenberg 列举了多种可能导致这样一个大项目遭到破坏的场景，包括恶意贡献者合并受污染的代码、遭入侵的提交者无意中分发了经过篡改的版本、受勒索的团队成员进行超出预期的修改，或是被黑客入侵的分发服务器提供经过篡改的 tar 包。他指出，这些场景可能独立发生，...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-12</span>
+                            
+                            <span class="article-author">👤 作者：Matt Saunders</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.ithome.com/0/949/552.htm" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">谷歌安卓 17 新增系统验证功能：Pixel 10 等手机首发，识别恶意仿冒系统</h3>
+                            <span class="article-source">IT之家</span>
+                        </div>
+                        
+                        <p class="article-summary">IT之家 5 月 13 日消息，科技媒体 Android Authority 今天（5 月 13 日）发布博文，报道称在 2026 年 Android Show I/O Edition 活动中，谷歌宣布将为安卓 17 系统引入操作系统验证功能，帮助用户确认设备是否运行官方认证的安卓版本，重点针对伪装成正版系统的恶意修改版。IT之家援引博文介绍，操作系统验证（OS verification）核心作用是让用户直接查看其手机运行的系统，是否属于谷歌认可、广泛分发的官方安卓版本，减少用户被伪装系统误导的风险。谷歌在活动中表示近期部分不法行为者发布经过修改的安卓版本，在外观方面非常接近官方系统，但可能在后台破坏设备完整性，甚至埋入安全风险。而操作系统验证（OS verification）可以识别这类“看起来像正版”的系统，从官方截图来看，这一页面至少会展示 3 类信息，包括 Play Protect 状态、引导加载程序状态，以及版本号信息。截图还暗示，用户或许还能借助另一台设备完成系统验证，不过谷歌暂未公开这一方式的更多细节。上线节奏方面，操作系统验证功能将率先登陆 Pixel 10 等系列手机</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-12</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.ithome.com/0/949/551.htm" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">谷歌将升级 Android Auto：升级谷歌地图，60fps 全高清视频上车</h3>
+                            <span class="article-source">IT之家</span>
+                        </div>
+                        
+                        <p class="article-summary">IT之家 5 月 13 日消息，科技媒体 Android Central 今天（5 月 13 日）发布博文，报道称在 2026 年 Android Show I/O Edition 活动中，谷歌公布了 Android Auto 多项新变化，核心方向是让车联系统更贴合不同车型屏幕，也更接近日常手机体验。IT之家援引博文介绍，此次更新围绕界面设计、导航显示、车内娱乐和 Gemini 智能助手等推进，重点之一就是 Google Maps 地图应用。新版采用贴边全屏设计，更好适配不同尺寸和比例的车载屏幕。与此同时，地图还会加入沉浸式导航功能，通过更丰富的 3D 视图强化驾驶中的路径识别能力，更直观展示建筑、道路和周边环境。在细节层面，新的 3D 导航不只展示立体建筑，还会纳入高架、地形、车道和交通信号灯等关键信息。系统中代表车辆的小车模型也会跟随路线移动。除地图外，Android Auto 首页还将支持常用联系人快捷入口，以及车库门一键开启按钮。系统进一步融合 Material 3 Expressive 设计语言，带来更流畅的动画、更多壁纸和更有辨识度的字体。车载娱乐方面，谷歌表示，针对停车状</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-12</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.ithome.com/0/949/550.htm" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">谷歌升级安卓 17 防盗：窃贼即便拿到 PIN 码，也难关闭手机追踪</h3>
+                            <span class="article-source">IT之家</span>
+                        </div>
+                        
+                        <p class="article-summary">IT之家 5 月 13 日消息，科技媒体 Android Authority 今天（5 月 13 日）发布博文，报道称在 2026 年 Android Show I/O Edition 活动中，谷歌宣布增强安卓 17 系统防盗能力，核心升级“Find Hub”的“标记为丢失”功能。“标记为丢失”功能新增 Biometric Authentication（生物识别认证），目标是即便窃贼已经拿到设备 PIN，也难以关闭追踪或重新控制手机。IT之家援引博文介绍，安卓设备过去主要依赖密码或 PIN 锁定，而现在用户触发丢失模式后，想要重新获得访问权限，必须通过指纹或面部等生物识别方式完成验证。这样一来，仅掌握 PIN 的窃贼将被拦在系统之外。在手机被标记为丢失后，系统会自动隐藏快捷设置，减少窃贼从下拉菜单快速关闭关键功能的机会。同时，设备还会禁用新的 Wi-Fi 和蓝牙连接，防止他人借助无线方式切断定位、配对配件或转移控制路径。谷歌还默认开启 Remote Lock（远程锁定）和 Theft Detection Lock（盗窃检测锁）两项既有防盗能力。这项策略建立在巴西试点成功的基础上。今后所</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-12</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.v2ex.com/t/1212291#reply0" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">[VXNA] 申请收录个人博客: https://blog.mxdyeah.com</h3>
+                            <span class="article-source">V2EX</span>
+                        </div>
+                        
+                        <p class="article-summary">希望 VXNA 能够收录我的个人博客 :)域名:https://blog.mxdyeah.comRSS:https://blog.mxdyeah.com/feed@Livid，谢谢。十分感谢。</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-12</span>
+                            
+                            <span class="article-author">👤 mxdyeah</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.infoq.cn/article/BNvwzwb29PU4AORhPqbZ?utm_source=rss&amp;utm_medium=article" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">谷歌在 Next &#39;26 大会上宣布推出 GKE Agent Sandbox 和 Hypercluster，并将 Kubernetes 定位为 AI 代理</h3>
+                            <span class="article-source">InfoQ 中文站</span>
+                        </div>
+                        
+                        <p class="article-summary">在 Cloud Next &#39;26 大会上，谷歌宣布了 Google Kubernetes Engine（GKE） 的多项重大更新，其中最引人注目的是用于保证代理代码执行安全的 GKE Agent Sandbox，以及可以通过一个控制平面管理多达一百万个加速器芯片的 GKE hypercluster。编排与 Kubernetes 产品管理高级总监 Drew Bradstock 以及 GKE 产品组经理 Gari Singh 写道 ： Kubernetes 已经迅速成为 AI 时代的操作系统，目前 GKE 正为该平台上所有前 50 名的大客户提供 AI 工作负载支持，其中包括规模最大的前沿模型构建...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-12</span>
+                            
+                            <span class="article-author">👤 作者：Steef-Jan Wiggers</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.v2ex.com/t/1212289#reply6" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">[程序员] Android 开发如何 vibe coding</h3>
+                            <span class="article-source">V2EX</span>
+                        </div>
+                        
+                        <p class="article-summary">没用 ai 开发过安卓项目, 感觉无论原生还是跨端用 claude code 之类的都不方便,没有虚拟机用来调试</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-12</span>
+                            
+                            <span class="article-author">👤 Suger828</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.v2ex.com/t/1212287#reply0" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">[分享创造] Pet Gatekeeper：让你家的宠物接管你的屏幕</h3>
+                            <span class="article-source">V2EX</span>
+                        </div>
+                        
+                        <p class="article-summary">灵感来自最近推上爆火的 Cat Gatekeeper：当你沉迷娱乐网站太久，它会跳出来打断你。但原版不能自定义宠物，这让家里有毛孩子的我怎么忍？于是我直接用 Claude Code 干出了增强版：AI 视频生成：接入 Seedance 2.0 ，支持上传自家宠物照片，一键生成专属的透明背景视频（ API 成本确实极高，所以定价略贵，望理解）。全平台覆盖：不仅支持浏览器插件，还顺手撸了桌面端（ Mac/Win ）。社区生态：不想花钱生成也没问题，内置了多只萌宠，也可以兑换其他用户公开分享的宠物。目前进度：桌面端 App （ Mac / Windows ）已上线，下载链接浏览器插件正在审核中，过审后会回来更新网站本体（创作 + 画廊 + 兑换）已全量开放（ Claude Design 设计的网站，感觉有点好看）🔗 项目地址:https://petgatekeeper.com欢迎拍砖! 附上可兑换 20 次的 7 折优惠券：J63TSAOE最后放几张图Dog Gatekeeper 案例:Cat Gatekeeper 案例:</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-12</span>
+                            
+                            <span class="article-author">👤 x1shir</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.v2ex.com/t/1212286#reply0" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">[Android] 关于一些 Android App 对 Google 密码管理器（Google Password Manager）及密码管理器的自动填充的支持情况？</h3>
+                            <span class="article-source">V2EX</span>
+                        </div>
+                        
+                        <p class="article-summary">很好奇，为何有些 Android App 能支持当你第一次手动输入账密并登录成功后，会提示你“是否保存密码？”，那么下次你再次登录的时候，就会自动把账密填充进去，然后点登录就可以了。而有些 Android App 确不支持 Google 密码管理器（ Google Password Manager ）的保存与填充呢？这是什么原因造成的？</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-12</span>
+                            
+                            <span class="article-author">👤 bclerdx</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.v2ex.com/t/1212285#reply5" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">[科技] 大家对于 Anthropic 估值的看法</h3>
+                            <span class="article-source">V2EX</span>
+                        </div>
+                        
+                        <p class="article-summary">近三个月，anthropic 估值从 3800 亿涨到了最近的 9000 亿。大家觉得它上市后能到什么什么水平。单单挣程序员的钱能支撑这么高的估值吗。</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-12</span>
+                            
+                            <span class="article-author">👤 sdzg</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.v2ex.com/t/1212284#reply7" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">[Apple] 紧急提醒：在国行 Mac 上开了 Apple Intelligence 的朋友，请不要升级到最新的 26.5</h3>
+                            <span class="article-source">V2EX</span>
+                        </div>
+                        
+                        <p class="article-summary">如题，今天刚出来手一滑点了升级，结果可用的 Apple Intelligence 所有功能全部失效。现在悔不当初正在紧急做 U 盘降级中，还不知道能不能保资料中。后悔不迭，希望给朋友们提个醒吧</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-12</span>
+                            
+                            <span class="article-author">👤 neiltroyer849</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.v2ex.com/t/1212283#reply0" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">[酷工作] 花 50～ 80w 招一个全栈开发的工程师，有人来吗？</h3>
+                            <span class="article-source">V2EX</span>
+                        </div>
+                        
+                        <p class="article-summary">全栈开发工程师（ Agent 方向 | 急招）公司介绍
+Kapibala 正组建全球化 AI 团队,聚焦 Sales AGI——覆盖获客、触达、谈判、成交、交付全链路的商业智能体,运行于主流 IM 平台。
+产品已进入付费内测,被头部加密交易所、Web3/RWA 、跨境广告等客户采用,在手签约亿级 RMB,Pre-Seed 已完成。
+海外独立数据渠道构成核心护城河。团队&lt;10 人:CEO 连续创业成功并退出实现变现;CTO 现任字节 TRAE 国际顾问;
+AI 团队来自中科院、南洋理工、悉尼大学硕博。与 MBZUAI 大学达成战略合作，共建 AI 实验室,学术—商业闭环。公司介绍你会成为我们商业 AGI 技术栈的核心构建者。
+我们要做的不是一个功能，而是一套能运行在多个 IM 平台上的商业智能体系统。你将参与从底层 Agent Runtime 到上层
+应用的全栈开发，横跨多平台、多语言、多模型的集成架构。这不是在做一个聊天机器人——而是在构建一个能自主决策
+、自主执行的商业 AGI 基础设施。经验要求        3-5 年全栈开发经验，有 Agent/IM/消息系统经验优先
+薪资结构</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-12</span>
+                            
+                            <span class="article-author">👤 hcs66</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.infoq.cn/article/FDgGHIxIBa1Hytx0akyf?utm_source=rss&amp;utm_medium=article" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">从 Redis 到 Valkey，开源社区如何快速创新？</h3>
+                            <span class="article-source">InfoQ 中文站</span>
+                        </div>
+                        
+                        <p class="article-summary">写在前面 你好，我是朱彬彬（GitHub ID：@enjoy-binbin），来自腾讯云。在 Redis 时代，我曾是项目 Committer 之一；在 Valkey 时代，我是项目的创始 Maintainer，也是 Valkey TSC（Technical Steering Committee，技术指导委员会） 成员。上面这张照片，是 2025 年 12 月 Valkey 中国首场线下技术峰会 Keyspace Beijing 的现场合照——照片中间是 Valkey 全球社区的 Open Source Leader —— Kyle Davis ，右边是同为 Valkey TSC 成员、来自阿...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-12</span>
+                            
+                            <span class="article-author">👤 朱彬彬</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.v2ex.com/t/1212282#reply0" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">[分享创造] [自荐] fmhy 的多语言版本</h3>
+                            <span class="article-source">V2EX</span>
+                        </div>
+                        
+                        <p class="article-summary">fmhy 号称是互联网上最大的免费资源合集，但官方只有英文版本，对于部分用户不太友好，我做了一个多语言版本：ifmhy（目前只翻译和中文和日语）。不过还有一个问题：收录的资源大部分是英文的，需要想法办解决。。</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-12</span>
+                            
+                            <span class="article-author">👤 vkccchannn</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.v2ex.com/t/1212281#reply0" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">[分享创造] 最近拿 AI 撸了一个隐私优先的“卡片式”书签管理插件：书签白板</h3>
+                            <span class="article-source">V2EX</span>
+                        </div>
+                        
+                        <p class="article-summary">各位大佬好，最近自己动手写了一个 Chrome 插件：书签白板。起因：传统的书签栏文件夹套文件夹，找起来太心累；市面上有些插件又太重，还要登录账号。我想要一个像“看板”一样直观，且数据绝对安全的工具。核心逻辑：视觉化：书签不再是冷冰冰的文字，而是像卡片一样排在白板上。纯本地： 隐私第一，不设服务器，不上传任何数据，你的书签只属于你。轻量： 支持侧边栏呼出，不干扰正常浏览。目前状态：版本刚过审，目前还在持续开发中（ TODO：优化视觉 UI 、增加更多分组图标等）。商店地址：https://chromewebstore.google.com/detail/书签白板/iceockbgpgoemnfccjdlnemihodlnmbj?authuser=0&amp;hl=zh-CN非常希望听到大家的真实反馈，无论是功能建议还是 Bug 吐槽，我都感激不尽！</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-12</span>
+                            
+                            <span class="article-author">👤 k332159915</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.v2ex.com/t/1212280#reply1" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">[分享发现] 分享一个 tailscale peer relay 相比自建 derp 的优势</h3>
+                            <span class="article-source">V2EX</span>
+                        </div>
+                        
+                        <p class="article-summary">这件事有个背景故事：我以前一直是自建的 derp 来中继，体验一直很好，有次朋友的一台 nas 分享到我的 tailnet ，控制面板一切正常但当时就是访问不了。过了好几天排查出来是因为我自建 derp 后就关闭了官方的中继节点，朋友分享的设备不会走我自建中继，又打不了洞所以一直连不上，最后开启官方中继后解决此问题。今天搞了个 peer relay 玩，无意中发现朋友的那台 nas 竟然会走我 tailnet 里的这台 peer relay 节点，然后手动测试了一下。上图是 ping 朋友的设备，可以看到只会走官方的海外中继，然后再走 peer relay （如果此时没有 peer relay 就会一直走海外节点，不会走自建 derp ），下图是我自己的设备，会走自建 derp 。不敢确定是不是 100%这样，如有高手欢迎斧正。</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-12</span>
+                            
+                            <span class="article-author">👤 haukuen</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.v2ex.com/t/1212279#reply2" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">[macOS] 豆包输入法 mac 版来了</h3>
+                            <span class="article-source">V2EX</span>
+                        </div>
+                        
+                        <p class="article-summary empty">暂无摘要，点击查看原文阅读完整内容 →</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-12</span>
+                            
+                            <span class="article-author">👤 Johnnysx</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.v2ex.com/t/1212278#reply1" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">[酷工作] 北京招慕 ai 产品经理</h3>
+                            <span class="article-source">V2EX</span>
+                        </div>
+                        
+                        <p class="article-summary">千问和元宝招慕 ai 产品经理
+千问需要语音经验，
+元宝需要大厂经验
+年龄 35 岁以下，本硕均要 985 或 211
+还有很多 tob 岗位（在线教育，国企等）
+有兴趣联系微信：ifloor</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-12</span>
+                            
+                            <span class="article-author">👤 zh1997</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.v2ex.com/t/1212277#reply0" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">[Hermes Agent] Hermes TTS（语音回复， Discord 语音频道交互）本地搭建分享（4GB 显存要求）</h3>
+                            <span class="article-source">V2EX</span>
+                        </div>
+                        
+                        <p class="article-summary">简而言之：Fish Speech 1.5 + 真实参考音色（可以直接让 hermes 去 youtube 和 bilibili 去扒，选自己喜欢的，没有 bgm 的，最好是那种纯聊天的视频）关键配置：&#34;chunk_length&#34;: 400,&#34;temperature&#34;: 0.7,&#34;top_p&#34;: 0.8,&#34;repetition_penalty&#34;: 1.1,参考音色控制在 15 秒以内（超过 20 秒会过拟合，起反效果）推理精度：FP32 （~3.5GB VRAM ；也可以 --half FP16 ~1.74GB ）最终性能：RTX 3070 ，0.32 倍时间消耗（生成 1 分钟的音频，大概需要 18~20 秒）推荐 hermes PUA 话术：1 、hermes ，帮我安装 fish speech1.5 当作你的 TTS 工具2 、把(一个 bilibili 网址)这个视频的人的音色当作参考音色，截取最清晰的 12 秒3 、设置参数：如上4 、生成 X 个种子样例，我听听看选择哪个种子效果。5 、ok ，就选 x 种子吧，以后回复语音的时候你要进行口语化润色。6 、把整个目前敲定的 T</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-12</span>
+                            
+                            <span class="article-author">👤 sentinelK</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.infoq.cn/article/xqLfi9FVBo6qINKSuyeb?utm_source=rss&amp;utm_medium=article" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">梁文锋出资200亿元，DeepSeek阿里谈崩？宇树机器人在韩国佛门受戒，法号“迦悲”；员工人均奖金达610万人民币，被婚恋市场追捧？官方回应｜AI周报</h3>
+                            <span class="article-source">InfoQ 中文站</span>
+                        </div>
+                        
+                        <p class="article-summary">传 DeepSeek 阿里谈崩？市场人士回应，梁文锋出资 200 亿元；阿里紧急否认：没用禁售 Nvidia 芯片；约 3.61 亿！“全球大模型第一股”智谱 AI 在北京买楼；曝携程大裁员，产研砍 30%？携程：消息不实；月之暗面将完成 20 亿美元新融资，估值破 200 亿美元；阶跃星辰接近完成近 25 亿美元融资，已拆除红筹架构提速港股 IPO；豆包计划新增付费订阅模式，主打生产力场景…… 行业热点 传 DeepSeek 阿里谈崩？市场人士回应，梁文锋出资 200 亿元 5 月 9 日有消息称，今年 4 月，DeepSeek 罕见展开一场巨额融资计划，同时吸引了腾讯和阿里巴巴两家大厂。据...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-12</span>
+                            
+                            <span class="article-author">👤 傅宇琪,褚杏娟</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.infoq.cn/article/ZsDVWSEQEYWq3D4TQTOe?utm_source=rss&amp;utm_medium=article" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">专为智能体和 SOTA 模型训练而设计的谷歌新一代 TPU</h3>
+                            <span class="article-source">InfoQ 中文站</span>
+                        </div>
+                        
+                        <p class="article-summary">谷歌发布了 新一代张量处理单元 （TPU），其中包含两款专用芯片，旨在加速模型训练和智能体工作流。这些工作流需要连续进行多步推理，并实现跨多个模型的动作循环。该公司表示，新款 TPU 在性能、内存和能效方面均有所提升。据谷歌称，AI 代理的兴起需要专用芯片——它们 专为训练和推理而设计 ，旨在大幅提升特定工作负载的性能。TPU 8t 在处理大规模、计算密集型的训练工作负载时表现出色，其设计具备更高的计算吞吐量和更强的纵向扩展带宽。...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-12</span>
+                            
+                            <span class="article-author">👤 作者：Sergio De Simone</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.infoq.cn/article/VK4MLI3LtolekTLVT0Gt?utm_source=rss&amp;utm_medium=article" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">在大厂，token用少了不“健康”</h3>
+                            <span class="article-source">InfoQ 中文站</span>
+                        </div>
+                        
+                        <p class="article-summary">作者 | 华卫 “今年，AI 提效比去年更‘卷’了。”这恐怕是现在无数个身在职场的人共同的感受。如今，算力补贴变成了科技大厂标配的新型福利。不少头部企业都在密集推出面向全员的 AI 资源支持计划，阿里巴巴为全体员工发放专属 token 额度，腾讯被曝为员工配置年度价值约 22 万元的 AI token 套餐，覆盖多款主流开发与协作模型。4 月初，字节跳动在发布的内部信中宣布，工作场景 AI 工具不限额度，员工业余时间 AI 产品体验费用公司报销 50%。...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-12</span>
+                            
+                            <span class="article-author">👤 华卫</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.infoq.cn/article/JV9WVVULSvzrjEGuKBpm?utm_source=rss&amp;utm_medium=article" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">Kubernetes 自主AI智能体安全防护：新型云工作负载的信任边界、密钥管理与可观测性</h3>
+                            <span class="article-source">InfoQ 中文站</span>
+                        </div>
+                        
+                        <p class="article-summary">当三百条警报同时涌入网络、数据库、应用和安全各个领域时，监控面板上红光不停地闪烁。值班工程师打开六个仪表盘，关联时间戳、作出排查假设，再调取日志信息验证，结果却发现排查假设是错误的。这样的排查过程一遍遍重复，直到三小时后才锁定根本原因：一次防火墙规则变更引发了连锁反应，造成应用请求超时，继而耗尽了数据库连接池。想象一下，一个 AI 智能体可以自动完成整套故障排查流程。...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-12</span>
+                            
+                            <span class="article-author">👤 作者：Nik Kale</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.infoq.cn/article/FzzzoO8hcq9QUEqxEuw6?utm_source=rss&amp;utm_medium=article" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">企业每月烧掉数百万元Token却算不清账，谁来解决大模型的“最后一公里”工程难题？</h3>
+                            <span class="article-source">InfoQ 中文站</span>
+                        </div>
+                        
+                        <p class="article-summary">2026 年的 AI 行业正陷入一种集体焦虑——DeepSeek、Kimi、Qwen……当一家企业的技术栈里躺着五到十个不同厂商的 API 密钥时，“多模接入”从战略优势变成了工程噩梦。协议不统一、计费黑盒化、故障切换靠人工、敏感数据在各部门的代码里裸奔——这些藏在模型能力之下的“隐性成本”，正在吃掉企业的 AI 预算。大模型产业的天平正在倾斜：上半场的赢家是参数规模最大的那个，下半场的赢家则可能是让模型真正“好用”的基础设施。给大模型时代造一个“智能调度层” 近日，网易有道智云正式发布企业级大模型聚合平台 ThinkFlow。它负责解决一个被长期忽视的关键问题：当企业面对碎片化的大模型供给时...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-12</span>
+                            
+                            <span class="article-author">👤 江南</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.infoq.cn/article/VR3wFlNWgGXD4zDEHTYv?utm_source=rss&amp;utm_medium=article" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">从买算力到卖能力：嬴彻科技七亿商用里程背后的云上飞轮</h3>
+                            <span class="article-source">InfoQ 中文站</span>
+                        </div>
+                        
+                        <p class="article-summary">大模型爆发后，所有 AI 公司都陷入了同一种竞争模式：争抢数据、比拼算力、内卷模型。但真正能拉开差距的，往往不是这些资源本身，而是谁能把这三者整合起来，形成一条持续运转的完整生产线。这种“资源整合”的挑战，很多大模型公司如今才深有体会， 但自动驾驶行业早已被它反复考验。对自动驾驶而言，运营里程本身并不能直接转化为智能，它所带回的，大多是零散、杂乱且海量的原始数据；只有将这些数据持续转化为模型能力，里程才能真正成为企业的核心竞争力。这也让云底座的角色发生了根本性变化 ：它不再只是后台的资源储备池，而是贯穿数据处理、模型训练、仿真验证和业务交付全流程的生产系统。...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-12</span>
+                            
+                            <span class="article-author">👤 四月</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.infoq.cn/article/YxxhwlcTWclI5ErKROKv?utm_source=rss&amp;utm_medium=article" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">Anthropic 的Harness 工程白做了？Claude Code 被曝不遵守CLAUDE.md，开发者烧光 credits 怒喊退钱</h3>
+                            <span class="article-source">InfoQ 中文站</span>
+                        </div>
+                        
+                        <p class="article-summary">Claude Code 的工程稳定性问题，再次引发开发者集中讨论。近日，Reddit 上出现一则投诉帖，发帖者直指最新版 Claude Code 在实际开发中“不再服从或尊重 CLAUDE.md、hooks/rules 等规则”。这名开发者愤怒地反问：“如果 Claude Code 的运行框架（harness）已经不再服从或遵循这些原则，那么定义架构设计原则、指南之类的东西还有什么意义？” 这场争议的核心，并不是 Claude Code 会不会写代码，而是一个更基础的问题：当开发者已经明确告诉 AI 应该如何开发、遵守什么流程、不能越过哪些边界时，它到底能不能稳定执行？ 这名用户称，自己最近不...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-12</span>
+                            
+                            <span class="article-author">👤 褚杏娟</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.infoq.cn/article/UVGOeS0SrX3cCRK6Nac0?utm_source=rss&amp;utm_medium=article" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">攻击者在Flippa上购买了30个WordPress插件，并在所有插件中植入了后门</h3>
+                            <span class="article-source">InfoQ 中文站</span>
+                        </div>
+                        
+                        <p class="article-summary">一名攻击者在数字市场 Flippa 上以六位数的价格购入了 Essential Plugin 的全部产品组合，其中包括 30 多个 WordPress 插件，总安装量达 40 万次。该买家的 首次代码提交 便是一个 PHP 反序列化后门。该后门潜伏了八个月，直至 2026 年 4 月才被激活，它向所有运行着受感染插件的网站注入了伪装的 SEO 垃圾内容。WordPress.org 在一天之内永久下架了全部 31 个插件。Anchor Hosting 创始人、此次攻击的发现者 Austin Ginder 写道 ： 两周内发生了两起供应链攻击，而且攻击模式如出一辙：购买一个拥有稳定用户群的受信任插...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-12</span>
+                            
+                            <span class="article-author">👤 作者：Steef-Jan Wiggers</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.infoq.cn/article/pj9tgUcrEjORYM1zyUzx?utm_source=rss&amp;utm_medium=article" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">Lance 实践：从多模态数据湖到 Agent 记忆湖的演进之路｜AICon上海</h3>
+                            <span class="article-source">InfoQ 中文站</span>
+                        </div>
+                        
+                        <p class="article-summary">当前，以 Agent 为核心的新一轮技术浪潮正在席卷产业。那么，世界模型的下一个突破在哪？Agent 从 Demo 到工程化还差什么？研发体系不重构，还能撑多久？ 6 月 26 日-6 月 27 日， AICon全球人工智能开发与应用大会 将在上海举办。本次大会将围绕以上问题，邀请来自腾讯、阿里、快手、华为、飞猪等 50+头部企业的技术负责人、高校与科研机构的一线专家，分享 Agent 在真实生产环境中的落地经验与前瞻思考。深入探讨 Agent 从原型到量产的工程挑战、数据与记忆的基础设施底座、安全可信的落地保障，以及大模型推理优化、智算架构升级等关键命题。火山引擎数智平台端侧记忆负责人马进已...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-12</span>
+                            
+                            <span class="article-author">👤 AICon 全球人工智能开发与应用大会</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.infoq.cn/article/5GrIHXTlPQpGTQtjY5pg?utm_source=rss&amp;utm_medium=article" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">Grafana的Kubernetes Monitoring Helm Chart v4版本修复了多项问题</h3>
+                            <span class="article-source">InfoQ 中文站</span>
+                        </div>
+                        
+                        <p class="article-summary">Grafana Labs 发布了第4版的 Kubernetes Monitoring Helm Chart，称这是自该 Chart 推出以来最重要的更新。Pete Wall 和 Beverly Buchanan 在 2026 年 4 月宣布了此次发布，目标是修复随着用户扩展到更大、更复杂部署时暴露的一系列配置问题。该 Kubernetes Monitoring Helm Chart 提供了一种机制，用于将 Kubernetes 集群的指标、日志、追踪和 profile 发送到 Grafana Cloud 或自托管的 Grafana 技术栈。Wall 和 Buchanan 表示，v4 代表了近六...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-12</span>
+                            
+                            <span class="article-author">👤 作者：Matt Saunders</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                </div>
+            </section>
+            
+            
+            
+            <section class="category-section">
+                <div class="category-header">
+                    
+                    <span class="category-icon">🏢</span>
+                    <h2 class="category-title">国际公司官方</h2>
+                    <span class="category-count">1 篇</span>
+                </div>
+                <div class="articles-grid">
+                    
+                    <a href="mailto:press@anthropic.com" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">Newsroom</h3>
+                            <span class="article-source">Anthropic</span>
+                        </div>
+                        
+                        <p class="article-summary">Our latest Opus model brings stronger performance across coding, agents, vision, and multi-step tasks, with greater thoroughness and consistency on the work that matters most.</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-13</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                </div>
+            </section>
+            
+            
+            
+            <section class="category-section">
+                <div class="category-header">
+                    
+                    <span class="category-icon">👨‍🔬</span>
+                    <h2 class="category-title">国际研究员</h2>
+                    <span class="category-count">5 篇</span>
+                </div>
+                <div class="articles-grid">
+                    
+                    <a href="https://github.com/distillpub/post--multimodal/issues?q=is%3Aissue+label%3Apeer-review" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">Multimodal Neurons in Artificial Neural Networks</h3>
+                            <span class="article-source">Distill.pub</span>
+                        </div>
+                        
+                        <p class="article-summary">Gabriel Goh, Nick Cammarata †, Chelsea Voss †, Shan Carter, Michael Petrov, Ludwig Schubert, Alec Radford, and Chris Olah</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-13</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://simonwillison.net/2026/May/6/vibe-coding-and-agentic-engineering/" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">Vibe coding and agentic engineering are getting closer than I’d like</h3>
+                            <span class="article-source">Simon Willison</span>
+                        </div>
+                        
+                        <p class="article-summary">I recently talked with Joseph Ruscio about AI coding tools for Heavybit’s High Leverage podcast:Ep. #9, The AI Coding Paradigm Shift with Simon Willison. Here are some of my highlights, including my disturbing realization that vibe coding and agentic engineering have started to converge in my own wo</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-13</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://simonwillison.net/2026/May/6/code-w-claude-2026/" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">Live blog: Code w/ Claude 2026</h3>
+                            <span class="article-source">Simon Willison</span>
+                        </div>
+                        
+                        <p class="article-summary">I’m at Anthropic’s Code w/ Claude event today. Here’s my live blog of the morning keynote sessions.</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-13</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://simonwillison.net/2026/May/7/xai-anthropic/" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">Notes on the xAI/Anthropic data center deal</h3>
+                            <span class="article-source">Simon Willison</span>
+                        </div>
+                        
+                        <p class="article-summary">There weren’t a lot of big new announcements from Anthropic at yesterday’s Code w/ Claude event, but the biggest by far was the deal they’ve struck with SpaceX/xAI to use “all of the capacity of their Colossus data center”.[...576 words]</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-13</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.anthropic.com/" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">Essays</h3>
+                            <span class="article-source">Dario Amodei</span>
+                        </div>
+                        
+                        <p class="article-summary">Dario Amodei is the CEO ofAnthropic, a public benefit corporation dedicated to building AI systems that are steerable, interpretable and safe....More</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-13</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                </div>
+            </section>
+            
+            
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">
+                AI Daily Brief · 每日 AI 资讯聚合
+            </p>
+            <p class="footer-text" style="margin-top: 0.5rem; font-size: 0.75rem;">
+                生成于 2026-05-13 08:01
+            </p>
+        </div>
+    </footer>
+
+    <button class="scroll-top" onclick="scrollToTop()" id="scrollTop">↑</button>
+
+    <script>
+        // Scroll to top button
+        const scrollTopBtn = document.getElementById('scrollTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+        
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Add stagger animation to cards
+        document.querySelectorAll('.article-card').forEach((card, index) => {
+            card.style.animationDelay = `${index * 0.05}s`;
+        });
+    </script>
+</body>
+</html>
