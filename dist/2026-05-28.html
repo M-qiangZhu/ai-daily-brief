@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Daily Brief - 2026-05-28</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #1a1a24;
+            --bg-hover: #22222e;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0b0;
+            --text-muted: #6b6b7b;
+            --accent-blue: #3b82f6;
+            --accent-purple: #8b5cf6;
+            --accent-cyan: #06b6d4;
+            --accent-green: #10b981;
+            --border-color: #2a2a3a;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+            border-bottom: 1px solid var(--border-color);
+            padding: 2rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--text-primary), var(--accent-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .date-badge {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        /* Stats */
+        .stats-bar {
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 0.75rem;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-cyan);
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Main Content */
+        .main {
+            padding: 2rem 0;
+        }
+
+        /* Category Sections */
+        .category-section {
+            margin-bottom: 3rem;
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .category-icon {
+            font-size: 1.25rem;
+        }
+
+        .category-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .category-count {
+            background: var(--bg-hover);
+            color: var(--text-secondary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.875rem;
+        }
+
+        /* Article Cards */
+        .articles-grid {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .article-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.25rem;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .article-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+            border-color: var(--accent-blue);
+        }
+
+        .article-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .article-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.4;
+            flex: 1;
+        }
+
+        .article-card:hover .article-title {
+            color: var(--accent-blue);
+        }
+
+        .article-source {
+            font-size: 0.75rem;
+            color: var(--accent-purple);
+            background: rgba(139, 92, 246, 0.1);
+            padding: 0.25rem 0.5rem;
+            border-radius: 6px;
+            white-space: nowrap;
+        }
+
+        .article-summary {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin: 0.75rem 0;
+            padding: 0.75rem 0;
+            border-top: 1px dashed var(--border-color);
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .article-summary.empty {
+            color: var(--text-muted);
+            font-style: italic;
+            border: none;
+            padding: 0.5rem 0;
+        }
+
+        .read-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            color: var(--accent-blue);
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-top: 0.5rem;
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .article-date {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .article-author {
+            color: var(--accent-green);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .footer-text {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+
+        .footer-links {
+            margin-top: 0.5rem;
+        }
+
+        .footer-links a {
+            color: var(--accent-blue);
+            text-decoration: none;
+            margin: 0 0.5rem;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .article-header {
+                flex-direction: column;
+            }
+
+            .article-source {
+                align-self: flex-start;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .article-card {
+            animation: fadeIn 0.3s ease forwards;
+        }
+
+        /* Scroll to top */
+        .scroll-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--accent-blue);
+            color: white;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s, transform 0.3s;
+            border: none;
+            font-size: 1.25rem;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-3px);
+            background: var(--accent-purple);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">🤖</div>
+                    <h1 class="logo-text">AI Daily Brief</h1>
+                </div>
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <nav class="nav-links" style="display: flex; gap: 0.5rem;">
+                        <a href="index.html" style="color: var(--accent-blue); text-decoration: none; padding: 0.5rem 1rem; border-radius: 8px; background: var(--bg-card); font-size: 0.875rem;">今日日报</a>
+                        <a href="history.html" style="color: var(--text-secondary); text-decoration: none; padding: 0.5rem 1rem; border-radius: 8px; transition: all 0.2s; font-size: 0.875rem;">历史归档</a>
+                    </nav>
+                    <div class="date-badge">
+                        📅 2026年05月28日 · 周四
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="stats-bar">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-value">47</div>
+                    <div class="stat-label">今日文章</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">3</div>
+                    <div class="stat-label">分类</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">7</div>
+                    <div class="stat-label">来源</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main class="main">
+        <div class="container">
+            
+            
+            <section class="category-section">
+                <div class="category-header">
+                    
+                    <span class="category-icon">🇨🇳</span>
+                    <h2 class="category-title">国内 AI 媒体</h2>
+                    <span class="category-count">39 篇</span>
+                </div>
+                <div class="articles-grid">
+                    
+                    <a href="https://www.ithome.com/0/956/248.htm" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">RevenueCat 洞察 App 订阅：试用超半数取消发生在首日，年付留存最稳</h3>
+                            <span class="article-source">IT之家</span>
+                        </div>
+                        
+                        <p class="article-summary">IT之家 5 月 28 日消息，市场调查机构 RevenueCat 最新报告聚焦订阅应用的留存与回流，指出试用用户流失更早，年订阅首月更容易取消，而年付用户一旦完成续订，留存却最稳。在试用阶段，报告指出，超过一半的试用取消发生在第 1 天。很多用户几乎在开始试用后就决定离开。但从第 2 天之后看，14 天和 30 天试用方案的流失率会明显下降，并降到 10％以下。RevenueCat 订阅报告图表该机构称用户是否愿意留下，往往在试用最初 24 小时内就已经做出判断，因此首日体验比延长试用时长更关键。在取消年订阅方面，RevenueCat 表示，所有年订阅取消中，35％ 发生在第 1 个月。分品类看，购物类应用流失最早，约一半年订阅取消都出现在首月；教育类应用相对更稳，首 30 天内的取消占比为 30％。RevenueCat 订阅报告图表不过，年付方案也有最强的留存表现。报告显示，年付计划整体续订率为 83.4％，超过周订阅的 4 倍，也大约是月订阅的 2 倍。RevenueCat 订阅报告图表该机构洞察指出用户只要走到续订节点，继续付费的概率就会明显提高。相比之下，短周期订阅虽然转化门</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-27</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.v2ex.com/t/1216048#reply1" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">[分享创造] [开源] 高阶魔方一键求解器</h3>
+                            <span class="article-source">V2EX</span>
+                        </div>
+                        
+                        <p class="article-summary">开源一款高质量的高阶魔方求解器，古法+vibe 混合实现，整合了网络上的开源算法，可以快速解算出魔方 2~50 阶的求解步骤，（代码限制了 50 阶，可以自行解除限制，理论上支持无限阶），并且支持动画教学，支持拍照求解，并且支支持生成 pdf 逐步教程文档
+由于 github pages 限制，演示图片不显示，建议下载代码本地部署、演示：https://jingguanzhang.github.io/EasyCube/仓库：https://github.com/jingguanzhang/EasyCube</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-27</span>
+                            
+                            <span class="article-author">👤 W3Cbox</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.v2ex.com/t/1216047#reply1" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">[问与答] Cursor 还能买吗， 20 刀和 60 刀的大概能用多久？</h3>
+                            <span class="article-source">V2EX</span>
+                        </div>
+                        
+                        <p class="article-summary empty">暂无摘要，点击查看原文阅读完整内容 →</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-27</span>
+                            
+                            <span class="article-author">👤 kuxuan</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.ithome.com/0/956/247.htm" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">光伏组件两项强制性国标明年 6 月起实施，遏制虚假宣传与低质低价恶性竞争</h3>
+                            <span class="article-source">IT之家</span>
+                        </div>
+                        
+                        <p class="article-summary">IT之家 5 月 28 日消息，据央视新闻今日报道，由工业和信息化部组织制定的光伏组件两项强制性国家标准日前正式发布，两项国家标准将于 2027 年 6 月 1 日正式实施，将有效规范光伏行业竞争秩序、推动产业升级发展。《光伏组件安全要求》在电气安全方面，规定了光伏组件的电气防护、绝缘防护要求，并对组件所用的原材料、零部件提出相应要求；在防火安全方面，规定了光伏组件热斑耐久性要求、防火等级和燃烧性能要求，降低光伏组件火灾风险。此外，《光伏组件安全要求》还对光伏组件的机械安全、有害物质限制等提出要求，并描述了相应试验方法。《光伏组件铭牌标识要求》通过规范标识管理，强制统一铭牌参数的标注规范与测试方法，确保每一块组件的性能数据真实可验、全程可溯，遏制虚假宣传与低质低价恶性竞争。中国电子技术标准化研究院副院长于秀明表示，两项强制性国家标准的出台，可筑牢行业安全底线，有效降低事故风险；确保铭牌信息真实可验，杜绝人为功率“虚标”。加速落后产能出清，着力构建公平竞争的市场秩序。据了解，标准实施不涉及大规模技术改造和成本投入，两项国家标准设置 12 个月过渡期。IT之家注意到，工业和信息化部、国家发</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-27</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.ithome.com/0/956/246.htm" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">IT早报 0528：新一代问界 M9 与蔚来 ES9 同日发布；曝小红书拿下 2026 世界杯独家转播权；SK 海力士市值突破 1 万亿美元；阿里发全员信公布薪酬变革...</h3>
+                            <span class="article-source">IT之家</span>
+                        </div>
+                        
+                        <p class="article-summary">“IT早报”时间，大家好，现在是 2026 年 5 月 28 日星期四，今天的重要科技资讯有：1、鸿蒙智行全新一代问界 M9 发布：标准版 47.98 万元起，Ultimate 领世加长版 64.98 万元起华为常务董事、产品投资委员会主任、终端 BG 董事长余承东更是自信放话，新车是地球上已经上市的车里面“最强悍的 SUV，没有之一”。&gt;&gt;查看详情2、蔚来 ES9 旗舰 SUV 正式上市：整车购买 49.8 万-62.8 万起，租电 39 万-52 万元起蔚来 ES9 旗舰 SUV 5 月 27 日晚正式上市。新车拥有超 40 项行业首创技术，号称蔚来十一年体系创新的集大成之作，是行政旗舰 SUV 的全新标杆。&gt;&gt;查看详情3、阿里发全员信公布薪酬变革：原十三薪回归年终奖改名“并肩前行年奖”，与绩效年奖一起发放阿里 5 月 27 日发布重要全员信，自 27 财年起，员工十三薪并入年终奖，改名为“并肩前行奖”，发放时间变更为和年终奖一起发放。&gt;&gt;查看详情4、高考期间 AI 工具是否禁用，字节豆包、腾讯元宝、百度文心、科大讯飞回应豆包客服表示，豆包在高考期间可正常使用，但拍题答疑等类似功能</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-27</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.ithome.com/0/956/245.htm" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">OpenAI 确认 ChatGPT 与 API 昨日出现高延迟，现已修复</h3>
+                            <span class="article-source">IT之家</span>
+                        </div>
+                        
+                        <p class="article-summary">IT之家 5 月 28 日消息，OpenAI 公司昨日（5 月 27 日）在 X 平台发布推文，确认 ChatGPT 及其 API 服务出现高延迟问题，IT之家发稿前已显示修复解决。根据用户反馈，ChatGPT 和 API 服务北京时间昨日凌晨响应速度明显下降，用户提问后等待回复时间变长。OpenAI 于北京时间昨日（5 月 27 日）22 点 47 分在状态页面确认问题，显示为“高延迟”，在北京时间今天凌晨 4 点 06 分确认已经修复。不过状态页面依然显示存在 Codex 上下文压缩速度比预期慢，以及安卓版 ChatGPT 企业版在切换工作区时遇到问题。</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-27</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.ithome.com/0/956/244.htm" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">iPhone 17 等卫星功能暂不受影响，亚马逊将收购苹果持有的 Globalstar 的 20% 股份</h3>
+                            <span class="article-source">IT之家</span>
+                        </div>
+                        
+                        <p class="article-summary">IT之家 5 月 28 日消息，科技媒体 PCMag 昨日（5 月 27 日）发布博文，披露了一份亚马逊提交至美国联邦通信委员会（FCC）的文件，确认在 116 亿美元（IT之家注：现汇率约合 788.65 亿元人民币）收购卫星运营商 Globalstar 的交易中，将接手 Apple 持有的 20% 股权。苹果公司为支撑 iPhone 的“卫星紧急求救”功能，此前通过 11 亿美元投资获得 Globalstar 的 20% 股权及 85% 的卫星网络容量。而基于披露文件的细节，亚马逊取代苹果，成为该卫星运营商的重要股东。而苹果公司相关权益以 40 万股 Class B 股份形式存在，亚马逊将通过子公司 Grapefruit Acquisition Sub II 接管这些股份与投票权。所有权发生转移后，亚马逊在文件中承诺不会干扰 Globalstar 与苹果公司的现有合作。对于普通 iPhone 用户而言，不会影响现有依赖的卫星连接服务，苹果依然保留对大部分卫星容量的使用权。该文件还指出，亚马逊开发了一种“专为在 L、S 和 1.6/2.4 GHz MSS 频段运行的全球 D2D 服务</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-27</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.ithome.com/0/956/243.htm" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">抖音电商严打“抖音 618 专属金卡”等引流诈骗：未发放相关实体卡片</h3>
+                            <span class="article-source">IT之家</span>
+                        </div>
+                        
+                        <p class="article-summary">IT之家 5 月 28 日消息，抖音黑板报昨晚发布公告，正值“2026 年抖音商城 618”活动期，平台收到部分用户反馈，有人寄送印有“抖音 618 专属邀请函”及“抖音 618 专属金卡”字样的实体卡片，诱导用户参与相关活动。IT之家从公告中获悉，抖音电商平台从未制作、发放过任何 618 大促相关实体卡片，该类物品均为不法分子冒用平台名义，伪造带有抖音标识的邀请函及购物卡。这类以“抖音 618 专属邀请函”“抖音 618 专属金卡”为噱头给用户寄送陌生快递，诱导用户扫码至抖音站外实施诈骗的行为，严重危及用户财产安全。抖音电商表示，本届抖音商城 618 活动，用户可通过抖音、抖音极速版、抖音商城 App 的手机客户端，进入活动专题页面参与。请广大消费者提高警惕，切勿相信陌生卡片信息，不要点击不明链接、泄露个人信息或进行转账操作，谨防财产受损。抖音电商始终严厉打击此类引流诈骗违法行径，收到相关线索将第一时间向公安机关报案。截至目前，平台已协助多地警方打击引流诈骗案件共计 11 起，协助抓获多环节涉案人员 39 名。官方表示，如遇到引流诈骗情况，请广大消费者及时联系客服电话：950515，</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-27</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.ithome.com/0/956/242.htm" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">Omdia：2026Q1 欧洲智能手机均价 580 欧元创历史新高，三星、苹果、小米出货量前三</h3>
+                            <span class="article-source">IT之家</span>
+                        </div>
+                        
+                        <p class="article-summary">IT之家 5 月 28 日消息，Omdia 昨日发布最新研究，2026 年第一季度，欧洲智能手机市场（不含俄罗斯）同比增长 2% 至 3300 万部。尽管供应链成本持续上升、产品供应风险增加，市场仍展现出一定韧性。优秀的终端用户需求以及渠道提前备货，共同推动了市场增长。2026 年第一季度主要厂商表现：三星以 1260 万部出货量、同比增长 3%，继续保持欧洲市场第一。Galaxy A16 4G 的有效促销帮助三星提升了整体出货量，抵消了 Galaxy S26、A57 和 A37 延期发布带来的影响。苹果出货量同比增长 9% 至 880 万部，主要受益于 iPhone 17 系列的强劲需求，以及 iPhone 15 和 iPhone 16e 在中端市场更广泛的覆盖。值得注意的是，Apple 在折扣力度和促销频次均低于往年的情况下，依然实现了强劲表现。小米虽然出货量同比下降 15% 至 450 万部，但仍保持市场第三的位置，其受到供应端压力的影响更为明显。不过，Xiaomi 平均售价（ASP）同比增长 21%，主要受创纪录表现的Xiaomi 17与 15T 系列带动，尽管出货量下滑，整体</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-27</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.ithome.com/0/956/241.htm" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">Meta 股价大涨：将推出 AI 聊天机器人订阅服务，月费最低 2.99 美元，微信跟进么？</h3>
+                            <span class="article-source">IT之家</span>
+                        </div>
+                        
+                        <p class="article-summary">IT之家 5 月 28 日消息，科技媒体 TechCrunch 昨日（5 月 27 日）发布博文，指出 Meta 公司调整 AI 产品策略，将其从流量入口推向付费产品，通过订阅方式寻求广告外的新变现渠道。IT之家附上相关订阅信息如下：板块分类方案名称月费 (美元)核心主打功能社交娱乐(单 App 升级)WhatsApp Plus$2.99自定义聊天主题与铃声、进阶贴图、置顶更多对话。Facebook Plus /Instagram Plus$3.99个人档案定制化、匿名预览限时动态、查看限动重播数据。AI 算力(智能升级)Meta One Plus$7.99Meta AI 高级长文本推理、高频率生成图片与视频。Meta One Premium$19.99解锁最高额度的 Meta AI 算力，支持极复杂的推理任务。专业商务(创作者 / 企业)Meta One Essential$14.99认证标识、主动防冒名保护、强化版个人链接与数据分析。Meta One Advanced$49.99包含 Essential 全功能，外加信息流曝光放大、搜索优先、Reels 强化追踪、内容盗用通知、人工</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-27</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.v2ex.com/t/1216046#reply0" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">[问与答] ai studio 被疯狂封 api 怎么回事</h3>
+                            <span class="article-source">V2EX</span>
+                        </div>
+                        
+                        <p class="article-summary">我用 new api 反代的 ai studio 之前没一点事，在优盘和爱马仕用。new api 和爱马仕在 rn 上，最近被主播机房换了个脏 ip 。月中取消了谷歌 pro ，然后 10 刀赠金可能突然消失了（账单里还有），欠费 0.5 刀，信用卡正好被我干憋了没给他自动还上，系统提醒我的支付有问题，可能随时封 api 。然后第二天晚上我续费了 plus ，升级成 pro ，又充了 10 刀刀 ai studio 。第三天封了我的项目，提醒是我 token 可能泄露了。我换个项目再开，又封了。又开，又封。我这次直接用爱马仕直连 ai studio ，又封了。都是请求一次就封，也不提醒为什么，直接显示已停止。大佬们觉得什么问题？</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-27</span>
+                            
+                            <span class="article-author">👤 glouhao</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.infoq.cn/article/ZNlUMcBQHIRjQcRuLxzT?utm_source=rss&amp;utm_medium=article" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">利润暴涨755%，AI赚疯了，芯片工人却不干了</h3>
+                            <span class="article-source">InfoQ 中文站</span>
+                        </div>
+                        
+                        <p class="article-summary">引发全球热议的三星罢工，还没开始就结束了 没人想到，全球 AI 算力狂潮最先引爆的，不是芯片短缺，是一场规模空前的大罢工。近期，韩国媒体密集报道了三星员工拟集体罢工的消息。导火索是三星电子管理层与工会的最新一轮薪资谈判宣告破裂。若双方在最后调解期限内仍无法达成一致，自 5 月 21 日起，超过 4 万名员工将启动为期 18 天的大规模罢工，三星核心的半导体制造部门预计将受到直接冲击。...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-27</span>
+                            
+                            <span class="article-author">👤 李冬梅</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.ithome.com/0/956/240.htm" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">惠普 2026 财年第二财季归母净利润 4.5 亿美元，同比增长 10.84%</h3>
+                            <span class="article-source">IT之家</span>
+                        </div>
+                        
+                        <p class="article-summary">IT之家 5 月 28 日消息，惠普今日发布 2026 财年（2025年11月1日～2026年10月31日）第二财季（2026年2月1日～2026年4月30日）报告：营业总收入： 144.08 亿美元，同比增长 9.00%毛利： 30.16 亿美元，同比增长 10.11%毛利率：20.93%，同比增长 0.21个百分点归母净利润： 4.5 亿美元，同比增长 10.84%经营现金流： 9.26 亿美元自由现金流： 8 亿美元基本每股收益：0.49 美元/股，同比增长 13.95%稀释每股收益：0.49 美元/股，同比增长 16.67%AI 解读惠普2026财年第二财季GAAP营收为 144.08 亿美元，同比增长 9%，高于市场预期；GAAP归母净利润 4.5 亿美元，同比增长 10.84%；非GAAP摊薄每股收益 0.86 美元，超出此前给出的0.70美元～0.76美元指引区间，整体业绩超市场预期。财报核心亮点Personal Systems业务高速增长：该部门第二财季净收入达到 102.13 亿美元，同比增长13%（恒定汇率下增长10%），其中商用PS增长14%、消费PS增长10%，</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-27</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.ithome.com/0/956/239.htm" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">Marvell 2027 财年第一财季归母净利润 3450 万美元，同比下降 80.61%</h3>
+                            <span class="article-source">IT之家</span>
+                        </div>
+                        
+                        <p class="article-summary">IT之家 5 月 28 日消息，Marvell今日发布 2027 财年（2026年 2月 3日～2027年 2月 6日）第一财季（2026年 2月 3日～2026年 5月 2日）报告：营业总收入： 24.18 亿美元，同比增长 28%毛利： 12.61 亿美元，同比增长 32.38%毛利率：52.1%，同比提升 1.8个百分点归母净利润： 3450 万美元，同比下降 80.61%经营现金流： 6.39 亿美元，同比增长 91.89%基本每股收益： 0.04 美元/股，同比下降 80.95%稀释每股收益： 0.04 美元/股，同比下降 80%AI 解读本次财报24.18亿美元的营业收入超过公司此前指引区间中点1800万美元，同比增长28%，创历史单季度新高，超出市场预期。核心业绩亮点数据中心业务延续高增长：数据中心业务收入达18.33亿美元，同比增长27%，环比增长11%，占总营收比重达76%；AI相关订单表现强劲，推动营收增速持续提升。毛利率保持稳定：GAAP毛利率为52.1%，Non-GAAP毛利率为58.9%，同比提升1.8个百分点，盈利能力保持在较高区间。经营现金流创历史新高：经</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-27</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.infoq.cn/video/p8ypAHvS7KK114BbAAN7?utm_source=rss&amp;utm_medium=article" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">深度访谈预告：后龙虾时代，Agent如何真正走进企业生产场景？</h3>
+                            <span class="article-source">InfoQ 中文站</span>
+                        </div>
+                        
+                        <p class="article-summary empty">暂无摘要，点击查看原文阅读完整内容 →</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-27</span>
+                            
+                            <span class="article-author">👤 李文朋</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.infoq.cn/article/zleRjMWUeNF4C9zTeX8p?utm_source=rss&amp;utm_medium=article" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">让具身模型学会“先想后做”！星源智推出400万问答对大规模数据集，训练框架决策性能碾压GPT-5</h3>
+                            <span class="article-source">InfoQ 中文站</span>
+                        </div>
+                        
+                        <p class="article-summary">让 AI 在真实环境中不仅“看懂”世界、还能“做出”决策，这是具身智能的终极目标之一。然而，现有的具身问答数据集和基准普遍“偏科”：有的聚焦空间理解，有的侧重过程推理，几乎没有哪一个能同时覆盖场景理解、空间推理、任务动态推理和实时决策这四个维度。北京大学副教授穆亚东及北京大学、星源智团队给出了答案，并提出了一套名为 EQA-Decision 的大规模数据集与 RoboDecision 训练框架。首次将具身问答从静态感知扩展到动态决策，构建了覆盖四大推理模块、超过四百万问答对的大规模数据集，并设计了从监督微调到思维链再到强化学习的三阶段训练方法，让模型真正学会“先想后做、看图决策”。该方案论文《...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-27</span>
+                            
+                            <span class="article-author">👤 华卫</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.v2ex.com/t/1216043#reply3" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">[问与答] token 用量究竟是怎么算的？</h3>
+                            <span class="article-source">V2EX</span>
+                        </div>
+                        
+                        <p class="article-summary">我用 mimo-v2.5 ，把请求提示词和响应提示词内容打出来。中英文一共加起来 7109 个字符。
+看 mimo 后台的 token 用量统计，用了 327,200 个 token 。
+这合理吗？</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-27</span>
+                            
+                            <span class="article-author">👤 jedeft</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.v2ex.com/t/1216042#reply0" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">[推广] 香港众安银行开户返 300HKD+50USD 英伟达股票兑换券 活动时间 5.28 日至 7.1 日截止。</h3>
+                            <span class="article-source">V2EX</span>
+                        </div>
+                        
+                        <p class="article-summary">开户准备（请在香港境内完成）在开启应用前，请确保准备好以下材料：证件： 内地二代身份证、本人实名内地银行卡。网络： 手机已开启国际漫游，确保可以接收验证码。证明： 通过微信/支付宝搜索“移民局”小程序，下载 12367 出入境记录。极简操作流程开户链接：https://l.za.group/pFcYU下载 &amp; 注册： 下载 ZA Bank App ，点击开户。验证： 绑定手机（务必确认漫游状态），通过人脸核验。信息填写：邀请码： 填入 HCEAD7 （返现必要步骤）。职业/目的： 职业可选“自由职业”，开户目的建议选“储蓄”。功能开通（重要）： 务必勾选开通“股票”和“基金”服务功能（否则事后补开极其麻烦）。审核： 提交后通常 1 个工作日即可审核完毕。达标任务：立享 300 HKD 返现完成开户后，在 14 天内 确保账户满足以下任一条件（只需满足其中一个条件）存款： 日终存款余额≥HKD 200,000 或其等值; 或基金： 日终基金总资产≥HKD 100,000 或其等值; 或股票： 日终股票总资产≥HKD 10,000 或其等值;返现机制： 达成以上任一条件后:，系统将在次日晚</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-27</span>
+                            
+                            <span class="article-author">👤 fgvbt3</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.v2ex.com/t/1216041#reply0" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">[分享创造] vibe coding 了个辅助颈腰椎病康复的体态相机小工具</h3>
+                            <span class="article-source">V2EX</span>
+                        </div>
+                        
+                        <p class="article-summary">起因是我们做颈椎、腰椎，脊柱侧弯、骨质疏松等相关的居家康复运动业务。居家康复体操是个性化的，需要随着个体的进展，做相关康复体操动作的调整，没办法完全标准化。但是也不能说每个月都去拍 X 光，所以除去标准阶段到医院复查外，剩下要靠访谈、体态、量表等来做阶段性评估。这里面尤其是脊柱侧弯，基本都是快速生长期的孩子发现的，每个月的变化很大，如果不能及时根据体态变化做调整，那可能会短期加速恶化，而且最恶心的是过了快速生长期后，骨骼逐步成熟，可纠正回来的概率也会大幅下滑。绝大部分家庭其实也没时间频繁往返，所以体态这里主要是靠拍照来跟踪的，但是我们发现，就是让家长帮忙把手机举平再拍照也不是那么容易的事儿，很多拍的七扭八拐，能把康复师逼疯。想起来就 vibe coding 了个小工具，体态相机，功能很简单，就是借助陀螺仪，把相机稳定在一个相对固定的角度，然后给相片打上日期时间和偏角的水印，这样一来标准就能相对统一，还可以结合水印时间做纵向的变化对比。本来就是给自己客户用的，简单为宜，也没有什么乱七八糟的注册或者隐私权限要求，就是单纯的小相机。因为大众还是 android 多，所以就做了个 androi</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-27</span>
+                            
+                            <span class="article-author">👤 Maxwe11</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.v2ex.com/t/1216040#reply2" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">[VPS] 有在用免费 VPS 的吗？可以当梯子用吗？</h3>
+                            <span class="article-source">V2EX</span>
+                        </div>
+                        
+                        <p class="article-summary empty">暂无摘要，点击查看原文阅读完整内容 →</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-27</span>
+                            
+                            <span class="article-author">👤 IM1T</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.v2ex.com/t/1216038#reply2" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">[AI Agent 智能体] 我的 AI(LLM) 和 vibe coding 使用技巧已经落伍了吗</h3>
+                            <span class="article-source">V2EX</span>
+                        </div>
+                        
+                        <p class="article-summary">我对 vibe coding 的接触是从 2024 年 vscode 上的 github copilot 插件开始的，当时 AI(LLM) 在写代码的过程中仅能起到 完成小型函数、完成系统 API 调用、对代码和架构设计带来点头脑风暴的作用，而无法做到让它从头开始生成代码，想完成某个函数也要在明确知道怎么写，但是懒得动手的情况下才能让它小幅度完成，生成的代码还得必须一行行亲自过关，经常一眼就错。但是当时 vscode 自带的基于 AI 的代码自动完成是真的好用，给我减少了很多手指负担。结果到了 2026 年年初，似乎 各家  AI 产品都推出了更强悍的自动工具，我的 github copilot 插件甚至可以通过调用 powershell 和 bash 来直接进行系统调用，来更加智能地进行代码读取、系统状态查看、文件目录分析等事情，且 各 AI(LLM) 模型的能力也是不断上升，居然可以根据我的需求从头到尾生成各种实用代码（由其是 python ，一遍就对），给我带来了一些震惊的感觉，日常写代码的过程中，对 vibe coding 的依赖也开始变得越来越大。目前我用过的仅为 vscod</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-27</span>
+                            
+                            <span class="article-author">👤 Zarhani</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.v2ex.com/t/1216037#reply0" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">[开源软件] 我做了一个 Agent Team 协作平台——Rudder：让 Agent Team 在实践中成长</h3>
+                            <span class="article-source">V2EX</span>
+                        </div>
+                        
+                        <p class="article-summary">最近在开发 Rudder ，一个给重度 agent 用户使用的 Agent Team 协作平台。项目地址：GitHub：GitHub - Undertone0809/rudder: Rudder is an orchestration and control platform for agent work, and the operating layer for agent teams. · GitHubDocs：https://doc.rudder.zeeland.studio如果你已经在高频使用 Codex 、Claude Code 、Cursor ，或者已经开始维护自己的 Agent Skill ，Rudder 解决的是下一阶段的问题：Agent 不只是完成任务，还能在真实任务、review 和 feedback 里持续迭代自己的能力。Rudder 把 goals 、issues 、agent runs 、reviews 、feedback 、skills 和 learning 串成一个 work loop 。一次 agent run 结束后，不只留下 transcript ，还</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-27</span>
+                            
+                            <span class="article-author">👤 Zeeland4v</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.ithome.com/0/956/238.htm" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">谷歌健康应用 Fitbit 变身“Google Health”后引发大量用户不满，官方承诺改进</h3>
+                            <span class="article-source">IT之家</span>
+                        </div>
+                        
+                        <p class="article-summary">IT之家 5 月 27 日消息，据外媒 The Verge 今晚报道，谷歌用 Google Health 应用刚刚取代 Fitbit 后，用户投诉接连不断。谷歌随后作出回应，公布了一批改进措施，并将从本周开始陆续推送。谷歌此次将优先处理用户反映最集中的问题之一：Today 仪表盘目前只能在屏幕上半部分显示用户选择的健康指标。作为修改措施，谷歌将尽快简化用户自定义 Today 和 Health 仪表盘的过程，从而更方便地调整指标顺序，也可以添加或删除指标。据IT之家了解，Google Health 还会补上部分缺失功能，并优化日常使用体验。例如，用户将可以查看、创建和记录自定义食物项目，把自定义食物加入饮食日志。Today 和 Health 标签页也会新增按小时步数目标图表，新的 24 小时睡眠总览则会同时统计主要睡眠和小睡。谷歌的 AI coach 是新版应用中争议最大的功能之一。报道提到，已经开始有用户质疑，为什么现在“必须翻过一段段 AI 垃圾内容”才能看到自己的健康数据，但同时也有人持相反看法，认为自己已从“AI 教练”处获益。谷歌表示，Today 标签页中的 AI 生成信息很快</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-27</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.v2ex.com/t/1216036#reply4" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">[React] react 这个技术栈到底是如何做到每天都有新发现的？</h3>
+                            <span class="article-source">V2EX</span>
+                        </div>
+                        
+                        <p class="article-summary">第一次点击按钮，组件重新渲染，输出&#39;render&#39;，此时 count 为 1 （ count: 0 -&gt; 1)第二次点击按钮，组件重新渲染，输出&#39;render&#39;，此时 count 为 1(count: 1 -&gt; 1)第三次点击按钮，组件不重新渲染(count: 1 -&gt; 1)第四次...第五次，都不会重新渲染就...当 setCount 的值即使和当前 count 值一样，组件是否会重新渲染，竟然不一定，还要看当前 count 值的上一次渲染...如果是 0 -&gt; 1,那么在 setCount(1)会渲染，如果是 1 -&gt; 1 ，那么就不会再渲染...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-27</span>
+                            
+                            <span class="article-author">👤 nazalewoyuanyi</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.ithome.com/0/956/237.htm" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">美国联邦航空管理局要求 SpaceX 调查星舰 V3 助推器故障，后续测试发射需暂停</h3>
+                            <span class="article-source">IT之家</span>
+                        </div>
+                        
+                        <p class="article-summary">IT之家 5 月 27 日消息，据外媒 TechCrunch 报道，当地时间周三，美国联邦航空管理局（FAA）发布声明称，已要求 SpaceX调查星舰助推器在 5 月 22 日测试飞行中失败的原因。这意味着，在调查结束且结果提交 FAA 批准前，SpaceX 必须暂停后续星舰测试发射。SpaceX 原本预计在 6 月中旬 IPO，因此星舰在上市前再次发射的可能性已经降低。FAA 表示：“经过对本次操作的全面评估，FAA 认定，5 月 22 日 SpaceX 星舰第 12 次飞行发射导致一起事故。事故涉及 Super Heavy 超重型助推器，该助推器在级间分离后飞回美国湾期间出现问题。目前没有公众受伤或公共财产受损的报告。FAA 将监督由 SpaceX 主导的调查，参与调查全过程，并批准 SpaceX 的最终报告，包括任何纠正措施。”星舰助推器的问题出现在发射数分钟后。此次发射是 SpaceX 升级版超重型火箭系统的首次飞行。第一枚“V3”星舰飞过最大动压点并进入太空。按照原定计划，助推器应与飞船分离，随后返回海湾，并在水面完成模拟着陆。助推器确实完成了与飞船的分离。但在尝试进行持续燃</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-27</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.v2ex.com/t/1216035#reply5" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">[分享发现] 我终于找到了 24 小时进行 coding 的终极方法，你可以在帖子当中看到最佳的 Vibe coding 助手</h3>
+                            <span class="article-source">V2EX</span>
+                        </div>
+                        
+                        <p class="article-summary">当我撰写这条帖子的时候，我现在正在使用 UU 远程控制。用手机来进行远程控制我的电脑。我现在有两台 Windows 设备，我都安装了这款软件。当我出去玩的时候。我用我的手机进行控制，可以远程的非常流畅的进行 Coding 。对于输入来说我在我的手机端又下载了豆包输入法。豆包输入法有一个非常厉害的一个功能，就是语音输入。这解决了我在远程控制被输入文字带来的不便。现在感觉非常良好，甚至感觉 24 小时都可以进行 Coding 。如果你也有更好的解决这个痛点的办法，可以在评论区回复一下。非常感谢大家。</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-27</span>
+                            
+                            <span class="article-author">👤 wanchuno</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.v2ex.com/t/1216034#reply0" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">[程序员] 我不想看你的产出</h3>
+                            <span class="article-source">V2EX</span>
+                        </div>
+                        
+                        <p class="article-summary">以前代码行数,字数这些指标,虽然有争议,但也有一定道理,大概还是能反映产出的即使是写垃圾代码垃圾报告,堆字数也要真埋头苦干的但是现在生成更多产出没代价了,输出指标太容易 Hack 了,随随便便生成几十张 PPT 一堆图,但信息量为 0.真在一线的大家都在用 AI,是怎么做出来的,投入多少精力,传递多少信息一眼就能看出来.我不想看你的产出,更多的输出不代表有生产力.一张图能讲明白的事情不要放两张图,才是提高生产力https://blog.yqiao.me/2026/05/show-me-less-output.html</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-27</span>
+                            
+                            <span class="article-author">👤 rapiz</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.v2ex.com/t/1216033#reply1" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">[iPhone] Anker 已经不是原来的 Anker 了，从苹果生态到饭圈生意，一路从龙头企业做到现在韭菜头子。</h3>
+                            <span class="article-source">V2EX</span>
+                        </div>
+                        
+                        <p class="article-summary">从 MacBook 换上第一个 USB-C 接口开始，到 iPhone 从 Lightning 跨入 USB type-C 。那时候我就希望出门能够有一款充电器能够解决所有设备的充电问题。认识 Anker 要从 2017 年说起，那时候有一条红色编织线，一头还是 USB type-A,一头还是 Lightning 。那条线号称可以拉汽车。确实那条线也非常耐用。后来，iPhone 支持无线充，Anker 也是第一个推出 10W 适配 iPhone</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-27</span>
+                            
+                            <span class="article-author">👤 msdurex</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.ithome.com/0/956/236.htm" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">苹果 iPhone Fold 折叠屏手机首批第三方保护壳亮相</h3>
+                            <span class="article-source">IT之家</span>
+                        </div>
+                        
+                        <p class="article-summary">IT之家 5 月 27 日消息，据外媒 MacRumors 今晚报道，配件制造商 iFunSmart 已开始上架苹果折叠 iPhone 的首批保护壳，进一步印证了外界围绕这款新机设计的多项传闻。据悉，在新 iPhone 正式发布前，保护壳制造商通常会提前根据模型机或泄露的 CAD 文件制作模具，并启动配件量产。商品页面显示，折叠 iPhone 后置摄像头区域平台内有两枚镜头，机身轮廓较薄，并留有一个用于 MagSafe 风格磁吸组件的圆形开孔。iFunSmart 表示，这批保护壳具备军规级防摔能力，内置 N52 磁体，采用半透明磨砂质感，同时配备1.5 毫米凸起摄像头保护边框、1 毫米凸起屏幕边框。这套保护壳设计与此前传闻和模型机呈现的方案大体一致，保护壳上只出现两个镜头开孔，与可能不配备长焦摄像头的说法相符。页面还显示有相机控制键开孔，但没做出动作按钮。受折叠结构影响，页面中的保护壳采用多段式卡扣设计，而不是一体式外壳。报道指出，保护壳内置磁体并不代表苹果一定会在折叠 iPhone 机身内加入 MagSafe。此前已有消息称，折叠 iPhone预计不支持该功能。按照行业惯例，新 iP</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-27</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.ithome.com/0/956/235.htm" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">引力常数问世 340 周年，仍是物理学一大未解难题</h3>
+                            <span class="article-source">IT之家</span>
+                        </div>
+                        
+                        <p class="article-summary">IT之家 5 月 27 日消息，今年是引力常数问世 340 周年，它也是物理学中最古老的基本常数。这个常数被研究者亲切地称作“大 G”。1686 年，牛顿在构建万有引力定律时，首次将引力常数纳入核心公式；次年，牛顿在《自然哲学的数学原理》一书中正式发表相关内容，当时仅给出估算值，这一数值尚未经过实测。但颇具讽刺意味的是，历经数百年后，大 G 至今仍是所有基本常数中测量精度最差、数值范围最不确定的一个。IT之家注意到，目前科学家得出了一系列不同的引力常数测算结果（常用值约为 6.674×10^-11 N·m²/kg²），这意味着我们无法确定：究竟是人类尚未完全吃透引力的本质，还是现有理论公式本身存在疏漏。美国国家标准与技术研究院的斯特凡・施拉明格，过去十年一直致力于破解这一难题。这项研究迎来结果的时刻，团队需要拆开一只密封信封才能得知最终数据，这样的场景通常出现在奥斯卡等盛大颁奖典礼上，而非物理实验室。不过这场“悬念”并非多余。描述宇宙规律的各类公式里，引力常数无处不在，其数值的不确定性让科学家们颇为困扰，施拉明格这类计量学家对此感受尤深。施拉明格在接受Space.com采访时表示：“引</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-27</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.v2ex.com/t/1216031#reply0" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">[产品发布] [产品自荐] 业余两周做了个 AI Visual Agent，自动选模型、写 prompt、调参数，想请 V 友帮忙看看</h3>
+                            <span class="article-source">V2EX</span>
+                        </div>
+                        
+                        <p class="article-summary">大家好，我是 Orylia 的作者，业余花了大概两周做了一个多模型 AI 图片/视频生成工作台：https://orylia.ai为什么做这个我自己每天都在用 AI 生图，但每次都要纠结：用哪个模型？ GPT Image 2 写实强、Seedream 风格化好、Nano Banana 速度快……20 多个模型各有所长比例、分辨率、quality 怎么选？prompt 怎么写才能出好图？构图、光影、镜头语言全要自己编试错一圈积分就烧完了我想把这个给不懂 AI 的朋友用，但学习成本太高。所以做了一个 Agent 来解决这个问题。Orylia Agent 做了什么你用自然语言描述想要的画面（比如&#34;帮我拍一张运动鞋的产品图，大理石桌面，杂志风&#34;），Agent 会：问 1-2 个澄清问题（风格偏好、用途等）从 20+ 模型里选最合适的（ GPT Image 2 / Nano Banana Pro / Seedream 4.5 / Midjourney V7 / Seedance 2.0 等）自动生成专业级 prompt （构图、光影、色温、镜头）选择最优参数组合（比例、分辨率、quality ）</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-27</span>
+                            
+                            <span class="article-author">👤 yestwind</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.ithome.com/0/956/234.htm" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">《勇者斗恶龙 12》重启开发，从主角到故事线都将“推倒重来”</h3>
+                            <span class="article-source">IT之家</span>
+                        </div>
+                        
+                        <p class="article-summary">IT之家 5 月 27 日消息，Square Enix 宣布，《勇者斗恶龙 12》已经重新启动开发，游戏将以《勇者斗恶龙 12：前往梦境彼端》的名称发售。《勇者斗恶龙 12》最初公布时的名称是《勇者斗恶龙 12：命运之炎》。在此次重启开发后，游戏主角和故事线都与最初公布的版本完全不同。SE 社曾在 2021 年公布五款《勇者斗恶龙》新作，《勇者斗恶龙 12》就是其中之一。去年，系列创作者堀井雄二表示，《勇者斗恶龙 12》仍在努力开发中，并计划逐步公布更多相关信息。据IT之家了解，除《勇者斗恶龙 12：前往梦境彼端》外，SE 社还宣布，《勇者斗恶龙怪兽篇：枯萎世界》将登陆任天堂 Switch 1/2。SE 社同时宣布，《勇者斗恶龙 11 S：寻觅逝去的时光 - 决定版》将于 2026 年 9 月 24 日登陆  Switch 2，而该版本不支持从此前的《勇者斗恶龙 11》直接升级。</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-27</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.v2ex.com/t/1216030#reply0" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">[深圳] 居家办公距离南山科兴地铁 50 分钟有推荐的小区吗</h3>
+                            <span class="article-source">V2EX</span>
+                        </div>
+                        
+                        <p class="article-summary">暂时半年居家办公，因为房子都是 1 年 1 签约，万一上班应该是科兴大概率。 从通勤不超过 2 小时的概念，需要安静小区，配套齐全，有没有推荐的小区，不局限南山，南山太贵了。预算含物业不超过 6500 吧，2 房 1 厅，1 个当书房，1 个睡觉，家人来了还可以临时用。最好是次新小区，房龄 10 年吧最大。如果有也是居家的，求分享。目前住南山，这个价格都是公寓，现在住的也是公寓，打算打死都不住公寓了。 之前合租住的小区，合租遇到合适的人的概率很小，所以放弃这个，还是打算一个人住到非南山去，可以住个有阳光的安静小区房。</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-27</span>
+                            
+                            <span class="article-author">👤 startnew</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.infoq.cn/article/95coakUO0KZrqvL21Ig9?utm_source=rss&amp;utm_medium=article" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">如何通过 Trace 数据监控 Cortex Agent 性能 ｜ 技术实践</h3>
+                            <span class="article-source">InfoQ 中文站</span>
+                        </div>
+                        
+                        <p class="article-summary">2026 年，智能体将在企业级应用中取得哪些实质性突破？ 点击下载 《2026 年 AI 与数据发展预测》白皮书，获悉专家一手前瞻，抢先拥抱新的工作方式！ 观察你的 Cortex Agent 集群 使用 Snowflake Intelligence 的团队往往行动很快。Cortex Agents 可以快速且无缝地构建，不知不觉间，你就已经有一个集群在不同领域和业务职能中投入生产运行。Snowflake Intelligence 架构 部署 agents 是一种赋能体验。监控错误率、延迟、token 消耗等健康功能指标，以及新鲜度和数量等质量指标，是任何生产系统的基本要求；agents 也不例外...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-27</span>
+                            
+                            <span class="article-author">👤 Michael Segner</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.infoq.cn/article/a4gbB5g49HBNl2mwXwXY?utm_source=rss&amp;utm_medium=article" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">基于 Snowflake Semantic View 构建自助式报表数据集市 ｜ 技术实践</h3>
+                            <span class="article-source">InfoQ 中文站</span>
+                        </div>
+                        
+                        <p class="article-summary">2026 年，智能体将在企业级应用中取得哪些实质性突破？ 点击下载 《2026 年 AI 与数据发展预测》白皮书，获悉专家一手前瞻，抢先拥抱新的工作方式！ 业务用户总是想要新的东西，而且想要得很快。今天上午按区域拆分，午饭后按季度看趋势，下班前按部门做透视。传统的请求、开发、测试和部署周期根本跟不上现代分析需求的节奏。如果我们把交付的概念改成一个始终可用、并且保留完整审计轨迹的自助式报表集市，会怎样？ 本文介绍了一种创新方法，可以在 Snowflake 中以极低的管理开销自动处理大多数临时报表请求。通过将 Snowflake Semantic Views 与 Streamlit 界面结合起来，...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-27</span>
+                            
+                            <span class="article-author">👤 Sabrina Liu</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.infoq.cn/article/1w093X0R3Ul2u1RmbM44?utm_source=rss&amp;utm_medium=article" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">安全可靠！星环科技分布式数据库ArgoDB通过安全可靠测评！</h3>
+                            <span class="article-source">InfoQ 中文站</span>
+                        </div>
+                        
+                        <p class="article-summary">2026 年 5 月 26 日，由星环科技自主研发的分布式数据库 ArgoDB V6 通过中国信息安全测评中心、国家保密科技测评中心联合发布的“安全可靠测评”认证，全面验证其在产品安全与供应链安全领域的端到端防护能力，构建起覆盖研发、产品到生态的全栈自主可控安全体系，能够为各行业核心业务系统提供长期安全、稳定、可靠的数据库支撑。十余年自主创新，打造领先的国产数据库核心技术 传统数据管理体系往往呈现“碎片化”特征：生产侧依赖 TP 数据库，分析侧依赖数据仓库与数据湖，AI 场景又引入向量、图等多种专用引擎，导致数据在多系统间反复流转，链路复杂、时效滞后且运维成本高。星环科技分布式数据库 Argo...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-27</span>
+                            
+                            <span class="article-author">👤 星环科技</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.infoq.cn/article/et26CZlCZQoEK2wSkkSc?utm_source=rss&amp;utm_medium=article" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">中国首次提出半导体演进新原则：华为“韬定律”5 年内冲刺等效1.4nm制程，麒麟、昇腾将先后落地量产</h3>
+                            <span class="article-source">InfoQ 中文站</span>
+                        </div>
+                        
+                        <p class="article-summary">“我们采用的是全球最先进的制程工艺”，每年的苹果 iPhone 发布会上，库克总要把这句话挂在嘴边。潜台词很清楚： 先进制程 = 更小晶体管 = 更快更省电。然而，随着芯片迭代节奏不断加速、物理制程逼近极限，统治行业超过半个世纪“摩尔定律”也开始穷途末路，尤其在半导体先进制程受阻的中国市场。今天（5 月 25 日），在 IEEE 国际电路系统研讨会（ISCAS 2026）上，华为董事、半导体业务部总裁何庭波发表主旨演讲，正式提出半导体演进新原则： “韬（τ）定律”：以“时间（τ）缩微”替代传统的“几何缩微”。...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-27</span>
+                            
+                            <span class="article-author">👤 四月</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.infoq.cn/article/ixyk6VIFhTSF3JL63EgK?utm_source=rss&amp;utm_medium=article" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">得物算法平台部算法专家任巨伟确认出席AICon上海站，分享高可控智能客服的 Agent 工程实践</h3>
+                            <span class="article-source">InfoQ 中文站</span>
+                        </div>
+                        
+                        <p class="article-summary">当前，以 Agent 为核心的新一轮技术浪潮正在席卷产业。那么，世界模型的下一个突破在哪？Agent 从 Demo 到工程化还差什么？研发体系不重构，还能撑多久？ 6 月 26 日-6 月 27 日， AICon全球人工智能开发与应用大会 将在上海举办。本次大会将围绕以上问题，邀请来自腾讯、阿里、快手、华为、飞猪等 50+头部企业的技术负责人、高校与科研机构的一线专家，分享 Agent 在真实生产环境中的落地经验与前瞻思考。深入探讨 Agent 从原型到量产的工程挑战、数据与记忆的基础设施底座、安全可信的落地保障，以及大模型推理优化、智算架构升级等关键命题。得物算法平台部算法专家任巨伟确认出席...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-27</span>
+                            
+                            <span class="article-author">👤 AICon 全球人工智能开发与应用大会</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.infoq.cn/article/kadDStA9JWuOGHujwdoz?utm_source=rss&amp;utm_medium=article" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">Google Cloud 在 BigQuery 中引入跨引擎 Apache Iceberg 支持</h3>
+                            <span class="article-source">InfoQ 中文站</span>
+                        </div>
+                        
+                        <p class="article-summary">这一预览功能使多个工具能够直接操作同一数据集，而不必依赖数据复制或专有格式。谷歌还引入了对元数据、表维护以及同步任务的托管支持，而这些工作在传统 Iceberg 部署中往往需要人工处理。谷歌高级产品经理 Yuriy Zhovtobryukh 与高级产品市场经理 Angela Soares 解释了这一更新的重要性： 如果你现在正在构建 Lakehouse，那你大概已经用上了 Apache Iceberg。对于需要支持多个计算引擎（例如 Spark 与 BigQuery）访问同一份数据、处理不同工作负载的数据平台团队来说，Iceberg 已经获得了广泛普及。在最近举行的 Next ’26 大会上，...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-27</span>
+                            
+                            <span class="article-author">👤 作者：Renato Losio</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                </div>
+            </section>
+            
+            
+            
+            <section class="category-section">
+                <div class="category-header">
+                    
+                    <span class="category-icon">🏢</span>
+                    <h2 class="category-title">国际公司官方</h2>
+                    <span class="category-count">1 篇</span>
+                </div>
+                <div class="articles-grid">
+                    
+                    <a href="mailto:press@anthropic.com" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">Newsroom</h3>
+                            <span class="article-source">Anthropic</span>
+                        </div>
+                        
+                        <p class="article-summary">Our latest Opus model brings stronger performance across coding, agents, vision, and multi-step tasks, with greater thoroughness and consistency on the work that matters most.</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-28</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                </div>
+            </section>
+            
+            
+            
+            <section class="category-section">
+                <div class="category-header">
+                    
+                    <span class="category-icon">👨‍🔬</span>
+                    <h2 class="category-title">国际研究员</h2>
+                    <span class="category-count">7 篇</span>
+                </div>
+                <div class="articles-grid">
+                    
+                    <a href="https://simonwillison.net/2026/May/19/5-minute-llms/" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">The last six months in LLMs in five minutes</h3>
+                            <span class="article-source">Simon Willison</span>
+                        </div>
+                        
+                        <p class="article-summary">I put together these annotated slides from my five minute lightning talk at PyCon US 2026, using thelatest iterationof myannotated presentation tool.[...2,061 words]</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-28</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://github.com/distillpub/post--multimodal/issues?q=is%3Aissue+label%3Apeer-review" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">Multimodal Neurons in Artificial Neural Networks</h3>
+                            <span class="article-source">Distill.pub</span>
+                        </div>
+                        
+                        <p class="article-summary">Gabriel Goh, Nick Cammarata †, Chelsea Voss †, Shan Carter, Michael Petrov, Ludwig Schubert, Alec Radford, and Chris Olah</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-28</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://simonwillison.net/2026/May/19/gemini-35-flash/" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">Gemini 3.5 Flash: more expensive, but Google plan to use it for everything</h3>
+                            <span class="article-source">Simon Willison</span>
+                        </div>
+                        
+                        <p class="article-summary">Today at Google I/O, Googlereleased Gemini 3.5 Flash. This one skipped the-previewmodifier and went straight to general availability, and Google appear to be using it for a whole lot of their key products:[...610 words]</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-28</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://simonwillison.net/2026/May/21/datasette-agent/" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">Datasette Agent</h3>
+                            <span class="article-source">Simon Willison</span>
+                        </div>
+                        
+                        <p class="article-summary">We justannounced the first release of Datasette Agent, a new extensible AI assistant for Datasette. I’ve been working on myLLMPython library for just over three years now, and Datasette Agent represents the moment that LLM andDatasettefinally come together. I’m really excited about it![...659 words]</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-28</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://simonwillison.net/2026/May/25/encyclical-on-ai/" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">Notes on Pope Leo XIV’s encyclical on AI</h3>
+                            <span class="article-source">Simon Willison</span>
+                        </div>
+                        
+                        <p class="article-summary">Dropped this morning by the Vatican:Magnifica Humanitas of His Holiness Pope Leo XIV on Safeguarding the Human Person in the Time of Artificial Intelligence. This is avery interestingdocument. It’s some of the clearest writing I’ve seen on the ethics of integrating AI into modern society.[...1,865 w</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-28</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.anthropic.com/" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">Essays</h3>
+                            <span class="article-source">Dario Amodei</span>
+                        </div>
+                        
+                        <p class="article-summary">Dario Amodei is the CEO ofAnthropic, a public benefit corporation dedicated to building AI systems that are steerable, interpretable and safe....More</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-28</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://simonwillison.net/2026/May/27/product-market-fit/" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">I think Anthropic and OpenAI have found product-market fit</h3>
+                            <span class="article-source">Simon Willison</span>
+                        </div>
+                        
+                        <p class="article-summary">Anthropic arestrongly rumoredto be about to have their first profitable quarter. Storiesare circulatingof companies surprised at how expensive their LLM bills are becoming from usage by their staff. I think this is because OpenAI and Anthropic have both found product-market fit.[...1,855 words]</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-28</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                </div>
+            </section>
+            
+            
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">
+                AI Daily Brief · 每日 AI 资讯聚合
+            </p>
+            <p class="footer-text" style="margin-top: 0.5rem; font-size: 0.75rem;">
+                生成于 2026-05-28 08:01
+            </p>
+        </div>
+    </footer>
+
+    <button class="scroll-top" onclick="scrollToTop()" id="scrollTop">↑</button>
+
+    <script>
+        // Scroll to top button
+        const scrollTopBtn = document.getElementById('scrollTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+        
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Add stagger animation to cards
+        document.querySelectorAll('.article-card').forEach((card, index) => {
+            card.style.animationDelay = `${index * 0.05}s`;
+        });
+    </script>
+</body>
+</html>
