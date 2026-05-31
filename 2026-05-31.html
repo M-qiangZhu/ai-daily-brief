@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Daily Brief - 2026-05-31</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #1a1a24;
+            --bg-hover: #22222e;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0b0;
+            --text-muted: #6b6b7b;
+            --accent-blue: #3b82f6;
+            --accent-purple: #8b5cf6;
+            --accent-cyan: #06b6d4;
+            --accent-green: #10b981;
+            --border-color: #2a2a3a;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+            border-bottom: 1px solid var(--border-color);
+            padding: 2rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--text-primary), var(--accent-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .date-badge {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        /* Stats */
+        .stats-bar {
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 0.75rem;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-cyan);
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Main Content */
+        .main {
+            padding: 2rem 0;
+        }
+
+        /* Category Sections */
+        .category-section {
+            margin-bottom: 3rem;
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .category-icon {
+            font-size: 1.25rem;
+        }
+
+        .category-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .category-count {
+            background: var(--bg-hover);
+            color: var(--text-secondary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.875rem;
+        }
+
+        /* Article Cards */
+        .articles-grid {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .article-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.25rem;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .article-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+            border-color: var(--accent-blue);
+        }
+
+        .article-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .article-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.4;
+            flex: 1;
+        }
+
+        .article-card:hover .article-title {
+            color: var(--accent-blue);
+        }
+
+        .article-source {
+            font-size: 0.75rem;
+            color: var(--accent-purple);
+            background: rgba(139, 92, 246, 0.1);
+            padding: 0.25rem 0.5rem;
+            border-radius: 6px;
+            white-space: nowrap;
+        }
+
+        .article-summary {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin: 0.75rem 0;
+            padding: 0.75rem 0;
+            border-top: 1px dashed var(--border-color);
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .article-summary.empty {
+            color: var(--text-muted);
+            font-style: italic;
+            border: none;
+            padding: 0.5rem 0;
+        }
+
+        .read-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            color: var(--accent-blue);
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-top: 0.5rem;
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .article-date {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .article-author {
+            color: var(--accent-green);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .footer-text {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+
+        .footer-links {
+            margin-top: 0.5rem;
+        }
+
+        .footer-links a {
+            color: var(--accent-blue);
+            text-decoration: none;
+            margin: 0 0.5rem;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .article-header {
+                flex-direction: column;
+            }
+
+            .article-source {
+                align-self: flex-start;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .article-card {
+            animation: fadeIn 0.3s ease forwards;
+        }
+
+        /* Scroll to top */
+        .scroll-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--accent-blue);
+            color: white;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s, transform 0.3s;
+            border: none;
+            font-size: 1.25rem;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-3px);
+            background: var(--accent-purple);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">🤖</div>
+                    <h1 class="logo-text">AI Daily Brief</h1>
+                </div>
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <nav class="nav-links" style="display: flex; gap: 0.5rem;">
+                        <a href="index.html" style="color: var(--accent-blue); text-decoration: none; padding: 0.5rem 1rem; border-radius: 8px; background: var(--bg-card); font-size: 0.875rem;">今日日报</a>
+                        <a href="history.html" style="color: var(--text-secondary); text-decoration: none; padding: 0.5rem 1rem; border-radius: 8px; transition: all 0.2s; font-size: 0.875rem;">历史归档</a>
+                    </nav>
+                    <div class="date-badge">
+                        📅 2026年05月31日 · 周日
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="stats-bar">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-value">38</div>
+                    <div class="stat-label">今日文章</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">3</div>
+                    <div class="stat-label">分类</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">7</div>
+                    <div class="stat-label">来源</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main class="main">
+        <div class="container">
+            
+            
+            <section class="category-section">
+                <div class="category-header">
+                    
+                    <span class="category-icon">🇨🇳</span>
+                    <h2 class="category-title">国内 AI 媒体</h2>
+                    <span class="category-count">31 篇</span>
+                </div>
+                <div class="articles-grid">
+                    
+                    <a href="https://www.ithome.com/0/957/706.htm" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">消息称因战略分歧，三星与 OpenAI 定制 AI 芯片研发项目陷入停滞</h3>
+                            <span class="article-source">IT之家</span>
+                        </div>
+                        
+                        <p class="article-summary">IT之家 5 月 31 日消息，早在 2024 年就有消息称，三星或将为 ChatGPT 的开发公司 OpenAI 打造人工智能芯片。此后，OpenAI 首席执行官山姆・奥尔特曼多次前往韩国，与三星高层会面并达成多项合作协议。但据韩媒 Greened 报道，双方定制芯片的相关计划目前遭遇了阻碍。据悉，三星原本基于 ARM 架构，为 OpenAI 研发一款推理型神经网络处理器（NPU），且前期研发工作已取得不小进展。如今消息称，由于双方在战略层面存在分歧，这项芯片研发工作已陷入停滞。这或许也能解释，三星近期为何投资了美国另一家头部人工智能初创公司 —— Claude 的研发方 Anthropic。另有报道指出，三星可能转而为 Anthropic 代工人工智能芯片。即便当下双方在芯片项目上未能达成共识，三星与 OpenAI 仍在其他多个领域展开合作。IT之家注意到，双方去年年底签署了多项全面合作协议，三星旗下多家子公司将为 OpenAI 提供各类服务。例如，三星数据系统公司将与 OpenAI 联合打造人工智能数据中心，同时三星大概率还会向这家人工智能企业供应存储芯片。</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-30</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.ithome.com/0/957/705.htm" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">经典游戏《冒险岛》怀旧服致歉，交易系统、现金道具等调整内容公布</h3>
+                            <span class="article-source">IT之家</span>
+                        </div>
+                        
+                        <p class="article-summary">IT之家 5 月 31 日消息，经典游戏《冒险岛》怀旧服昨日发文致歉：“对不起，让大家失望了”。游戏官方称测试开启后，我们同 Nexon 的研发团队，一直保持着紧密的沟通，每天都在讨论如何改进游戏。但是由于需要仔细考量、深入确认，这一过程花费了一定时间。IT之家附官方致歉原文如下（含游戏内容改进）：亲爱的冒险家们：大家好。首先，我们要用最诚恳的态度，向大家说：“对不起，让大家失望了”。从怀旧服“归岛测试”开启至今，我们看到了无数玩家带着热情与记忆回归，也看到了很多人从满怀期待，到失望、愤怒，甚至离开。你们的每一条反馈，我们都在认真看、认真听。我们会虚心听取各位玩家的宝贵意见，并努力打造一个让大家满意的怀旧服。测试开启后，我们同 Nexon 的研发团队，一直保持着紧密的沟通，每天都在讨论如何改进游戏。但是由于需要仔细考量、深入确认，这一过程花费了一定时间。在此恳请玩家谅解。我们看到了大家对冒险岛那份沉甸甸的感情。我们将根据各位此次提出的意见，对游戏内容进行调整。主要调整如下：1.    交易系统A.    移除金币绑定游戏角色B.    添加面对面交易 (可以选择金币或抵用券进行交易)C</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-30</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.ithome.com/0/957/704.htm" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">微软启动 Win11 老式对话框大规模现代化重构，文件复制对话框已完成升级</h3>
+                            <span class="article-source">IT之家</span>
+                        </div>
+                        
+                        <p class="article-summary">IT之家 5 月 31 日消息，据 WindowsLatest 报道，微软表示，正在对 Windows 11 中所有老旧对话框进行一次大规模重新设计，而且这并非仅添加深色模式这么简单。目前 Windows 系统里基于新一代 WinUI 3 框架的弹窗和对话框寥寥无几，系统大部分界面仍在沿用老式组件，而这一现状很快就会迎来改变。微软多次表态，计划对操作系统进行全方位深度优化。这里所说的深度优化，直指系统核心板块，包括内存管理、整体运行性能、统一的设计风格等多个方面。如今，低延迟配置文件、稳定性更强的文件资源管理器（explorer.exe）等功能，已经让系统性能得到明显提升。界面设计方面，微软近期也开始为 Windows 11 部分老式对话框推送深色模式，首批适配的就是文件操作类弹窗。过去数月里，文件复制、删除、剪切等各类文件操作界面都陆续完成了同类优化。相比原本仅支持浅色模式的老式弹窗，这已是不小的进步，但倘若不彻底替换为 WinUI 3 版本，这些界面依旧算不上现代化设计。运行窗口就是典型案例：这款工具即将推出基于 WinUI 3 打造的全新界面，并作为可选功能上线。传统的运行窗口基</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-30</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.ithome.com/0/957/703.htm" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">消息称 Valve Steam Machine 初始定价已达 1000 美元，如今可能更贵</h3>
+                            <span class="article-source">IT之家</span>
+                        </div>
+                        
+                        <p class="article-summary">IT之家 5 月 31 日消息，Steam Machine 的售价至今仍扑朔迷离。受零部件短缺影响，Valve 公司近期上调了 Steam Deck 掌机的售价，玩家们如今担心这款迷你主机也会让人囊中羞涩。另有业内人士爆料，其实早在产品发售日期推迟之前，其定价就已经超出了市场预期。Windows Central 的记者杰兹 · 科登在一期 XB2 播客节目中，探讨了游戏主机定价偏高的行业现状。谈及 Steam Machine 时，他向听众透露：“我从一位十分可靠的消息源处得知，这款产品去年首次公布时，定价就是 1000 美元（IT之家注：现汇率约合 6782 元人民币）。”这位知情人士并未说明该价格对应的是 512GB 版本还是 2TB 版本。而在当时，光驱版 PS5 售价为 499.99 美元（现汇率约合 3391 元人民币）。Valve 方面曾表示，这款硬件的定价会更接近游戏台式机，而非传统游戏主机，但它的硬件配置未必能撑起这样的售价。不少玩家结合 Steam Deck 的涨价情况，推算这款立方体造型主机的官方建议零售价。Steam Deck 1TB OLED 版本售价从 649 </p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-30</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.ithome.com/0/957/702.htm" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">IT早报 0531：微软宣布下周携手英伟达开启 PC 新时代；深圳网约车市场已饱和官方发风险提示；苹果 iPhone 18 机模曝光；MiniMax 启动 A 股 IPO 进程...</h3>
+                            <span class="article-source">IT之家</span>
+                        </div>
+                        
+                        <p class="article-summary">“IT早报”时间，大家好，现在是 2026 年 5 月 31 日星期日，今天的重要科技资讯有：1、非 Win12：微软下周将升级 Win11，携手英伟达开启 PC 新时代在 2026 年台北国际电脑展（6 月 2~5 日）和 2026 年 Build 开发者大会（6 月 2~3 日）召开前，微软官方澄清，下周不会推出 Windows 12 系统。&gt;&gt;查看详情2、深圳网约车市场已饱和，官方发布风险提示官方数据显示，深圳已有近 40 万持证网约车司机，但日均单车订单仅约 13 单，市场已总体饱和。提醒有意从业者警惕“高薪”宣传、无证运营、合同陷阱等六大风险，理性评估收益。&gt;&gt;查看详情3、苹果 iPhone 18 机模曝光：4 种颜色，主打樱桃色消息源 @SonnyDickson 5 月 29 日在 X 平台发布推文，分享了一组机模照片，展示了苹果 iPhone 18 四种配色，涵盖黑色、银色、樱桃色和浅蓝色。&gt;&gt;查看详情4、MiniMax 签署辅导协议，正式启动 A 股 IPO 进程AI 独角兽 MiniMax 已与中信证券签署辅导协议，正式启动 A 股 IPO 进程。这标志着国内 AI </p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-30</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.v2ex.com/t/1216734#reply0" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">[美酒与美食] 周末打野，路边的野杨梅，狂摘 10 斤</h3>
+                            <span class="article-source">V2EX</span>
+                        </div>
+                        
+                        <p class="article-summary">我发现长沙真是一个一年四季都可以打野的好地方三月釆蕨四月采笋五月可以搞桑椹现在又是杨梅成熟的季节了昨天带小孩去一个路边的的野杨梅林随便搞了一下，就是十几斤，而且巨甜，给兄弟们分享下：</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-30</span>
+                            
+                            <span class="article-author">👤 nicooolas</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.ithome.com/0/957/701.htm" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">龙芯官宣基于全自主指令集架构的云桌面解决方案已具备支撑政企日常办公等核心场景成熟能力</h3>
+                            <span class="article-source">IT之家</span>
+                        </div>
+                        
+                        <p class="article-summary">IT之家 5 月 31 日消息，龙芯中科宣布，龙架构生态建设稳中有进。2026 年 3-4 月，龙芯桌面与服务器平台共新增 213 款适配产品，覆盖多个关键领域：业务系统 36 款、安全应用系统 18 款、金融证券 7 款、运维管理系统 6 款、设计制造 4 款，以及其他产品 142 款。龙芯中科官方表示，龙架构生态在云计算与桌面虚拟化领域正加速落地。随着龙芯终端处理器产品线的持续迭代，以及越来越多云操作系统厂商完成适配，基于龙芯平台的云桌面方案已从技术验证阶段迈入场景化部署的新阶段。基于全自主指令集架构的云桌面解决方案，已具备支撑政企日常办公、教育培训、金融窗口服务等核心场景的成熟能力。龙芯 3B6000M—— 云终端与边缘节点核心，计算、图形、编码、安全能力均基于该处理器实现，是云桌面方案的前端算力底座。龙芯 3B6000M 处理器集成 8 个 LA364E 处理器核，基于主频 2.5GHz 下的实测 SPEC CPU 2006 Base 单核定点分值达到 30 分。龙芯 3C6000—— 服务器端处理器，为云桌面后台提供虚拟化资源池的计算支撑，龙芯 3C6000 系列处理器集成 </p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-30</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.ithome.com/0/957/700.htm" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">一颗流星在美国马萨诸塞州上空爆炸，全州听见巨响</h3>
+                            <span class="article-source">IT之家</span>
+                        </div>
+                        
+                        <p class="article-summary">IT之家 5 月 31 日消息，据 WBZ 电视台首席气象学家埃里克 · 费舍尔介绍，当地时间 5 月 30 日下午，一颗流星在马萨诸塞州海岸上空发生爆炸，整个州都听到了巨大的爆炸声。美国国家海洋和大气管理局的地图标注了这颗流星进入大气层的位置巨响出现在美国东部时间下午 2 点 11 分左右。目击者称，突如其来的爆炸声震得窗户嗡嗡作响，惊扰了家中宠物，部分房屋甚至随之晃动。WBZ 电视台新闻部接到数十通来电，民众表示在波士顿周边、伊普斯维奇乃至罗得岛州的约翰斯顿等地都听到了剧烈爆炸声。美国流星协会收到的初步报告显示，美国东北部数十名民众在周六下午 2 点左右目击到了这颗火流星，多地均有目击记录，为科学家还原流星在大气层中的运行轨迹提供了依据。美国国家海洋和大气管理局的卫星闪电数据显示，巨响发生的同一时段，监测到了符合流星活动的信号特征，数据还推断该流星大致在波士顿南岸上空进入地球大气层。IT之家注意到，美国国家航空航天局在一份声明中表示：“这颗流星在马萨诸塞州东北部与新罕布什尔州东南部上空约 64 公里的高度解体。其解体释放的能量约相当于 300 吨 TNT 炸药，这也是巨响产生的原因</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-30</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.ithome.com/0/957/699.htm" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">小米汽车：YU7 全系，从标准版到 GT 均采用「铠甲笼式钢铝混合车身」</h3>
+                            <span class="article-source">IT之家</span>
+                        </div>
+                        
+                        <p class="article-summary">IT之家 5 月 31 日消息，小米汽车官方昨日发布答网友问（第 250 集），针对 YU7 GT 的车身材质和 YU7 其他配置是否有区别、天际屏放歌词功能如何开启等问题进行了解答。IT之家附本期小米汽车答网友问重点内容如下：YU7 的柔感自然风空调是标配的吗？怎么打开这个模式？小米 YU7 全系标配空调「柔感自然风」模式，既能让车内保持凉爽温度，也能避免空调直吹造成的不适感。中控屏操作：点击屏幕底部空调图标进入控制面板，找到并点亮自然风按键即可。开启后风速会动态变化，风感更柔和，减少直吹不适感。语音控制：唤醒小爱同学，直接说出指令“打开自然风模式”，系统便可自动开启。YU7 的天际屏放歌词功能怎么打开?小米天际屏沉浸歌词功能，只能在驻车时使用。当同时满足：车辆处于 P 挡、驾驶员解开安全带、中控屏全屏显示音乐 App 界面时，天际屏会自动进入沉浸式歌词模式，很有仪式感（目前已支持的音乐 App 为 QQ 音乐和网易云音乐）。YU7 GT 的车身材质和 YU7 其他配置有区别吗？小米 YU7 全系，从 YU7 标准版到 YU7 GT 均采用「铠甲笼式钢铝混合车身」。车身的结构、强度、</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-30</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.ithome.com/0/957/698.htm" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">软银豪掷 750 亿欧元，在法国建设 5 吉瓦 AI 数据中心</h3>
+                            <span class="article-source">IT之家</span>
+                        </div>
+                        
+                        <p class="article-summary">IT之家 5 月 31 日消息，软银集团今日宣布，计划投入至多 750 亿欧元（IT之家注：现汇率约合 5921.39 亿元人民币），在法国扩建数据中心。该企业表示，此次规划旨在新增建设并运营总功率最高达 5 吉瓦的数据中心设施。项目首期将在敦刻尔克（隆普拉日）、博斯凯勒和布尚三地兴建数据中心，力争到 2031 年为上法兰西大区提供 3.1 吉瓦的算力容量。作为 OpenAI 的投资方与合作客户，软银称这是其在欧洲规模最大的一次人工智能基础设施投资。法国经济部长罗兰 · 莱斯屈尔在声明中表示，此番投资落地，印证了埃马纽埃尔 · 马克龙总统致力于将法国打造为人工智能全产业链核心聚集地的发展愿景。在美国，受环保问题、数据中心对电网及公用事业收费造成影响等因素困扰，当地反对新建数据中心的呼声日益高涨。尽管如此，软银此前已敲定计划，将在俄亥俄州建设一座数据中心，该设施将依托一座新建的 9.2 吉瓦天然气发电厂供电。</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-30</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.ithome.com/0/957/697.htm" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">白帽黑客公开 Windows 零日漏洞，微软强硬回应引争议</h3>
+                            <span class="article-source">IT之家</span>
+                        </div>
+                        
+                        <p class="article-summary">IT之家 5 月 31 日消息，Windows 是全球使用范围最广的操作系统，它和微软旗下云服务 Azure 频频成为黑客攻击与漏洞利用的目标。据IT之家了解，为应对网络攻击，微软长期和各类安全研究员（也就是常说的白帽黑客）展开合作。这些研究员会检测微软系统的安全防护体系，并上报发现的问题。为此微软设立了漏洞赏金计划，本意是让秉持道德准则的黑客上报漏洞、换取高额奖金。据 WindowsCentral 从 Xbox 和 Windows 相关消息源了解到的情况，实际拿到奖金远比微软官方文档描述的要困难。其认识的好几位研究员，此前都没能获得合理报酬。近期，安全研究员“梦魇日蚀（Nightmare Eclipse）”接连公开曝光了 Windows 及微软其他系统的六个高危安全漏洞。按照行业惯例，这类漏洞本应直接提交给微软，由官方推送补丁修复。但根据他此前发布的博客内容，此番公开披露大概率是出于报复。“往常我都会按流程一遍遍催促他们修复漏洞，”“梦魇日蚀”在接受《PCMag》时写道，“简单来说，微软方面曾亲口扬言要毁掉我的生活，而他们也确实这么做了。我不知道是不是只有我经历了这般糟糕的遭遇，还是</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-30</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.ithome.com/0/957/696.htm" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">我国成功发射卫星互联网技术试验卫星，用于开展手机宽带直连卫星等技术试验验证</h3>
+                            <span class="article-source">IT之家</span>
+                        </div>
+                        
+                        <p class="article-summary">IT之家 5 月 31 日消息，据央视新闻报道，北京时间 2026 年 5 月 31 日 02 时 07 分，我国在西昌卫星发射中心使用长征二号丁运载火箭，成功将卫星互联网技术试验卫星发射升空，卫星顺利进入预定轨道，发射任务取得圆满成功。据IT之家了解，该卫星主要用于开展手机宽带直连卫星、天地网络融合等技术试验验证。此次任务是长征系列运载火箭的第 646 次飞行。</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-30</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.v2ex.com/t/1216733#reply0" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">[加密货币] 个人买 U， USDT 或 USDC 都可</h3>
+                            <span class="article-source">V2EX</span>
+                        </div>
+                        
+                        <p class="article-summary">个人买 U 。不想在交易所 C2C ，会接到反炸提醒电话：价格按币安交易所的 C2C 买入价格，自选区或者严选区的广告价就行（非限时置顶广告），一次 500 到 20000 U 都可，我是上班族，不是商户，可以用各种方式付款，都是我个人名字。也可以到银行去柜台或者 ATM 取钱，取款的卡也是我自己的。不过我只有上海和成都这两个地方可以。使用欧易或币安用户之间转账，到账快，免手续费，也省去很多麻烦。如果远程交易，我需要先转币，可以小额转，我不怕麻烦。不过如果要大量，最好还是见面。已经和 V 友交易过，我 TG @yukineya，需要的朋友也可留下联系方式，如果一定要用微信，尽量不提数字货币之类。</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-30</span>
+                            
+                            <span class="article-author">👤 keenwild137</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.v2ex.com/t/1216732#reply1" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">[硬件] 分享个很有趣的客户案例,在 1U 机箱内塞入 4 个 ARM 主板的迷你主机,通过交换机控制 NAT 网络</h3>
+                            <span class="article-source">V2EX</span>
+                        </div>
+                        
+                        <p class="article-summary empty">暂无摘要，点击查看原文阅读完整内容 →</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-30</span>
+                            
+                            <span class="article-author">👤 catyun88</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.v2ex.com/t/1216731#reply0" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">[接单] xone 资深全栈工程师接单</h3>
+                            <span class="article-source">V2EX</span>
+                        </div>
+                        
+                        <p class="article-summary">xone 开发工作室我是 xone ，2016 年入行写代码，2022 年创立了自己的开发工作室。这些年接过不少项目，也见过不少甲方踩坑——个人开发者做到一半失联的、外包公司交付质量跟报价完全不对等的、拿到源码发现根本没法二次开发的。我自己做外包之前也在公司里当过甲方，这些弯路我理解。工作室现在有几位固定的合作开发者，都是全栈方向，各有专攻。我本人负责项目整体把控，从需求梳理到架构设计到最终交付全程参与，不是那种接了单转手外包的模式。技术能力10 年全栈开发经验，技术栈覆盖比较广：前端方面，React 18+ / Next.js / Vue 3 是日常主力，状态管理用 Zustand 和 Pinia ，UI 框架 Ant Design 和 Element Plus 都熟，构建工具 Vite 和 Webpack 5 都在用。TypeScript 是标配。后端方面，Node.js 系的 NestJS / Express / Koa ，Java 系的 Spring Boot / Spring Cloud / MyBatis-Plus ，Python 的 FastAPI 和 Django 也做</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-30</span>
+                            
+                            <span class="article-author">👤 xone2023</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.v2ex.com/t/1216730#reply2" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">[MacBook] 京东 6199 入手了 M5 的 mbk air 发现没啥用 有没有什么好玩的软件推荐</h3>
+                            <span class="article-source">V2EX</span>
+                        </div>
+                        
+                        <p class="article-summary empty">暂无摘要，点击查看原文阅读完整内容 →</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-30</span>
+                            
+                            <span class="article-author">👤 catyun88</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.v2ex.com/t/1216729#reply1" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">[分享创造] 手里 A 股港股美股基金散在四五个 app,受不了自己搓了个一起看的</h3>
+                            <span class="article-source">V2EX</span>
+                        </div>
+                        
+                        <p class="article-summary">更新下之前那个跨平台看持仓的小工具，这几天加了几个我自己真的很需要的功能。先说为啥做：我自己 A 股、港股、美股、还有几只场内外基金，散在四五个券商和 App 里。想知道「今天到底赚是亏、总收益多少」，得挨个打开、各算各的、还要手动换汇折成人民币。烦了很久，干脆自己搓一个。它就干一件事：把你所有持仓塞进一个池子，告诉你现在赚多少亏多少，顺手看个走势。不带社区、不带荐股、不带广告，干净。· K 线浮窗优化：跟随鼠标的中文浮窗，分时 / 日 K / 周 K / 月 K· 多币种自动折算人民币算总账一些实现细节，V 友可能感兴趣：· 默认数据存本地，不登录也能用；要云同步再说· 行情走多源轮换（ sina / 腾讯），一个挂了自动切· PWA ，加桌面跟 App 一样，手机电脑自适应地址：https://chicang.xyptkd.cn欢迎白嫖,拍砖。</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-30</span>
+                            
+                            <span class="article-author">👤 123271616</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.v2ex.com/t/1216728#reply30" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">[生活] 求救，这样的婚姻，还有必要坚持吗？从来没有对谁倾诉过，实在内耗得不行了。</h3>
+                            <span class="article-source">V2EX</span>
+                        </div>
+                        
+                        <p class="article-summary">关于感情生活的事情，我一直觉得冷暖自知是最好的处理方式，但奈何情感经历实在单薄（婚前有一次恋爱经历），有些问题实在想不明白，所以也走到了发帖求助的地步。背景：一线城市有房贷和小孩，结婚7年，妻子家庭主妇，我某大厂员工，经常加班，不远的将来甚至最近可能被裁。和妻子是通过共同好友引荐认识，起初欣赏她独立自主，性格爽快，觉得比较成熟简单，结果在一起之后，除了最开始甜蜜的半年，后面日常矛盾不断，但也通过磨合不断走了这么多年。问题：一直以来，我觉得吵架嘛，再正常不过的事情了，我作为男人，识大体知进退，哄一哄老婆，还有什么事情是解决不了的呢？但一切都有一个阈值，我们现在就来到了这个阈值，她越来越难哄，我越来越懒得哄。动不动就冷战几周，除了小孩相关的事情不得不说之外，其他话一律不说。分析：我曾经是那种没什么追求，凡事乐呵开心就好的性格，说好听是天真烂漫，不好听的就是幼稚。如今我常年情绪处于高压状态，隔三差五抑郁焦虑，无人倾诉，不止一次想自我了断，觉得放弃一切又如何，反正尘归尘土归土，我最理想的死法就是跳火山，在无人知晓的角落化成灰烬。为什么会变成这样呢？我认为是工作和家庭双失败，让我的自我认同感极低</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-30</span>
+                            
+                            <span class="article-author">👤 RAHJK</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.v2ex.com/t/1216726#reply0" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">[问与答] 请教各位大佬，现代硬件架构下，“传统压缩算法 + 高性能 I/O / 外存算法”还有深入研究的前景吗（考虑读博</h3>
+                            <span class="article-source">V2EX</span>
+                        </div>
+                        
+                        <p class="article-summary">目前在考虑未来的方向（有读博的打算），想请教一下大家关于传统数据压缩算法在工业界和学术界的前景。近几年大模型太过于热门，我也曾尝试跟进和学习过一些相关的架构。但深入接触后发现，自己能触及的也只是些表层应用，并不是做大语言模型的那块料。近期也再探索其他方向的可能性，发现对 I/O 模型和外存算法有点兴趣，也联系了学校老师希望可以进组对 I/O 模型进行一些深入的研究。不过，目前还对这块领域背景知识比较少，想向各位前辈请教，如果把 I/O 模型和底层存储作为读博或长期的核心研究方向，会不会因为太垂直而导致毕业后的就业面太窄？工业界对这类系统方向的 PhD 岗位需求到底如何，会不会就业门槛太高，导致找不到岗位。</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-30</span>
+                            
+                            <span class="article-author">👤 maocili</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.v2ex.com/t/1216725#reply1" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">[分享发现] 创业不要选择会被模型吞噬的方向</h3>
+                            <span class="article-source">V2EX</span>
+                        </div>
+                        
+                        <p class="article-summary">创业不要选择会被模型吞噬的方向如果你在做一个小工具，他在某个特定的场景里实现了 20%的优化，相较于通用模型实现了 15%的性能提升，这似乎是一个看上去还不错的东西。但你应当小心了，因为你所做的所有的改进、努力和工程上的设计，可能会因为模型的一次迭代而被吞噬。这可能是做 AI 创业最扎心的事实。你在弥补模型能力的不足，但随着模型能力变得越来越强，原有的那些不足变得不复存在了，那么你的产品也就失去了存在的意义和价值。我觉得所有做 AI 创业的朋友，可能都要记住的一点是，你的竞争对手可能并不只是和你做相同事情的那几家公司，模型厂商有时候才是你最大的竞争对手。怎么在面对模型迭代时保持竞争力，怎么在时刻变化的 AI 浪潮中保证产品不掉队，这是所有创始人从创业第一天开始就需要每时每刻思考的东西。否则，你所有做的一切都可能是白费功夫。所以我在选择创业方向时，核心便是希望建立一个 A2A 的网络，让你的 Agent 能够有一个地方和别人的 Agent 进行沟通、交流。于是我们做了这款叫做 [连连 AI ] 的小程序。因为有了 Agent 去帮你自动连接和沟通，所以当你有一个需求时，比如我想找有没有适</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-30</span>
+                            
+                            <span class="article-author">👤 zf2187</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.v2ex.com/t/1216724#reply3" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">[Polymarket] polymarket 如何解决交易锁区的问题？</h3>
+                            <span class="article-source">V2EX</span>
+                        </div>
+                        
+                        <p class="article-summary">polymarket 这个交易锁区，大家一般都是怎么解决的？我要开发一些东西，但是 vpn 似乎不太稳定。有没有 有经验的大佬分享一下。</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-30</span>
+                            
+                            <span class="article-author">👤 shawndeng1109</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.v2ex.com/t/1216723#reply1" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">[问与答] 你们的免费的教育 notion 笔记还能登录吗</h3>
+                            <span class="article-source">V2EX</span>
+                        </div>
+                        
+                        <p class="article-summary empty">暂无摘要，点击查看原文阅读完整内容 →</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-30</span>
+                            
+                            <span class="article-author">👤 HoseaDev</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.v2ex.com/t/1216722#reply2" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">[Android] 又下不了 QQ 音乐歌曲了</h3>
+                            <span class="article-source">V2EX</span>
+                        </div>
+                        
+                        <p class="article-summary">查看了手机里 QQ 音乐版本 12.5.5.11 ，像是个很老的版本。微信 8.0.69 ，最新的 8.0.74 ，之前能使用的应该是 8.0.49 。之前遇到似乎是因为微信更新，导致 QQ 音乐分享到朋友圈无法获得网址。QQ 音乐是在 moto x30 ota 了最新版本以后变异了！！！我意思可能之前是旧版本配置文件升级过来的，通过它分享到朋友圈是能抓到 web 网址的。ota 以后从 swift backup 的安装时间来看应该是版本没变，但是打开 qq 音乐感觉和之前的界面很不一样，一股钱的味道。现在分享到朋友圈的界面，直接在一级就有个播放按钮无需点不进去二级界面，变化就是获取不到具体的 web 地址。之前是一级无播放按钮，需要点进去才能播放但能获得网址。已尝试降级微信 8.0.49 ，结果不像上次似乎不是微信版本导致的。好坑，因为恢复旧版本还掉了所有的聊天记录。大家有什么方法可以抓到音乐地址嘛！</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-30</span>
+                            
+                            <span class="article-author">👤 datocp</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.v2ex.com/t/1216721#reply0" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">[香港] 香港特别行政区 2027 年公众假日</h3>
+                            <span class="article-source">V2EX</span>
+                        </div>
+                        
+                        <p class="article-summary">以下为香港特别行政区政府刊宪的 2027 年公众假日：每个星期日1 月 1 日，星期五2 月 6 日，星期六，农历年初一2 月 8 日，星期一，农历年初三2 月 9 日，星期二，农历年初四（2 月 7 日农历年初二为星期日，增订农历年初四为补假）3 月 26 日，星期五，耶稣受难节3 月 27 日，星期六，耶稣受难节翌日3 月 29 日，星期一，复活节星期一4 月 5 日，星期一，清明节5 月 1 日，星期六，劳动节5 月 13 日，星期四，佛诞6 月 9 日，星期三，端午节7 月 1 日，星期四，特区成立纪念日9 月 16 日，星期四，中秋节翌日10 月 1 日，星期五，国庆日10 月 8 日，星期五，重阳节12 月 25 日，星期六，圣诞节12 月 27 日，星期一，圣诞节后第一个周日</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-30</span>
+                            
+                            <span class="article-author">👤 mytsing520</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.ithome.com/0/957/695.htm" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">降价力度堪比旗舰手机：小米全效空气净化器 Ultra 增强版 5799 → 2428 元</h3>
+                            <span class="article-source">IT之家</span>
+                        </div>
+                        
+                        <p class="article-summary">【京东活动可能随时变更，需以实付款为准】小米・米家全效空气净化器 Ultra 增强版发布于 2024 年 7 月 19 日，官方定价 5799 元。京东 618 大促期间，按下方步骤下单，叠加 PLUS 立减 + 15% 国补后仅需 2428.76 元：领 8 折券：点此查看。加入购物车时选择“以旧换新”补贴 525 元（可选“电动牙刷”），京东回收不看旧物品相，老、旧、坏电器皆可回收。晒单再返 100 元京豆。京东小米 米家全效空气净化器Ultra 增强版以旧换新后 2428.76 元直达链接京东无门槛红包至高 26618 元，支持即领即用：点此抽取。耗材方面，除了催化醛解滤芯无需更换，该空气净化器全效复合滤芯、碳素阵列滤芯、中效复合滤芯建议零售价分别为 499 元、499 元、299 元，使用寿命分别为 2 年、3 年、1 年。按照 1 年为 365 天计算，计算得出日均费用分别约为 0.68 元、0.46 元、0.82 元。据介绍，这款空气净化器搭载“十级复合深度净化”技术，配备“第二代万级碳素阵列”与“专研氧溶层”，可“全面围剿”95 种空气污染。在除味方面，这款空气净化器获得</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-30</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.ithome.com/0/957/694.htm" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">天涯社区上线“天涯重启者数字徽章”，持有者将能参与制定、修改社区规则</h3>
+                            <span class="article-source">IT之家</span>
+                        </div>
+                        
+                        <p class="article-summary">IT之家 5 月 30 日消息，今天（30 日）晚间，新天涯联合工作组、成都天涯客网络科技有限公司、天涯好东西（海南）电子商务有限公司通过“天涯客”微信公众号宣布，“天涯重启者数字徽章”正式上线。核心权益内容显示，已持有指定数量“天涯重启者数字徽章”的创世成员，且必须是经资格审核通过的合格投资者，可自愿申请参与专项有限合伙企业（由持牌私募管理人海南世元通达私募基金管理有限公司备案管理），优先间接投资新天涯的股权。成都天涯客网络科技有限公司作为新天涯建设的核心主体，将成为天涯社区公司未来重整计划的重要战略投资人。官方介绍，持有“天涯重启者数字徽章”的创世成员是新天涯的基础节点，拥有参与新天涯海内外社区规则的制定与修改的权利，实行少数服从多数的原则，同时可提交平台功能优化、生态建设及未来发展建议，并通过参与治理、做出贡献获得新天涯互动积分的奖励。据IT之家此前报道，今年 2 月，“天涯神帖”公众号宣布天涯社区拟于 2026 年 6 月 1 日恢复访问，同时推出 1999 元的“创世成员”招募方案。相关阅读：《天涯社区重启在即：以 1999 元招募创世成员，6 月 1 日恢复访问》</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-30</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.v2ex.com/t/1216720#reply9" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">[宽带症候群] 买了 100 多家机场的订阅,能用来干嘛</h3>
+                            <span class="article-source">V2EX</span>
+                        </div>
+                        
+                        <p class="article-summary empty">暂无摘要，点击查看原文阅读完整内容 →</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-30</span>
+                            
+                            <span class="article-author">👤 lozzow</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.v2ex.com/t/1216719#reply2" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">[Claude Code] 为什么我的 AgentTeam 无法是这样的？</h3>
+                            <span class="article-source">V2EX</span>
+                        </div>
+                        
+                        <p class="article-summary">版本我好像从 2.1.x （ 4 月底版本） 开始就用不起，我看到有些网友可以用上，狠狠羡慕了。前几天升级了 Claude ，还是用不上。当前版本是：2.1.148 (Claude Code)测试用消息接下来，请准备 Agent Team ，必须使用 Split panes 模式，每个 teammate 一个 pane 。
+创建 3 个角色：
+玩家 1
+玩家 2
+玩家 3
+
+这 3 个玩家一直分别从 0 到 10 数数，每隔 2 秒数 1 次，数完了依次通报给 Lead ，然后由 Lead 告诉我。
+Lead 要每隔 2 秒监督这 3 个角色有正确的数数，如果有任意玩家没有按预期每隔 2 秒（你可以预设 3 秒就是 timeout ）就立刻告诉我。
+坚决不可以由 Lead 自行完成 3 个角色的工作，如果发现必须这么做，则终止 Team 的工作并用 Claude 日志向我汇报。无论是复杂项目开发，还是简单的轮询，AgentTeam 中的子 Agent 完全不会工作，不会消耗 tokens ，无法分派任务。Lead 包办所有任务。问题截图</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-30</span>
+                            
+                            <span class="article-author">👤 konakona</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.ithome.com/0/957/693.htm" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">丰田回应将中止雷克萨斯下一代纯电轿车开发：该信息属实</h3>
+                            <span class="article-source">IT之家</span>
+                        </div>
+                        
+                        <p class="article-summary">IT之家 5 月 30 日消息，据第一财经今日报道，近日有消息称，丰田将中止高档车品牌“雷克萨斯”纯电动轿车“LF-ZC”的量产车型开发。丰田方面回应称，该信息属实，本次车型开发中止的原因是“考虑到市场需求的变化，对公司整体车辆开发项目进行调整的一部分”。丰田还强调，公司只是调整了部分车辆的开发规划，并不代表放弃 BEV（纯电动汽车）。根据此前规划，该车原计划 2027 年年中发布。雷克萨斯曾在 2023 年 10 月展示 LF-ZC 原型车。当时，纯电车型单次充电的主流水平约为 500 公里，LF-ZC 的目标续航约为这一水平的两倍。LF-ZC 最初计划于 2026 年推出，2024 年，丰田宣布投产时间推迟至 2027 年年中。参数方面，LF-ZC 概念车总长 4750mm、宽 1880mm、高 1390mm，轴距则为 2890mm。而在制造上 LF-ZC 将采用模块化 Gigacasting 一体化压铸。IT之家注意到，2025 年，丰田全球销量（含大发、日野、雷克萨斯）同比增长 4.6%，达到 1130 万辆；全年产量同比增长 5.7%，达到 1120 万辆。比起传统车型的高歌</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-30</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.ithome.com/0/957/692.htm" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">2B 参数“四两拨千斤”，智元自研世界模型 GE 2.0 登顶 WorldArena 榜单</h3>
+                            <span class="article-source">IT之家</span>
+                        </div>
+                        
+                        <p class="article-summary">IT之家 5 月 30 日消息，“智元 AGIBOT”官方公众号 29 日发文宣布：具身领域热门榜单 WorldArena Track1（世界模型感知与动作响应赛道）最新评测结果揭晓，智元自研的世界模型 Genie Envisioner-Sim 2.0（IT之家注：以下简称 GE 2.0）登顶榜单。所谓“世界模型”，简单来说就是能理解物理世界规律的 AI 大模型。机器人若具备“世界模型”能力，就能知道杯子掉地上会碎、水往低处流、积木搭太高会倒等常识。在该赛道评测中，智元团队使用了原生的世界模型 GE 2.0，并未针对赛题进行特殊设计优化，仅基于榜单数据进行了基础微调（Finetune）。根据介绍，GE 2.0 在功能上首次全面覆盖了长时序生成、多视角生成、本体状态生成、近实时推理以及奖励判别等核心环节，构建了世界模拟器完整的技术能力闭环。在长时序推理任务中，GE 2.0 表现出极强的稳定性，画面质量随推理时长的衰减显著弱于行业基线方案。即使在连续推演 40-50 秒的长视频片段时，其生成质量依然超越了基线模型前 10 秒内的表现。团队验证了大量闭环评测结果，证明 GE 2.0 在多项任</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-30</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.infoq.cn/article/u6lPG0uJcGuF1aSxrumc?utm_source=rss&amp;utm_medium=article" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">腾讯PCG 质效团队技术负责人张晔确认出席AICon上海站，分享测试智能体驱动质量工程新范式</h3>
+                            <span class="article-source">InfoQ 中文站</span>
+                        </div>
+                        
+                        <p class="article-summary">当前，以 Agent 为核心的新一轮技术浪潮正在席卷产业。那么，世界模型的下一个突破在哪？Agent 从 Demo 到工程化还差什么？研发体系不重构，还能撑多久？ 6 月 26 日-6 月 27 日， AICon全球人工智能开发与应用大会 将在上海举办。本次大会将围绕以上问题，邀请来自腾讯、阿里、快手、华为、飞猪等 50+头部企业的技术负责人、高校与科研机构的一线专家，分享 Agent 在真实生产环境中的落地经验与前瞻思考。深入探讨 Agent 从原型到量产的工程挑战、数据与记忆的基础设施底座、安全可信的落地保障，以及大模型推理优化、智算架构升级等关键命题。腾讯 PCG 质效团队技术负责人张晔...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-30</span>
+                            
+                            <span class="article-author">👤 AICon 全球人工智能开发与应用大会</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                </div>
+            </section>
+            
+            
+            
+            <section class="category-section">
+                <div class="category-header">
+                    
+                    <span class="category-icon">🏢</span>
+                    <h2 class="category-title">国际公司官方</h2>
+                    <span class="category-count">1 篇</span>
+                </div>
+                <div class="articles-grid">
+                    
+                    <a href="mailto:press@anthropic.com" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">Newsroom</h3>
+                            <span class="article-source">Anthropic</span>
+                        </div>
+                        
+                        <p class="article-summary">An upgrade to our Opus class of models, with stronger performance across coding, agentic tasks, and professional work, and the consistency to handle long-running work.</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-31</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                </div>
+            </section>
+            
+            
+            
+            <section class="category-section">
+                <div class="category-header">
+                    
+                    <span class="category-icon">👨‍🔬</span>
+                    <h2 class="category-title">国际研究员</h2>
+                    <span class="category-count">6 篇</span>
+                </div>
+                <div class="articles-grid">
+                    
+                    <a href="https://github.com/distillpub/post--multimodal/issues?q=is%3Aissue+label%3Apeer-review" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">Multimodal Neurons in Artificial Neural Networks</h3>
+                            <span class="article-source">Distill.pub</span>
+                        </div>
+                        
+                        <p class="article-summary">Gabriel Goh, Nick Cammarata †, Chelsea Voss †, Shan Carter, Michael Petrov, Ludwig Schubert, Alec Radford, and Chris Olah</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-31</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://simonwillison.net/2026/May/21/datasette-agent/" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">Datasette Agent</h3>
+                            <span class="article-source">Simon Willison</span>
+                        </div>
+                        
+                        <p class="article-summary">We justannounced the first release of Datasette Agent, a new extensible AI assistant for Datasette. I’ve been working on myLLMPython library for just over three years now, and Datasette Agent represents the moment that LLM andDatasettefinally come together. I’m really excited about it![...659 words]</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-31</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://simonwillison.net/2026/May/25/encyclical-on-ai/" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">Notes on Pope Leo XIV’s encyclical on AI</h3>
+                            <span class="article-source">Simon Willison</span>
+                        </div>
+                        
+                        <p class="article-summary">Dropped this morning by the Vatican:Magnifica Humanitas of His Holiness Pope Leo XIV on Safeguarding the Human Person in the Time of Artificial Intelligence. This is avery interestingdocument. It’s some of the clearest writing I’ve seen on the ethics of integrating AI into modern society.[...1,865 w</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-31</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://simonwillison.net/2026/May/27/product-market-fit/" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">I think Anthropic and OpenAI have found product-market fit</h3>
+                            <span class="article-source">Simon Willison</span>
+                        </div>
+                        
+                        <p class="article-summary">Anthropic arestrongly rumoredto be about to have their first profitable quarter. Storiesare circulatingof companies surprised at how expensive their LLM bills are becoming from usage by their staff. I think this is because OpenAI and Anthropic have both found product-market fit.[...1,931 words]</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-31</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://simonwillison.net/2026/May/28/claude-opus-4-8/" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">Claude Opus 4.8: “a modest but tangible improvement”</h3>
+                            <span class="article-source">Simon Willison</span>
+                        </div>
+                        
+                        <p class="article-summary">Anthropic shippedClaude Opus 4.8today. My favourite thing about it is this note in the release announcement:[...983 words]</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-31</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.anthropic.com/" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">Essays</h3>
+                            <span class="article-source">Dario Amodei</span>
+                        </div>
+                        
+                        <p class="article-summary">Dario Amodei is the CEO ofAnthropic, a public benefit corporation dedicated to building AI systems that are steerable, interpretable and safe....More</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-05-31</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                </div>
+            </section>
+            
+            
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">
+                AI Daily Brief · 每日 AI 资讯聚合
+            </p>
+            <p class="footer-text" style="margin-top: 0.5rem; font-size: 0.75rem;">
+                生成于 2026-05-31 08:01
+            </p>
+        </div>
+    </footer>
+
+    <button class="scroll-top" onclick="scrollToTop()" id="scrollTop">↑</button>
+
+    <script>
+        // Scroll to top button
+        const scrollTopBtn = document.getElementById('scrollTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+        
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Add stagger animation to cards
+        document.querySelectorAll('.article-card').forEach((card, index) => {
+            card.style.animationDelay = `${index * 0.05}s`;
+        });
+    </script>
+</body>
+</html>
