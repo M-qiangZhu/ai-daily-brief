@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Daily Brief - 2026-06-21</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #1a1a24;
+            --bg-hover: #22222e;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0b0;
+            --text-muted: #6b6b7b;
+            --accent-blue: #3b82f6;
+            --accent-purple: #8b5cf6;
+            --accent-cyan: #06b6d4;
+            --accent-green: #10b981;
+            --border-color: #2a2a3a;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+            border-bottom: 1px solid var(--border-color);
+            padding: 2rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--text-primary), var(--accent-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .date-badge {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        /* Stats */
+        .stats-bar {
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 0.75rem;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-cyan);
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Main Content */
+        .main {
+            padding: 2rem 0;
+        }
+
+        /* Category Sections */
+        .category-section {
+            margin-bottom: 3rem;
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .category-icon {
+            font-size: 1.25rem;
+        }
+
+        .category-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .category-count {
+            background: var(--bg-hover);
+            color: var(--text-secondary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.875rem;
+        }
+
+        /* Article Cards */
+        .articles-grid {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .article-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.25rem;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .article-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+            border-color: var(--accent-blue);
+        }
+
+        .article-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .article-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.4;
+            flex: 1;
+        }
+
+        .article-card:hover .article-title {
+            color: var(--accent-blue);
+        }
+
+        .article-source {
+            font-size: 0.75rem;
+            color: var(--accent-purple);
+            background: rgba(139, 92, 246, 0.1);
+            padding: 0.25rem 0.5rem;
+            border-radius: 6px;
+            white-space: nowrap;
+        }
+
+        .article-summary {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin: 0.75rem 0;
+            padding: 0.75rem 0;
+            border-top: 1px dashed var(--border-color);
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .article-summary.empty {
+            color: var(--text-muted);
+            font-style: italic;
+            border: none;
+            padding: 0.5rem 0;
+        }
+
+        .read-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            color: var(--accent-blue);
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-top: 0.5rem;
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .article-date {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .article-author {
+            color: var(--accent-green);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .footer-text {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+
+        .footer-links {
+            margin-top: 0.5rem;
+        }
+
+        .footer-links a {
+            color: var(--accent-blue);
+            text-decoration: none;
+            margin: 0 0.5rem;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .article-header {
+                flex-direction: column;
+            }
+
+            .article-source {
+                align-self: flex-start;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .article-card {
+            animation: fadeIn 0.3s ease forwards;
+        }
+
+        /* Scroll to top */
+        .scroll-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--accent-blue);
+            color: white;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s, transform 0.3s;
+            border: none;
+            font-size: 1.25rem;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-3px);
+            background: var(--accent-purple);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">🤖</div>
+                    <h1 class="logo-text">AI Daily Brief</h1>
+                </div>
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <nav class="nav-links" style="display: flex; gap: 0.5rem;">
+                        <a href="index.html" style="color: var(--accent-blue); text-decoration: none; padding: 0.5rem 1rem; border-radius: 8px; background: var(--bg-card); font-size: 0.875rem;">今日日报</a>
+                        <a href="history.html" style="color: var(--text-secondary); text-decoration: none; padding: 0.5rem 1rem; border-radius: 8px; transition: all 0.2s; font-size: 0.875rem;">历史归档</a>
+                    </nav>
+                    <div class="date-badge">
+                        📅 2026年06月21日 · 周日
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="stats-bar">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-value">47</div>
+                    <div class="stat-label">今日文章</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">3</div>
+                    <div class="stat-label">分类</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">9</div>
+                    <div class="stat-label">来源</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main class="main">
+        <div class="container">
+            
+            
+            <section class="category-section">
+                <div class="category-header">
+                    
+                    <span class="category-icon">🇨🇳</span>
+                    <h2 class="category-title">国内 AI 媒体</h2>
+                    <span class="category-count">35 篇</span>
+                </div>
+                <div class="articles-grid">
+                    
+                    <a href="https://www.ithome.com/0/966/593.htm" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">微软 Xbox Handheld 标识现身，或为自研掌机铺路</h3>
+                            <span class="article-source">IT之家</span>
+                        </div>
+                        
+                        <p class="article-summary">IT之家 6 月 21 日消息，微软此前通过合作推出了华硕 ROG Xbox Ally 掌机，正式进军 Windows 掌机游戏市场。即便如此，多方消息称微软仍在自研一款第一方便携游戏设备，代号为“Project Helix”。如今，一个全新的 Xbox 掌机（Xbox Handheld）标识已出现在多款游戏的官方页面中。IT之家注意到，网友 Memoryman3 在 NeoGaf 游戏论坛放出了这个标识。通过网页时光机查证，该图片早在 6 月 8 日的网页存档里就已伴随《战争机器：事变日》上线，同时也嵌入了《光环：进化战役》与《腐烂国度 3》的页面。而 6 月 7 日游戏展示会的宣传预告片里，并未出现该标识。这个标识大概率用于标注游戏能在华硕 ROG Xbox Ally X 等现有 Windows 掌机上流畅运行。微软推出了一套对标V社“Steam Deck 认证”的设备兼容认证体系，只是微软商城采用了这套专属标识作为区分。公司首席执行官阿莎 · 夏尔马现阶段硬件业务重心放在“Project Helix”主机上。这款全新 Xbox 主机不仅能运行 PC 游戏，还有望支持主机独占大作。</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-06-20</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.ithome.com/0/966/592.htm" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">《毁灭战士》经典配乐创作者鲍比 · 普林斯离世，享年 81 岁</h3>
+                            <span class="article-source">IT之家</span>
+                        </div>
+                        
+                        <p class="article-summary">IT之家 6 月 21 日消息，经典游戏《毁灭战士》标志性配乐的创作者鲍比 · 普林斯去世，享年 81 岁，他为电子游戏音乐留下了不可磨灭的印记。普林斯的家人证实，他于当地时间 2026 年 6 月 16 日离世。他最广为人知的作品是《毁灭战士》系列配乐，同时也曾为《毁灭公爵》《德军总部》两大游戏系列创作过原声配乐。悼念讣告发布于遗产纪念网站 Legacy，文中盛赞他在行业内极具开创性的成就：“鲍比为《毁灭战士》《毁灭战士 2》《德军总部 3D》《龙霸三合会》《毁灭公爵 3D》等里程碑式游戏谱写配乐、设计音效，推动电子游戏音乐成为一门广受认可的艺术形式。2005 年，游戏行业为他颁发终身成就奖；2026 年，初代《毁灭战士》原声配乐入选美国国会图书馆永久馆藏，让他开创性的音乐作品作为美国文化遗产，永久流传后世。”IT之家注意到，噩耗传出后，业内众多从业者纷纷发文悼念鲍比 · 普林斯，id Software 联合创始人汤姆 · 霍尔便是其中之一。霍尔回忆称，普林斯是一位传奇音乐人，也是个生性乐观风趣的人。他在社交平台 Bluesky 写道：“安息吧，鲍比 · 普林斯。他的音乐遗产永世长存</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-06-20</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.v2ex.com/t/1221700#reply0" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">[Linux] 升级后，发现 USB 相关的设备无法启用，可以查下有没有 usbguard 服务</h3>
+                            <span class="article-source">V2EX</span>
+                        </div>
+                        
+                        <p class="article-summary">最近系统升级后，一开始看到的是所有跟 USB 相关的设备，包括蓝牙，指纹识别，usb camera 都不正常了，看 bios 都没有问题，我一度以为是 bios 升级导致的。问了 gpt 才发现是 usbguard 这个服务捣鬼</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-06-20</span>
+                            
+                            <span class="article-author">👤 wuruxu</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.ithome.com/0/966/591.htm" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">IT早报 0621：谷歌安卓 17 给 App 内存占用套上“紧箍咒”；微信 AI 助手“小微”灰度上线；小米“寻天”SUV 原型车再曝光；微软官宣今秋上线 Win11 26H2 更新...</h3>
+                            <span class="article-source">IT之家</span>
+                        </div>
+                        
+                        <p class="article-summary">“IT早报”时间，大家好，现在是 2026 年 6 月 21 日星期日，今天的重要科技资讯有：1、提升流畅度：谷歌安卓 17 给 App 内存占用套上“紧箍咒”科技媒体 Android Authority 6 月 19 日发布博文，指出在安卓 17 系统更新中，谷歌为 Pixel 10 等设备带来 4 项隐藏改进，包括自动终止内存占用过高 App 等。&gt;&gt;查看详情2、微信 AI 助手“小微”灰度上线，可通过文字或语音对话操作微信原生功能微信原生 AI 助手“小微”开始扩大灰度测试范围，支持通过对话操作微信功能、调起小程序，并实现“一句话生成小程序”。该功能旨在打通微信生态，为用户提供跨场景的智能服务。&gt;&gt;查看详情3、小米“寻天”SUV 原型车再曝光，自带车顶帐篷汽车博主 @SugarDesign 6 月 20 日发布微博，分享了一张图片，展示了展开车顶帐篷后的小米寻天测试车，并调侃称“Loft 有了”。&gt;&gt;查看详情4、微软官宣今秋上线 Win11 26H2 更新：启用包方式推送，硬件要求不变微软 6 月 20 日发布公告，宣布将延续 25H2 更新模式，于 2026 年秋季通过启用包（</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-06-20</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.ithome.com/0/966/590.htm" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">台积电加速研发 CoPoS 封装以取代 CoWoS：玻璃核心基板可降低 30% 成本并将晶圆利用率提升至 90% 以上</h3>
+                            <span class="article-source">IT之家</span>
+                        </div>
+                        
+                        <p class="article-summary">IT之家 6 月 21 日消息，随着玻璃核心基板成为行业核心方案，台积电正全力研发面板级封装技术 CoPoS，用以替代现有 CoWoS 工艺，应对持续增长的算力需求。IT之家注意到，人工智能与算力需求持续暴涨，市场亟需新一代先进封装技术。英特尔与台积电均在全力攻关相关方案，而玻璃核心基板将成为双方技术路线中的核心一环。据台湾地区《工商时报》近期报道，台积电正大力推进 CoPoS（基板载面板覆芯片）技术，计划以此取代 CoWoS（基板载晶圆覆芯片）方案；玻璃核心基板是实现该技术路线的关键，这家台湾地区晶圆代工厂因此大幅提速该技术的研发与量产进程。报道称，“台积电全力落地 CoPoS 技术，并加速搭建配套产业生态。想要突破 CoWoS 现有物理性能瓶颈，玻璃核心基板能够提升量产良率的特性是核心突破口。一众台湾地区厂商正加紧研发玻璃核心基板配套关键技术与 CoPoS 制程设备，力求在 AI 芯片先进封装赛道抢占领先地位。”业界已充分验证 CoPoS 相对 CoWoS 的多重优势：CoPoS 采用方形 / 矩形大尺寸面板基材，对比 CoWoS 的圆形晶圆设计，单块基材可容纳更多芯片与存储模组。</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-06-20</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.ithome.com/0/966/589.htm" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">HKC 推出“FG24Q”23.8 英寸显示器：2K 180Hz，首发价 729 元</h3>
+                            <span class="article-source">IT之家</span>
+                        </div>
+                        
+                        <p class="article-summary">IT之家 6 月 21 日消息，HKC 现已在京东上架一款型号为“FG24Q”的 23.8 英寸显示器，该机主打 2K 180Hz，定价为 799 元，首发价 729 元。京东HKC“FG24Q”显示器729 元直达链接该机配备一块 2560x1440 分辨率 180Hz Fast IPS 面板，显示器亮度 350 尼特，GtG 响应速度 1ms，显示器支持 HDR400，静态对比度 1000:1，覆盖 95% DCI-P3 色域。该机支架支持升降 / 倾斜 / 旋转，显示器背面带有氛围灯，本体支持 VESA 100x100mm 壁挂，提供 HDMI、DP 和 3.5mm 音频接口。IT之家附显示器参数：</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-06-20</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.v2ex.com/t/1221699#reply0" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">[投资] 请问在哪里加些 v 友的投资群呀</h3>
+                            <span class="article-source">V2EX</span>
+                        </div>
+                        
+                        <p class="article-summary empty">暂无摘要，点击查看原文阅读完整内容 →</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-06-20</span>
+                            
+                            <span class="article-author">👤 trihuan</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.ithome.com/0/966/588.htm" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">消息称富士 X-T6 相机电池容量增大约 16%，同步升级 X Processor 6 图像处理器</h3>
+                            <span class="article-source">IT之家</span>
+                        </div>
+                        
+                        <p class="article-summary">IT之家 6 月 21 日消息，综合消息源 @E8M_8888 及外媒 FujiRumors，富士 X-T6 相机将配备全新 X Processor 6 图像处理器，预计将提升相机连拍速度。同时新机还将引入全新 NP-W255 电池，该电池由松下苏州生产，容量为 2550 mAh，相对于现款 NP-W235 电池（2200mAh）容量提升了约 16%。IT之家注意到，此前有消息称富士 X-T6 相机将对胶片模拟功能进行全面调整，同时重新设计顶部拨盘，有望将机顶左侧的 ISO 拨盘修改为胶片模拟拨盘，整体类似富士 X-T50。机身采用全新的第六代 4000 万像素 X-Trans 传感器，支持防抖功能，同时提供 8K 视频录制能力。▲ 富士 X-T5 相机顶部布局▲ 富士 X-T50 相机顶部布局</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-06-20</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.ithome.com/0/966/587.htm" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">Valve 借代码调侃《半衰期 3》数据挖掘者，新作仍无音讯</h3>
+                            <span class="article-source">IT之家</span>
+                        </div>
+                        
+                        <p class="article-summary">IT之家 6 月 21 日消息，Valve 至今尚未公布《半衰期 3》的任何消息。尽管如此，数据挖掘者们笃定这款射击系列新作正在开发当中。爆料人士深挖《反恐精英 2》《DOTA2》等游戏的源代码，其中频繁出现代号 HLX 相关内容。如今，开发团队也借着代码向这群“探秘者”表示，他们清楚外界一直在拆解挖掘自家游戏文件。“Gabe Follower”是持续放出《半衰期 2》续作线索的可靠爆料人，他在社交平台分享了一段《DOTA2》更新文件里找到的变量名：`m_bHackWhyAreYouGuysReadingOurVariableNames`。这个命名明显是在调侃数据挖掘者，这群人总会过度解读新增代码、夸大其背后的暗示。并非所有爆料都有实际价值，但已有大量有力证据证明，玩家翘首以盼的这款 Valve 新作真实存在。传闻《半衰期 3》内部代号 HLX，游戏将搭载全新改版物理引擎，支持动态场景破坏与写实载具驾驶机制；游戏内 AI 平民 NPC 与敌人，也能对周遭物体被摧毁的场景做出更贴合现实的真实反应。对大量粉丝而言，距离戈登 · 弗里曼开启一段全新冒险仿佛已经过去无穷岁月。针对这段暗含嘲讽的</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-06-20</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.ithome.com/0/966/586.htm" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">HKC 推出“G24H3MAX”23.8 英寸显示器：1080P 260Hz，首发价 569 元</h3>
+                            <span class="article-source">IT之家</span>
+                        </div>
+                        
+                        <p class="article-summary">IT之家 6 月 21 日消息，HKC 旗下“G24H3MAX”23.8 英寸显示器目前已在京东发售，定价为 589 元，首发价 569 元。目前，官方尚未公布该机完整规格信息，参考商品页已知内容，该机配备一块 1920x1080 分辨率 260Hz Fast IPS 面板，GtG 响应速度 1ms，显示器覆盖 125% sRGB 色域和 93% DCI-P3 色域。显示器本体支持 VESA 75x75mm 壁挂，提供 HDMI 和 DP 接口。京东HKC“G24H3MAX”显示器569 元直达链接</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-06-20</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.ithome.com/0/966/585.htm" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">微软确认 Win11 KB5094126 更新存在多个问题：Office 崩溃、回收站异常</h3>
+                            <span class="article-source">IT之家</span>
+                        </div>
+                        
+                        <p class="article-summary">IT之家 6 月 21 日消息，微软已确认，其知晓 KB5094126（2026 年 6 月周二补丁日更新）存在多项已知问题，其中包括回收站无法正确识别文件名、Office 应用程序崩溃故障。此外还有用户反馈出现蓝屏死机（BSOD）以及 BitLocker 恢复界面弹窗问题，但微软尚未对此作出官方确认。据IT之家了解，KB5094126 属于强制更新，随 2026 年 6 月周二补丁批次推送，所有搭载 Windows 11 25H2 或 24H2 系统的电脑都必须安装该更新。Windows Latest 发现，即便你此前暂停了 Windows 更新，这类强制性安全更新最终仍会自动完成安装。安装 KB5094126 后，系统版本会升级至 Windows 11 Build 26200.8655 或 26100.8655。若不确定是否已完成更新，可打开「设置 &gt; 系统 &gt; 关于」页面核对版本信息。微软在更新后的官方文档中仅列明两项独立已知故障，但结合实测与用户反馈，该补丁还存在另一严重漏洞，极易触发蓝屏死机，商用办公电脑受影响尤为突出。一、安装 2026 年 6 月更新后 Office 软件</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-06-20</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.ithome.com/0/966/584.htm" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">消息称三星正在 Galaxy S23/24、Z Fold7 等机型上测试 One UI 9 Beta 版本</h3>
+                            <span class="article-source">IT之家</span>
+                        </div>
+                        
+                        <p class="article-summary">IT之家 6 月 21 日消息，据外媒 GSMArena 报道，三星正在 Galaxy Z Fold7、Galaxy A56、Galaxy S23、Galaxy S24 系列手机中测试 One UI 9 Beta 版本。目前，适用于相应机型的固件信息已曝光，其中 Galaxy Z Fold7 的测试固件版本号为 F966USQUACZF3；Galaxy A56 固件版本号为 A566BXXUBDZFB；Galaxy S23 固件版本号为 S911BXXUAGZF9。而 Galaxy S24 系列方面，其中标准版 Galaxy S24+ 测试固件版本号为 S926BXXUFEZF7，Galaxy S24 Ultra 为 S928BXXUFEZF7，Galaxy S24 FE 则是 S721BXXUCEZF7。除此之外，早前曝光的信息还显示三星已经同步在为 Galaxy S25 系列、Galaxy A16 5G、Galaxy A17 5G、Galaxy A34、Galaxy A57，以及尚未发布的 Galaxy S26 FE 进行 One UI 9 适配工作，这意味着三星这次在新系统推进上</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-06-20</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.ithome.com/0/966/583.htm" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">华硕 ROG Astral RTX 5090 显卡被曝使用半年致主板散热片变色</h3>
+                            <span class="article-source">IT之家</span>
+                        </div>
+                        
+                        <p class="article-summary">IT之家 6 月 21 日消息，据 Tweaktown 报道，台湾地区一家硬件论坛的用户反馈，其华硕 ROG Astral GeForce RTX 5090 显卡在使用约六个月后，致使华硕 ProArt X870E-Creator WiFi 主板的 PCH 散热片出现明显变色痕迹。整套主机全部采用华硕硬件，机箱选用华硕 ProArt PA602。变色区域位于主板上显卡正下方的位置。该用户表示，用湿布用力擦拭能擦掉一部分印记，但散热片无法恢复出厂原貌；显卡本体外观无任何异常，依旧可以正常运行。如果主机内显卡周边风道设计不佳，出现这类问题的概率会大幅升高。RTX 5090 显卡功耗极高，常规满载功耗约 700 瓦，部分场景下峰值功耗甚至接近 1000 瓦。主板散热片虽普遍喷涂耐高温涂层，但在如此高的功耗下，显卡向下辐射的热量仍会对周边硬件产生实质性影响。值得一提的是，硬件变色并非全都由高温导致。此前已有多起案例反馈，内存模组的 RGB 灯光会造成显卡背板褪色，因此本次主板散热片变色，也有可能是光照侵蚀而非高温引发。IT之家注意到，这款 ROG Astral RTX 5090 早已多次曝出各</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-06-20</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.ithome.com/0/966/582.htm" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">三星 Galaxy Watch 9/Ultra 2 智能手表新细节曝光：引入自适应壁纸表盘、指南针应用新增路径标记功能</h3>
+                            <span class="article-source">IT之家</span>
+                        </div>
+                        
+                        <p class="article-summary">IT之家 6 月 21 日消息，消息源 @GalaxyTechie 通过拆解三星最新 Galaxy Wearable 应用获得了 Galaxy Watch 9/Ultra 2 的新细节。IT之家参考消息源获悉，目前三星正在对系统图标进行新一轮升级，引入全新立体化 3D 风格图标，同步修改了手机端 App 应用界面，为 ECG（心电图）功能页面采用了新的胶囊导航栏设计，令整体界面显得更简洁，也更现代化。而在手表端，泄露内容显示三星将为 Galaxy Watch 9 新增一款自适应壁纸表盘，当壁纸中存在人物、宠物等主体时，时间数字会智能绕开主体边缘进行排布，这项功能最早在手机平台的 One UI 8.0 中亮相，如今被移植到了手表端。而在 Galaxy Watch Ultra 2 方面，泄露内容显示新款手表保留了标志性的橙色快捷按钮，同时综合手表截图可以看到三星悄悄为指南针 App 新增了一些彩色定位点，暗示三星可能加入类似 Apple Watch Ultra 的 Waypoints（路径标记）和 Backtrack（原路返回）功能，允许用户记录 GPS 坐标，并在户外环境中沿原路线返回。</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-06-20</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.ithome.com/0/966/581.htm" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">Valve 向所有用户推送 SteamOS 3.8.11 更新，修复桌面模式锁屏虚拟键盘问题</h3>
+                            <span class="article-source">IT之家</span>
+                        </div>
+                        
+                        <p class="article-summary">IT之家 6 月 21 日消息，Valve 现已向所有 Steam Deck 用户正式推送 SteamOS 3.8.11 版本更新，本次更新为错误修复更新，仅调整了一项与虚拟键盘相关的问题。通用更新修复了桌面模式锁屏界面无法访问虚拟键盘的问题本次更新已经推送给所有稳定版通道用户，Steam Deck 掌机会自动完成版本更新。本文由机器人发布，如果你发现了日志中未提及的更新点，欢迎发在评论区供大家参考 ~[微笑]</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-06-20</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.ithome.com/0/966/580.htm" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">消息称微软 5 月更新致 Windows Server 2019 无法识别 BitLocker 加密移动设备，至今仍未修复</h3>
+                            <span class="article-source">IT之家</span>
+                        </div>
+                        
+                        <p class="article-summary">IT之家 6 月 21 日消息，据外媒 Borncity 报道，有多名用户反馈微软 Windows Server 2019 的 5 月累积安全更新导致系统无法正确识别通过 BitLocker 加密的移动存储设备，而且这一问题在 6 月更新后仍未完全解决。IT之家参考报道获悉，相应问题最早于 2026 年 5 月 12 日发布的累积更新 KB5087538 中出现，部分管理员在部署后便发现系统无法正常识别通过 BitLocker To Go 加密的 USB 存储设备。有用户反馈称，在安装更新后，原本可以正常使用的 BitLocker 移动硬盘会被识别为 RAW 分区，虽然能够在资源管理器中能看到磁盘图标，但其中内容为空。同时控制面板的“管理 BitLocker”界面中也不会显示相应硬盘。值得注意的是，这一问题并非普遍出现在所有 Windows Server 版本上。用户测试发现，Windows Server 2022 暂时未受到相同影响。目前已知的临时解决办法要么是回滚到 5 月更新补丁之前，要么是在其他未受影响的系统上解除 BitLocker 加密，再回到当前设备上重新加密，不过两种方</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-06-20</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.v2ex.com/t/1221697#reply2" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">[人工智能] 大家有 AI 焦虑吗？</h3>
+                            <span class="article-source">V2EX</span>
+                        </div>
+                        
+                        <p class="article-summary empty">暂无摘要，点击查看原文阅读完整内容 →</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-06-20</span>
+                            
+                            <span class="article-author">👤 SerendotyCoisini</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.v2ex.com/t/1221696#reply1" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">[AI Agent 智能体] 使用 OpenCode + Haiku 的体验和 Cursor + Opus 的体验差距不小,是模型的差异还是工具配置的差异?</h3>
+                            <span class="article-source">V2EX</span>
+                        </div>
+                        
+                        <p class="article-summary">平时在公司搬砖用的都是 Cursor + Opus4.6, Cursor 的合同这个月要到期了不能每个月蹬 500 次请求了, 所以回家写的时候也重新试了下像 Haiku 这种便宜点的模型和 OpenCode. 用起来感觉血压有点高, 写简单应用 AI 选了 Redux, 然后写出了一堆 bug, 而且配环境的时候 tailwind CSS 也配不明白.有时用 4 有时用 3, 用 4 基本用错了, 用 3 一开始也没引成功, 加了 config 文件结果 App.ts 没引. 这些问题就不说了, 因为毕竟价格摆在那里.最难受的是有些简单场景下 AI 的行为. 有一次让 AI 把当前的改动进行 git 归档然后和前面相关的提交 squash 一下. 当前目录下混杂了一些临时的脚本/文档, Haiku 直接 add -A 提交了, 我看了大为震惊, 想到用 cursor + opus 一般 AI 都会先检查一下, 如果混杂了无关的改动(即使不是临时脚本/文档, 而是当前 git stage 里面有多个不相关的未提交的修改), AI 通常都能挑选出相关的改动并且精确 add 对应的文件.A</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-06-20</span>
+                            
+                            <span class="article-author">👤 juggtt213</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.v2ex.com/t/1221695#reply0" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">[酷工作] 招聘 web3 运营</h3>
+                            <span class="article-source">V2EX</span>
+                        </div>
+                        
+                        <p class="article-summary">新一代 web3 钱包，获得投资机构数百万美金投资。招聘 web3 运营一位1 ）要求 英文流利。2 ）能够高效率的完成公司下发的任务。3 ）能够独立策划并完成运营活动，拉数据。有兴趣可以加 V Brendongoodluck</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-06-20</span>
+                            
+                            <span class="article-author">👤 Brendon</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.v2ex.com/t/1221694#reply5" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">[分享发现] 米家空调的型号也太多了，我似乎分不清国补完 1500 左右，哪个 1.5P 比较合适了</h3>
+                            <span class="article-source">V2EX</span>
+                        </div>
+                        
+                        <p class="article-summary">35GW-PG15/N1A135GW-PG15/A1A1....我看到了好多这种字样，有懂哥出来支支招吗？我心理预期价位大概在 1500 （国补完）左右，旧品回收以后预期可以提到 1800 左右家里还有旧机，看了下几个平台的回收价格，基本上都在 300+需求：卧室使用，面积大概 20 左右，哪个型号和价格会比较合适呢。现在家里这个老空调实在是消费不起了，5 级能效，我开都不敢开啊！！！！先感谢各位了！</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-06-20</span>
+                            
+                            <span class="article-author">👤 admin7s</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.v2ex.com/t/1221693#reply0" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">[分享发现] 备份功能，对比了商业软件与开源软件</h3>
+                            <span class="article-source">V2EX</span>
+                        </div>
+                        
+                        <p class="article-summary">我把自己的软硬件与网络情况，以及备份需求，问了一堆 AI ，AI 们统一推荐了业界第一的商业软件 Veeam 与开源软件 UrBackup 。Veeam 的设计思路，符合人类的思维逻辑，安装部署与测试总体上很顺利，期间遇到两个小问题，都被 AI 一次性解决。UrBackup ，后台的选项文字就充满歧义，安装过程中遇到各种问题。最后虽然把服务搭建起来，但备份失败。最重要的是，备份失败的 Server 、Client 、Web 后台，都没有记录日志。询问了 AI ，AI 说社区同样反馈了这些问题。我觉得，开源软件，功能可以少一点，bug 可以多一些，但连日志都没记录，这也太摆烂了。而商业软件 Veeam ，则又是另一个极端，这玩意就一备份软件，数据库里居然做了 800 多张表...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-06-20</span>
+                            
+                            <span class="article-author">👤 laminux29</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.v2ex.com/t/1221692#reply0" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">[分享创造] 用 Rust 写了一个 OKX v5 API SDK，附带实时行情终端 🦀</h3>
+                            <span class="article-source">V2EX</span>
+                        </div>
+                        
+                        <p class="article-summary">最近在学习加密量化相关的东西，找了一圈没有满意的 OKX Rust API 客户端库，尤其是 WebSocket 方面的，索性自己借 AI 撸了一个。rust-okx —— 一个完全类型化的 OKX v5 REST + WebSocket 异步 SDK 。核心设计原则：不手动解析 JSON ，所有请求和响应都有对应的 Rust 类型。主要特性全类型化：请求参数和响应字段全部对应 Rust struct ，编译期就能发现问题异步优先：基于 tokio + reqwest模拟盘支持：demo_trading(true) 自动附加 x-simulated-trading: 1 头多地区：Global / US / EEA 一行切换WebSocket：行情、K 线、账户、持仓实时推送可替换 Transport：方便 mock 测试、接代理、加重试逻辑顺带做了个终端行情工具为了验证 SDK 能不能跑起来，写了个 TUI 小工具 okx-cli ，支持：K 线图、实时成交、挂单列表、账户余额、快速下单。cargo install rust-okx --features cli --bin okx-</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-06-20</span>
+                            
+                            <span class="article-author">👤 fwqaaq</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.v2ex.com/t/1221691#reply0" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">[程序员] 中转站 LLM 模型质量检测工具，更新到 v0.8</h3>
+                            <span class="article-source">V2EX</span>
+                        </div>
+                        
+                        <p class="article-summary empty">暂无摘要，点击查看原文阅读完整内容 →</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-06-20</span>
+                            
+                            <span class="article-author">👤 reitao</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.v2ex.com/t/1221690#reply0" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">[分享创造] 做了个 Flatpak 中文网&amp;本地化应用商店</h3>
+                            <span class="article-source">V2EX</span>
+                        </div>
+                        
+                        <p class="article-summary">https://flatpak.cnhttps://apps.flatpak.cn主要就是做了本地化的浏览，本地化中文发行版配置指南，应用商店应用详情中文本地化应用商店定时同步 flathub 的 api ，做了本地化的展示和搜索功能分享一下，无广非盈利。使用 deepseek v4 vibecoding 。
+中文网用的 trae
+应用商店都是用的 deepseek v4 flash 搭配 Atomcode开源在 cnb.cool/FlatpakCN ，可以安装本地服务实现在线管理安装 flatpak手机发布的，截图就不展示了，可以自行访问看看。❤️</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-06-20</span>
+                            
+                            <span class="article-author">👤 ccizm</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.ithome.com/0/966/579.htm" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">今日夏至：盛夏，如约而至</h3>
+                            <span class="article-source">IT之家</span>
+                        </div>
+                        
+                        <p class="article-summary">IT之家 6 月 21 日消息，今日迎来夏至节气。夏至这天，太阳直射地面的位置到达一年的最北端，几乎直射北回归线，此时，北半球各地的白昼时间达到全年最长。“日长之至，日影短至，至者，极也，故曰夏至”。夏至通常会在每年 6 月 21 日或 22 日这两天。夏至，顾名思义就是最炎热的时节即将到来。也就是说，夏至后，天气将更加炎热，还请各位小伙伴不要忘了做好防暑降温准备。吃过夏至面，一天短一线。黑夜最短，愿快乐最长。（最炎热的时候到了，阴凉天还会远吗？）夏日之至天文角度来看，夏至这天，北回归线及其以北的地区也将迎来一年中正午太阳高度最高的一天。在北京地区，夏至日白昼可长达 15 小时，正午太阳高度高达 73°32′。这一天北半球得到的太阳辐射最多，比南半球多了将近一倍。不过从另一个角度来看，既然已经达到了一年中白昼时间的“最长”，也就意味着接下来白昼时间又会逐渐变短。正如那一首古诗中所说：“昼晷已云极，宵漏自此长。绿筠尚含粉，圆荷始散芳。”夏至起源夏至是二十四节气中最早被确定的一个节气。公元前七世纪，先人采用土圭测日影，就确定了夏至。据《恪遵宪度抄本》：“日北至，日长之至，日影短至，故曰夏至</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-06-20</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.v2ex.com/t/1221689#reply7" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">[宽带症候群] FaceTime 不同人使用反馈</h3>
+                            <span class="article-source">V2EX</span>
+                        </div>
+                        
+                        <p class="article-summary">之前推荐别人使用 FaceTime 。主要是我自己使用起来非常好，比较相信 Apple 的服务质量！这几天见到了那位朋友，问他体验如何。说：非常卡！责怪当地网络不行。这让我想起来之前询问广东的一位朋友也是如此，说网络波动极大，画面经常糊！但是我自己使用，我经常给家里打电话使用 FaceTime ，并没有说如此的不堪！ FaceTime 的使用也就这两年用起来，主要是电话费太贵了，其次受够了微信这种管控。我家里用的是联通的宽带，平时打回去一般是中国电信或者 Unitel 和 Viettel 网络，并没有出现过什么问题！询问 Gemini ，说目前中国对这个进行严格管控，处于反诈需要。实际是这个进行加密，他们看不到内容。如果不是这个服务和 Apple 的其他服务进行绑定，如果一刀切了能导致 iphone 不可用，他们直接就屏蔽了！不知道其他人使用如何？今天看到一篇文章，说因为接了 FaceTime 视频十几秒，导致几十万存款没有了，下面的人评论：我立即去关闭这个。不得不说，反诈宣传做的真好！</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-06-20</span>
+                            
+                            <span class="article-author">👤 xyz3210</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.v2ex.com/t/1221687#reply1" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">[MacBook Pro] macbookpro 的 96w 充电器充电时候会发出滋滋声正常吗</h3>
+                            <span class="article-source">V2EX</span>
+                        </div>
+                        
+                        <p class="article-summary">macbookpro 的 96w 充电器充电时候会发出滋滋声正常吗。平时也没注意，今天发现充电器耳朵贴近听会发出滋滋声。</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-06-20</span>
+                            
+                            <span class="article-author">👤 TimLang</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.v2ex.com/t/1221686#reply8" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">[Apple] 登录美区账号，国区 app 不让更新了</h3>
+                            <span class="article-source">V2EX</span>
+                        </div>
+                        
+                        <p class="article-summary empty">暂无摘要，点击查看原文阅读完整内容 →</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-06-20</span>
+                            
+                            <span class="article-author">👤 jfsd2000</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.v2ex.com/t/1221685#reply0" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">[分享发现] 大家见过哪些把 GitHub 功能玩到极致的“不务正业”项目？</h3>
+                            <span class="article-source">V2EX</span>
+                        </div>
+                        
+                        <p class="article-summary">刷 GitHub Trending 的时候，发现大家除了传代码、脚手架、存文档，还衍生出了各种奇奇怪怪的玩法。比如有人用 Git 提交记录来画画，有人用 Issue 来当博客评论区。我自己前阵子也整了个新活：我把普通的架构教程和文字回忆录做了一次融合。用写小说的方式，在 GitHub 连载我自己真实的成长故事（一个小学毕业被 300 块赶出学校的少年，如何从放鸭抓鳝鱼，一路底层重构到写代码、做架构）。原本只是打算自己写着玩，结果前阵子连载的时候，有位 V 站老哥看完直接看上头了，顺手用 AI 和编曲工具给这本小说整了一首专属的 BGM 。 现在搞得我每次高频 Commit ，都得听着这首歌更新。在这个连点赞都嫌麻烦的快餐时代，这种极客之间的跨界互动还挺好玩的。感觉 GitHub 现在的社区生态越来越好玩了。大家还见过哪些把 Git 、Issue 、PR 玩出花来的有趣项目吗？求安利，想开开眼界！附上我这个“不务正业”的仓库，欢迎老哥们来捉虫和提 PR：👉https://github.com/aihop/Refactoring-the-Self</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-06-20</span>
+                            
+                            <span class="article-author">👤 olddogs</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.v2ex.com/t/1221684#reply1" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">[Codex] 感觉现在 codex plus 额度消耗速度真快啊</h3>
+                            <span class="article-source">V2EX</span>
+                        </div>
+                        
+                        <p class="article-summary">原来 plus 还能挺 2 个多小时呢，刚刚一个任务就给我剩余 32% 了那 5x pro 岂不是如果一直干活也不一定够用了</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-06-20</span>
+                            
+                            <span class="article-author">👤 longpc</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.infoq.cn/article/TbCYkGW0XrYuhSK1NE2p?utm_source=rss&amp;utm_medium=article" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">AI 大模型驱动银行信贷业务的全链路变革｜AICon上海</h3>
+                            <span class="article-source">InfoQ 中文站</span>
+                        </div>
+                        
+                        <p class="article-summary">过去一年，“Agent”这个词从实验室走进了生产环境。工程师们开始真正面对一个新的问题：不是“AI 能不能做到”，而是“我们能不能把它跑稳、跑对、跑出规模”。架构怎么设计？记忆怎么管理？多智能体之间如何协调？研发团队的工作方式又该如何重构？ 这些，正是 AICon 2026 上海站试图回答的问题。6 月 26 日-27 日，本次大会将以“构建可信赖、可规模化、可商业化的 Agentic 操作系统”为核心命题，集结清华、复旦等知名高校教授，以及来自阿里、腾讯、蚂蚁、字节、快手、小红书、华为、Google Cloud 等数十家头部公司的技术专家登台分享。2 天、13 大专题、1 个动手实验室、近 ...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-06-20</span>
+                            
+                            <span class="article-author">👤 AICon 全球人工智能开发与应用大会</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://mp.weixin.qq.com/s?__biz=MzIzNjc1NzUzMw==&amp;mid=2247898544&amp;idx=1&amp;sn=c13bcb56769d46fd23e3755db8af598a" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">撸猫撸出SOTA！3个00后2个月，造出史上最快流式音视频社交模型</h3>
+                            <span class="article-source">量子位</span>
+                        </div>
+                        
+                        <p class="article-summary empty">暂无摘要，点击查看原文阅读完整内容 →</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-06-20</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://mp.weixin.qq.com/s?__biz=MzIzNjc1NzUzMw==&amp;mid=2247898544&amp;idx=2&amp;sn=cfe10353a03883fd093bb4e654b1788d" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">英伟达开始搞机器人自己研究机器人那套了…</h3>
+                            <span class="article-source">量子位</span>
+                        </div>
+                        
+                        <p class="article-summary empty">暂无摘要，点击查看原文阅读完整内容 →</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-06-20</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://mp.weixin.qq.com/s?__biz=MzIzNjc1NzUzMw==&amp;mid=2247898544&amp;idx=3&amp;sn=3f3bf5a36f7461cc4356ca081482e769" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">从“一句成片”到“长轨推演”：探究多模态智能体在长视频编辑中的应用</h3>
+                            <span class="article-source">量子位</span>
+                        </div>
+                        
+                        <p class="article-summary empty">暂无摘要，点击查看原文阅读完整内容 →</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-06-20</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://mp.weixin.qq.com/s?__biz=MzIzNjc1NzUzMw==&amp;mid=2247898544&amp;idx=4&amp;sn=e471e6d4ae4712ab96f1a283467b67a4" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">量子位编辑作者招聘</h3>
+                            <span class="article-source">量子位</span>
+                        </div>
+                        
+                        <p class="article-summary empty">暂无摘要，点击查看原文阅读完整内容 →</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-06-20</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                </div>
+            </section>
+            
+            
+            
+            <section class="category-section">
+                <div class="category-header">
+                    
+                    <span class="category-icon">🏢</span>
+                    <h2 class="category-title">国际公司官方</h2>
+                    <span class="category-count">1 篇</span>
+                </div>
+                <div class="articles-grid">
+                    
+                    <a href="mailto:press@anthropic.com" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">Newsroom</h3>
+                            <span class="article-source">Anthropic</span>
+                        </div>
+                        
+                        <p class="article-summary">The US government has issued an export control directive to suspend all access to Fable 5 and Mythos 5.</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-06-21</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                </div>
+            </section>
+            
+            
+            
+            <section class="category-section">
+                <div class="category-header">
+                    
+                    <span class="category-icon">👨‍🔬</span>
+                    <h2 class="category-title">国际研究员</h2>
+                    <span class="category-count">11 篇</span>
+                </div>
+                <div class="articles-grid">
+                    
+                    <a href="https://github.com/distillpub/post--multimodal/issues?q=is%3Aissue+label%3Apeer-review" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">Multimodal Neurons in Artificial Neural Networks</h3>
+                            <span class="article-source">Distill.pub</span>
+                        </div>
+                        
+                        <p class="article-summary">Gabriel Goh, Nick Cammarata †, Chelsea Voss †, Shan Carter, Michael Petrov, Ludwig Schubert, Alec Radford, and Chris Olah</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-06-21</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://lilianweng.github.io/posts/2024-04-12-diffusion-video/" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">Diffusion Models for Video Generation</h3>
+                            <span class="article-source">Lilian Weng</span>
+                        </div>
+                        
+                        <p class="article-summary">Diffusion models have demonstrated strong results on image synthesis in past years. Now the research community has started working on a harder task—using it for video generation. The task itself is a superset of the image case, since an image is a video of 1 frame, and it is much more challenging be</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-06-21</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://simonwillison.net/2026/Jun/11/fable-is-relentlessly-proactive/" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">Claude Fable is relentlessly proactive</h3>
+                            <span class="article-source">Simon Willison</span>
+                        </div>
+                        
+                        <p class="article-summary">After two days of experience withClaude Fable 5I think the best way to describe it isrelentlessly proactive. It knows a whole lot of tricks and it will deploy pretty much any of them to get to its goal.[...1,939 words]</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-06-21</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://lilianweng.github.io/posts/2024-07-07-hallucination/" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">Extrinsic Hallucinations in LLMs</h3>
+                            <span class="article-source">Lilian Weng</span>
+                        </div>
+                        
+                        <p class="article-summary">Hallucination in large language models usually refers to the model generating unfaithful, fabricated, inconsistent, or nonsensical content. As a term, hallucination has been somewhat generalized to cases when the model makes mistakes. Here, I would like to narrow down the problem of hallucination to</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-06-21</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://simonwillison.net/2026/Jun/13/publishing-wasm-wheels/" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">Publishing WASM wheels to PyPI for use with Pyodide</h3>
+                            <span class="article-source">Simon Willison</span>
+                        </div>
+                        
+                        <p class="article-summary">ThePyodide 314.0 release announcement(viaHacker News) includes news I’ve been looking forward to for a long time:[...757 words]</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-06-21</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://lilianweng.github.io/posts/2024-11-28-reward-hacking/" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">Reward Hacking in Reinforcement Learning</h3>
+                            <span class="article-source">Lilian Weng</span>
+                        </div>
+                        
+                        <p class="article-summary">Reward hacking occurs when a reinforcement learning (RL) agent exploits flaws or ambiguities in the reward function to achieve high rewards, without genuinely learning or completing the intended task. Reward hacking exists because RL environments are often imperfect, and it is fundamentally challeng</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-06-21</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://lilianweng.github.io/posts/2025-05-01-thinking/" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">Why We Think</h3>
+                            <span class="article-source">Lilian Weng</span>
+                        </div>
+                        
+                        <p class="article-summary">Special thanks to John Schulman for a lot of super valuable feedback and direct edits on this post.
+Test time compute (Graves et al. 2016, Ling, et al. 2017, Cobbe et al. 2021) and Chain-of-thought (CoT) (Wei et al. 2022, Nye et al. 2021), have led to significant improvements in model performance, w</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-06-21</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://simonwillison.net/2026/Jun/17/glm-52/" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">GLM-5.2 is probably the most powerful text-only open weights LLM</h3>
+                            <span class="article-source">Simon Willison</span>
+                        </div>
+                        
+                        <p class="article-summary">Chinese AI labZ.aireleased GLM-5.2to their coding plan subscriberson June 13th, and then yesterday (June 16th) released the full open weights under an MIT license. Similar in size to their previous GLM-5 and GLM-5.1 releases, this is 753B parameter,1.51TBmonster—with 40 active parameters (Mixture of</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-06-21</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://simonwillison.net/2026/Jun/18/datasette-apps/" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">Datasette Apps: Host custom HTML applications inside Datasette</h3>
+                            <span class="article-source">Simon Willison</span>
+                        </div>
+                        
+                        <p class="article-summary">Today we launched a new plugin for Datasette,datasette-apps, withthis launch announcement poston the Datasette project blog. That post has thewhat, but I’m going to expand on that a little bit here to provide thewhy.[...2,301 words]</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-06-21</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.anthropic.com/" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">Essays</h3>
+                            <span class="article-source">Dario Amodei</span>
+                        </div>
+                        
+                        <p class="article-summary">Dario Amodei is the CEO ofAnthropic, a public benefit corporation dedicated to building AI systems that are steerable, interpretable and safe....More</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-06-21</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://twitter.com/lilianweng/" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">👋 Welcome to Lil’Log</h3>
+                            <span class="article-source">Lilian Weng</span>
+                        </div>
+                        
+                        <p class="article-summary">Hi, this is Lilian. I’m documenting my learning notes in this blog since 2017. Based on the number of grammar mistakes in my posts, you can tell how much ChatGPT is involved 😉.</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-06-21</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                </div>
+            </section>
+            
+            
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">
+                AI Daily Brief · 每日 AI 资讯聚合
+            </p>
+            <p class="footer-text" style="margin-top: 0.5rem; font-size: 0.75rem;">
+                生成于 2026-06-21 08:01
+            </p>
+        </div>
+    </footer>
+
+    <button class="scroll-top" onclick="scrollToTop()" id="scrollTop">↑</button>
+
+    <script>
+        // Scroll to top button
+        const scrollTopBtn = document.getElementById('scrollTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+        
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Add stagger animation to cards
+        document.querySelectorAll('.article-card').forEach((card, index) => {
+            card.style.animationDelay = `${index * 0.05}s`;
+        });
+    </script>
+</body>
+</html>
