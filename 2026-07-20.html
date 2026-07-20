@@ -1,0 +1,1180 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Daily Brief - 2026-07-20</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #1a1a24;
+            --bg-hover: #22222e;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0b0;
+            --text-muted: #6b6b7b;
+            --accent-blue: #3b82f6;
+            --accent-purple: #8b5cf6;
+            --accent-cyan: #06b6d4;
+            --accent-green: #10b981;
+            --border-color: #2a2a3a;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+            border-bottom: 1px solid var(--border-color);
+            padding: 2rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--text-primary), var(--accent-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .date-badge {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        /* Stats */
+        .stats-bar {
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 0.75rem;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-cyan);
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Main Content */
+        .main {
+            padding: 2rem 0;
+        }
+
+        /* Category Sections */
+        .category-section {
+            margin-bottom: 3rem;
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .category-icon {
+            font-size: 1.25rem;
+        }
+
+        .category-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .category-count {
+            background: var(--bg-hover);
+            color: var(--text-secondary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.875rem;
+        }
+
+        /* Article Cards */
+        .articles-grid {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .article-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.25rem;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .article-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+            border-color: var(--accent-blue);
+        }
+
+        .article-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .article-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.4;
+            flex: 1;
+        }
+
+        .article-card:hover .article-title {
+            color: var(--accent-blue);
+        }
+
+        .article-source {
+            font-size: 0.75rem;
+            color: var(--accent-purple);
+            background: rgba(139, 92, 246, 0.1);
+            padding: 0.25rem 0.5rem;
+            border-radius: 6px;
+            white-space: nowrap;
+        }
+
+        .article-summary {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin: 0.75rem 0;
+            padding: 0.75rem 0;
+            border-top: 1px dashed var(--border-color);
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .article-summary.empty {
+            color: var(--text-muted);
+            font-style: italic;
+            border: none;
+            padding: 0.5rem 0;
+        }
+
+        .read-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            color: var(--accent-blue);
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-top: 0.5rem;
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .article-date {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .article-author {
+            color: var(--accent-green);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .footer-text {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+
+        .footer-links {
+            margin-top: 0.5rem;
+        }
+
+        .footer-links a {
+            color: var(--accent-blue);
+            text-decoration: none;
+            margin: 0 0.5rem;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .article-header {
+                flex-direction: column;
+            }
+
+            .article-source {
+                align-self: flex-start;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .article-card {
+            animation: fadeIn 0.3s ease forwards;
+        }
+
+        /* Scroll to top */
+        .scroll-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--accent-blue);
+            color: white;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s, transform 0.3s;
+            border: none;
+            font-size: 1.25rem;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-3px);
+            background: var(--accent-purple);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">🤖</div>
+                    <h1 class="logo-text">AI Daily Brief</h1>
+                </div>
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <nav class="nav-links" style="display: flex; gap: 0.5rem;">
+                        <a href="index.html" style="color: var(--accent-blue); text-decoration: none; padding: 0.5rem 1rem; border-radius: 8px; background: var(--bg-card); font-size: 0.875rem;">今日日报</a>
+                        <a href="history.html" style="color: var(--text-secondary); text-decoration: none; padding: 0.5rem 1rem; border-radius: 8px; transition: all 0.2s; font-size: 0.875rem;">历史归档</a>
+                    </nav>
+                    <div class="date-badge">
+                        📅 2026年07月20日 · 周一
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="stats-bar">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-value">43</div>
+                    <div class="stat-label">今日文章</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">3</div>
+                    <div class="stat-label">分类</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">8</div>
+                    <div class="stat-label">来源</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main class="main">
+        <div class="container">
+            
+            
+            <section class="category-section">
+                <div class="category-header">
+                    
+                    <span class="category-icon">🇨🇳</span>
+                    <h2 class="category-title">国内 AI 媒体</h2>
+                    <span class="category-count">39 篇</span>
+                </div>
+                <div class="articles-grid">
+                    
+                    <a href="https://www.ithome.com/0/978/824.htm" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">索尼 SIE 前总裁肖恩 · 莱登担心 PS6 游戏机真卖 1000 美元，市场普及恐受阻</h3>
+                            <span class="article-source">IT之家</span>
+                        </div>
+                        
+                        <p class="article-summary">IT之家 7 月 20 日消息，据游戏媒体 GamesRadar 上周（7 月 16 日）报道，索尼 PS6 的售价目前仍无法知晓，此前曾有传闻称，这款次世代游戏机的起售价可能高达 999 美元（现汇率约合 6782 元人民币）。而如今，索尼互娱（SIE）前总裁肖恩 · 莱登（Shawn Layden）也表达了相同担忧。肖恩 · 莱登对此表示，大多数人应该都会害怕一台售价 1000 美元（IT之家注：现汇率约合 6789 元人民币）的游戏主机，因为这不仅会让消费者更难做出决策，也会拖累零售商。他解释称，如果索尼真把 PS6 卖到这种价格，那很难想象，一位六年前花 500 美元（现汇率约合 3395 元人民币）购买 PS5、如今还在玩《神秘海域》的玩家，为何还会愿意升级新主机。毕竟在 2004 年，1000 美元足够买六台任天堂 DS 掌机，或者拿去支付房租。并且，新主机发售初期往往不会有太多新作可玩，首发时期大概只有 6-12 款左右。如果 PS6 真的要卖到四位数美元，那市场的普及速度将被拖垮。谈到硬件升级时，莱登调侃道：“说真的，它还能再塞进去多少光线追踪？我的眼睛真能看出 120</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-07-19</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.ithome.com/0/978/823.htm" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">西班牙时隔 16 年二度捧起大力神杯，EA 连续 5 届成功预测世界杯冠军</h3>
+                            <span class="article-source">IT之家</span>
+                        </div>
+                        
+                        <p class="article-summary">IT之家 7 月 20 日消息，北京时间 7 月 20 日，2026 美加墨世界杯迎来终极对决。比赛常规时间，西班牙与阿根廷 0-0 战平；加时赛阶段，西班牙凭借费兰 · 托雷斯的进球，最终 1-0 战胜阿根廷，夺得本届世界杯冠军！IT之家注意到，今年 6 月，EA 在 EA Sports FC 官方 X 账号上公布了对 2026 年 FIFA 美加墨世界杯冠军的预测。按照以往做法，EA 先模拟小组赛阶段的每一场比赛，再根据小组赛结果继续模拟淘汰赛。最终，EA 预测西班牙将第二次捧起世界杯冠军奖杯 —— 大力神杯。值得一提的是，过去四届世界杯，EA FC（包括前身 FIFA 系列）都精准“命中”冠军：2022 年，EA 准确预测阿根廷将自 1986 年以来首次夺冠；2018 年，EA 猜中法国夺冠；2014 年，EA 预测德国夺冠；2010 年，EA 还成功预测西班牙首次捧杯。此次西班牙时隔 16 年再次捧起大力神杯，意味着 EA 已连续 5 届成功预测世界杯冠军。</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-07-19</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.ithome.com/0/978/822.htm" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">华为靳玉志再谈“L3 无法跳过”，称法律法规完善及用户适应都需要一个过程</h3>
+                            <span class="article-source">IT之家</span>
+                        </div>
+                        
+                        <p class="article-summary">IT之家 7 月 20 日消息，据 36 氪汽车昨晚报道，华为公司高级副总裁、引望公司 CEO 靳玉志在接受采访时再次谈及了“L3 无法跳过”这一话题。业内有人提出可以直接从 L2 升级到 L4，但华为乾崑认为 L3 是无法跨越的必经阶段。对此，靳玉志表示：L3 和 L4，不是一种对立的关系，是迈向完全自动驾驶同一个方向的不同阶段。从法规和用户角度来看，从 L2 到 L3 是一个变革性的变化，意味着从辅助驾驶到了自动驾驶，责任主体从驾驶员（人）变成了提供自动驾驶的厂家 / 主机厂。因此，从法律法规的完善，以及用户的适应，都需要一个过程。我们认为这是不可逾越的，所以要从 L2 到 L3 再走向 L4。针对外界传闻因为引望的 L4 研发落后才做 L3，靳玉志回应称：L4 其实有不同的模式，To B 的 L4，比如 Robotaxi，它是由企业运营的，在限定范围内试点运营的；To C 的 L4，是不能限定范围。所以不同模式的 L4，安全要求是完全不同的。从技术角度来看，To C 的 L4 技术难度和复杂度是很高的，完全可以降维使用到 To B 的 L4 上。华为乾崑自始至终的目标都是做面向 </p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-07-19</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.ithome.com/0/978/821.htm" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">IT早报 0720：华为靳玉志称境和界是互补关系；比亚迪大汉实车曝光；Kimi K3 打破美 AI 领先中国认知；西班牙二度夺冠，EA 连续五次成功预测世界杯冠军...</h3>
+                            <span class="article-source">IT之家</span>
+                        </div>
+                        
+                        <p class="article-summary">“IT早报”时间，大家好，现在是 2026 年 7 月 20 日星期一，今天的重要科技资讯有：1、华为靳玉志：“境”和“界”并不冲突、是互补的关系，鸿蒙智行打造 30 万以上汽车的样板点靳玉志表示：“境”和“界”是互补的关系。网上有人认为二者冲突，实际上是不冲突的，在华为内部很早就达成了共识。&gt;&gt;查看详情2、比亚迪王朝首款 D 级旗舰轿车，大汉实车曝光新车定位比亚迪王朝首款 D 级旗舰轿车，长宽高分别为 5256/1999/1510mm，轴距 3130mm。&gt;&gt;查看详情3、月之暗面 Kimi K3 大模型登顶全球榜单后，彭博社称美国 AI 领先中国固有认知被打破月之暗面 Kimi K3 大模型以 2.8 万亿参数、100 万上下文窗口强势登场，在 Frontend Code Arena 榜单力压 Claude Fable 5 登顶。彭博社指出，该模型正在搅动全球科技市场，挑战了“中国 AI 落后美国”的固有认知。有专家认为，中美顶尖模型差距已从 6-9 个月缩短至 2-3 个月。&gt;&gt;查看详情4、西班牙时隔 16 年二度捧起大力神杯，EA 连续 5 届成功预测世界杯冠军EA 连续 5 届</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-07-19</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.ithome.com/0/978/820.htm" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">消息称苹果天才吧测试“Live Notes”系统，可记录直营店员工与顾客之间的对话</h3>
+                            <span class="article-source">IT之家</span>
+                        </div>
+                        
+                        <p class="article-summary">IT之家 7 月 20 日消息，据彭博社记者马克 · 古尔曼昨日爆料，苹果正在部分直营店的天才吧（Genius Bar）系统测试“Live Notes”系统，可利用人工智能记录员工与顾客之间的服务对话。▲ 图源：苹果IT之家从原报道获悉，这套系统允许 Apple Store 员工“使用 AI 工具记录服务过程，并将他们与顾客的对话进行转录和总结”。随后，这些对话记录将保存到苹果内网的天才吧系统。据悉，苹果推出这套系统的目的是让员工将更多精力放在服务客户上，而不是在服务时忙于低头记笔记。不过古尔曼透露，部分 Apple Store 员工对这项服务表达担忧：“他们担心这些录音未来可能会用于指导员工，甚至成为绩效考核的一部分。据苹果所述，该系统本身无法保存录音，管理人员也无法查看对话内容。员工在将转录文本和摘要保存在内网之前，可以对两者进行编辑。”截至目前，苹果并未强制使用这套系统。目前尚不清楚，苹果是否会将该系统推广至更多直营店、或是在未来强制使用。</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-07-19</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.ithome.com/0/978/819.htm" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">奕境 X9 首台量产车官宣今天下线，标配华为乾崑智驾 ADS 5 + 鸿蒙座舱 HarmonySpace 6</h3>
+                            <span class="article-source">IT之家</span>
+                        </div>
+                        
+                        <p class="article-summary">IT之家 7 月 20 日消息，2026 美加墨世界杯今日迎来终极对决。比赛常规时间，西班牙与阿根廷 0-0 战平；加时赛阶段，西班牙凭借费兰 · 托雷斯的进球，最终 1-0 战胜阿根廷，夺得本届世界杯冠军。这也是西班牙时隔 16 年再度登顶。奕境汽车品牌总经理曾清林刚刚发文祝贺阿根廷国家足球队斩获世界杯亚军，并透露奕境 X9 首台量产车将在今天下线。根据规划，奕境汽车旗下首车 —— 奕境 X9 将在今年第三季度上市交付（今年 6 月 8 日在成都经开区完成试制下线，此前有消息称会在 9 月开启全国交付）。同时，奕境品牌未来三年还将投放 5 款全新产品。据IT之家了解，奕境 X9 尺寸为 5301×2015×1820mm，轴距为 3120mm；全系搭载华为乾崑车载光“三件套”，包括 HUAWEI XPIXEL 百万像素智慧投影大灯、HUAWEI XSCENE 车载激光投影和 HUAWEI XHUD 增强现实抬头显示。该车还搭载 896 线双光路图像级激光雷达，首批全系标配华为乾崑智驾 ADS 5、全系搭载鸿蒙座舱 HarmonySpace 6，并首发 17.2 英寸蝶羽双联屏，云晰柔光</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-07-19</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.v2ex.com/t/1228434#reply0" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">[推广] Token 用完，京东云 joycode.vip 白嫖 1 个月，送 1 万积分</h3>
+                            <span class="article-source">V2EX</span>
+                        </div>
+                        
+                        <p class="article-summary empty">暂无摘要，点击查看原文阅读完整内容 →</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-07-19</span>
+                            
+                            <span class="article-author">👤 mabiji</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.v2ex.com/t/1228433#reply0" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">[Apple] iPhone 无法批量导出视频是什么鬼？</h3>
+                            <span class="article-source">V2EX</span>
+                        </div>
+                        
+                        <p class="article-summary">昨天参加娃的活动，拍了几十个 5-6 分钟的视频，s 几十张照片。回家插到 mac 上用 photos 导入所有新拍的素材。结果吭哧吭哧导入进度条跑了半个小时，只有照片成功导入。我以为是自己哪里没操作对，就在 photos 里把 ip 上的视频在选了一遍，重新导入。结果又是跑了几十分钟，进度条走完，photo 里没有任何新增视频。看 photo 搞不定，我又开了图像捕捉，想直接导入文件。图像捕捉第一个视频卡了半个小时都没结果，感觉根本搞不定的样子。现在苹果 iosg 和 macos 的导入导出配合已经垃圾至此了么？</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-07-19</span>
+                            
+                            <span class="article-author">👤 moudy</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.ithome.com/0/978/818.htm" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">SpaceX“星舰”第 13 次试飞推迟至 7 月 23 日</h3>
+                            <span class="article-source">IT之家</span>
+                        </div>
+                        
+                        <p class="article-summary">IT之家 7 月 20 日消息，据央视新闻消息，美国 SpaceX 公司于当地时间 19 日表示，计划于 7 月 23 日再次尝试发射“星舰”火箭。结合IT之家此前报道，SpaceX 公司 7 月 17 日表示，由于发现故障，中止第 13 次星舰飞行测试，导致任务至少推迟 24 小时。据悉，本次任务中止的直接原因是点火阶段时部分发动机未能启动，后续该公司市值一度蒸发 1000 亿美元（IT之家注：现汇率约合 6789.2 亿元人民币）。</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-07-19</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.v2ex.com/t/1228432#reply0" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">[分享创造] CMake 模板管理 CLI 分享</h3>
+                            <span class="article-source">V2EX</span>
+                        </div>
+                        
+                        <p class="article-summary">验证 C+23 学习情况, 编写 CMake 项目模板管理的小型 CLI 工具# Homebrew  分发渠道
+brew tap SuzhaharCan/sc-cmake https://codeberg.org/SuzhaharCan/sc-cmake
+brew install sc-cmake
+
+# 源码拉取本地构建
+https://codeberg.org/SuzhaharCan/sc-cmakeC++ 26 (反射 + 契约) 后续 29 针对 未初始化问题动刀,还是 值得入手的;
+而 CMake 入门后 , 基于 意图 的组织和设计 思路 是和 C++ 17 以来的设计 相符合的CMake 安利的想法 不在此赘述, 有兴趣和 最近常使用 CMake 的可以 尝试一番优点中英 帮助手册 直观了解常用命令内置 模板 经过 开发者本人审核 二次优化,支持 用户 自定义上传 模板, 支持 用户针对 内置模板 进行评论 反馈 和求助信息上传刚刚 发布 v0.1.1 版本 欢迎体验测试, 如有 Bug ,可直接在评论区反馈或走 issue同时  寻求大家简单体验 后 当前功能设计的缺陷 </p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-07-19</span>
+                            
+                            <span class="article-author">👤 SuzhaharCan</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.v2ex.com/t/1228431#reply0" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">[Wunder] 20260719 - AI Chat 修复输入框在中文输入法时的回车键问题；增加了 3 个新的模型选择</h3>
+                            <span class="article-source">V2EX</span>
+                        </div>
+                        
+                        <p class="article-summary">https://edge.v2ex.com/chat现在在聊天或是为自己的 Persona 设定模型时，可以选择以下模型：gemma4:31bglm-5.2deepseek-v4-prominimax-m3nemotron-3-ultra</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-07-19</span>
+                            
+                            <span class="article-author">👤 Livid</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.v2ex.com/t/1228430#reply0" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">[程序员] 做了个浏览器里跑真 Manim 的站，也整理了 Windows 本地安装与排错</h3>
+                            <span class="article-source">V2EX</span>
+                        </div>
+                        
+                        <p class="article-summary">最近把 Windows 上安装 Manim Community 的流程重新走了一遍。很多教程的问题不是命令错，而是把 Python 、原生 DLL 、PyPI 、LaTeX 和代码错误混成了一个“安装失败”。一旦失败就从头重装，反而很难知道是哪一层坏了。不过先说我的真实建议：如果只是刚开始学 Manim ，不要先装本地环境。我做极坐标⋅XYZ 的直接原因，就是希望初学者打开浏览器便能运行真 Manim 0.20.1 ，而不是先过 Python/uv/VC++/MiKTeX 这套环境考试。目前 Playground 可以匿名打开，内置示例直接 Run ；编辑器有 Python 高亮、基于真 Manim 的补全/签名/悬浮文档，渲染后可以播放、拖动逐帧查看，也能导出 MP4/GIF 。中文Text、MathTex、2D/3D 、updater 等常见场景都走浏览器适配层，Python 代码在本机浏览器的 Pyodide 沙盒中执行。初学路径很短：打开 Playground → 选示例 → 改一个参数 → Run → 看 traceback 或预览 → 导出。站内教程还把讲解与可运行代码放在</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-07-19</span>
+                            
+                            <span class="article-author">👤 Maxwin</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.v2ex.com/t/1228429#reply3" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">[怀旧游戏] 在 iPad 上用触屏玩初代 Diablo</h3>
+                            <span class="article-source">V2EX</span>
+                        </div>
+                        
+                        <p class="article-summary">https://github.com/chrissotraidis/deviltouchCodex 5.6 实现的移植。iPad 的 4:3 屏幕真的是太适合这类游戏了。</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-07-19</span>
+                            
+                            <span class="article-author">👤 Livid</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.v2ex.com/t/1228428#reply0" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">[分享创造] 我把 Markdown 查看器越做越离谱了：这次直接加了 HTML 设计器、AI 排版 HTML，还支持多模型了</h3>
+                            <span class="article-source">V2EX</span>
+                        </div>
+                        
+                        <p class="article-summary">最近把我的开源小工具又狠狠干了一轮，发个更新。这是一个基于Wails + Go + Vue3做的桌面版 Markdown 查看器，最开始只是想做一个自己顺手的本地 Markdown 阅读/编辑工具，结果这次版本越改越偏“生产力工具”了。这次更新到v1.0.2，重点功能如下：本次更新新增左侧导航默认页签设置现在可以自己指定默认打开“文件”还是“大纲”，不用每次切换。新增多供应商、多模型管理现在不再是只能绑一个模型，支持同时维护多个供应商和多个模型，切换和测试都更方便。优化 Markdown 查看器的 AI 排版效果AI 排版这块重新整理了一轮，并新增了几种常用生成格式推荐，像任务计划、会议纪要、步骤清单这类内容整理起来更顺手。新增 HTML 设计器现在不仅能看 Markdown ，还能直接进入 HTML 设计器做可视化调整，并支持导出 HTML 。新增 AI 排版 HTML 内容不只是 Markdown ，HTML 内容现在也能直接走 AI 排版，适合拿来快速整理页面结构和文案布局。AI 支持预置默认供应商和模型这个主要是方便开发者打包时直接带默认配置，开箱就能用。新增外置字体加载只要把</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-07-19</span>
+                            
+                            <span class="article-author">👤 ningxing</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.v2ex.com/t/1228426#reply0" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">[观鸟] 小白额燕鸥</h3>
+                            <span class="article-source">V2EX</span>
+                        </div>
+                        
+                        <p class="article-summary empty">暂无摘要，点击查看原文阅读完整内容 →</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-07-19</span>
+                            
+                            <span class="article-author">👤 Olivia</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.v2ex.com/t/1228425#reply0" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">[推广] 每月 1000 次免费 google 查询次数 关键词竞价排名监控</h3>
+                            <span class="article-source">V2EX</span>
+                        </div>
+                        
+                        <p class="article-summary">主要提供 Google 搜索结果的数据接口，方便开发者获取搜索结果。它最近还推出了 MCP （ Model Context Protocol ）服务器，可以让 Claude 、Cursor 、Windsurf 等 AI 工具直接调用 Google 搜索。主要功能包括：
+🔍 Google 网页搜索（ Organic Search ）
+📰 Google News
+🖼️ Google Images
+🎥 Google Videos
+🛒 Google Shopping （带价格）
+📍 Google Maps / Places
+🎓 Google Scholar
+📑 Google Patents
+💡 Google Autocomplete （搜索建议）支持返回结构化 JSON ，方便程序调用。免费额度 每月 1000 次免费搜索 不需要信用卡 免费额度每月自动重置适合做 seo Google 排名监控 竞品分析 关键词研究注册地址：serpjet.io</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-07-19</span>
+                            
+                            <span class="article-author">👤 serpjet</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.v2ex.com/t/1228424#reply0" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">[分享创造] 做了一个免费的 TikTok 评论图片生成器</h3>
+                            <span class="article-source">V2EX</span>
+                        </div>
+                        
+                        <p class="article-summary">最近上线了一个小工具：https://www.tiktok-comment-generator.com/主要用于生成 TikTok 风格的评论图片，适合短视频回复、UGC 素材、教程开场和社交媒体内容制作。目前支持：- 生成单条评论贴纸- 创建包含多条评论和作者回复的完整评论区- 自定义头像、用户名、评论内容、时间和点赞数- 设置置顶、认证、作者点赞等状态- 导出透明、浅色或深色背景 PNG- 无需注册，免费使用，无水印- 所有内容都在浏览器本地处理目前还是 MVP 版本，希望大家帮忙体验一下。</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-07-19</span>
+                            
+                            <span class="article-author">👤 haowen8098</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.v2ex.com/t/1228423#reply0" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">[中转站测评] 中转站真假的检测</h3>
+                            <span class="article-source">V2EX</span>
+                        </div>
+                        
+                        <p class="article-summary empty">暂无摘要，点击查看原文阅读完整内容 →</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-07-19</span>
+                            
+                            <span class="article-author">👤 weiliw528</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.v2ex.com/t/1228422#reply0" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">[分享创造] crPDF 1.5.0 增加了对 PDF 文件的密码和签名的支持</h3>
+                            <span class="article-source">V2EX</span>
+                        </div>
+                        
+                        <p class="article-summary">免费下载：https://github.com/libcr/crpdf/releasescrPDF1.5.0 是纯 C++实现 基于源代码 chromium 150.0.7871.911. 基于 chromium PDFium 内核代码，支持对 PDF 的文本和 Stamp 格式的标注2. 使用 chromium 的跨平台 UI 框架设计的应用界面，提供了一致且优秀的使用体验3. 通过 boringSSL 实现对 PDF 证书签名，以及证书信息的验证带 SVG 图片的签名预览证书签名设置界面</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-07-19</span>
+                            
+                            <span class="article-author">👤 wuruxu</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.v2ex.com/t/1228420#reply7" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">[剧集] AI 让剧集质量退步了</h3>
+                            <span class="article-source">V2EX</span>
+                        </div>
+                        
+                        <p class="article-summary">今天在爱奇艺看到一部新上映的电视剧，张凌赫和王楚然主演的《这一秒过火》。片头和片尾都是 AI 制作的，质感好差。第一眼看到片头还以走错地方了。正片更是短剧风格，我真是无力吐槽。可惜了帅哥美女。爱奇艺发布会上说今年 ALL IN AI ，就是这个效果？听过某个 AI 产品赞助了这部剧。不止电视剧，国漫上很多地方也用的 AI 。站在客户的角度看到到的是粗制滥造。</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-07-19</span>
+                            
+                            <span class="article-author">👤 wsseo</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.v2ex.com/t/1228419#reply5" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">[程序员] kimi 算力顶不住停售了</h3>
+                            <span class="article-source">V2EX</span>
+                        </div>
+                        
+                        <p class="article-summary empty">暂无摘要，点击查看原文阅读完整内容 →</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-07-19</span>
+                            
+                            <span class="article-author">👤 YanSeven</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.v2ex.com/t/1228418#reply0" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">[问与答] 京东 pc 端每次打开就会有一个遮罩提示领红包, 这是纯恶心人的吧</h3>
+                            <span class="article-source">V2EX</span>
+                        </div>
+                        
+                        <p class="article-summary empty">暂无摘要，点击查看原文阅读完整内容 →</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-07-19</span>
+                            
+                            <span class="article-author">👤 proxychains</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.ithome.com/0/978/808.htm" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">月之暗面 Kimi：暂停 C 端新用户订阅，保障已订阅用户的全部权益不受影响</h3>
+                            <span class="article-source">IT之家</span>
+                        </div>
+                        
+                        <p class="article-summary">IT之家 7 月 19 日消息，月之暗面 Kimi 今日发布公告，为了保障已有订阅用户的体验，决定即日起，暂停 C 端新用户订阅，将已有算力全部投入于服务已订阅用户，保障已订阅用户的全部权益不受影响。IT之家附原文如下：致 Kimi 用户：关于算力紧缺与会员暂停开放的说明尊敬的 Kimi 用户：自 KimiK3 发布以来，我们收获了远超预期的支持，但也面临始料未及的算力挑战。过去 48 小时，用户请求量已大幅超出我们的预估，并且逼近现有集群的承载极限。为了保障已有订阅用户的体验，我们决定即日起，暂停 C 端新用户订阅，将已有算力全部投入于服务已订阅用户，保障已订阅用户的全部权益不受影响。同时，我们已在全速推进算力扩容。随着新算力陆续到位，我们将逐步开放更多订阅名额直至全面恢复正常订阅。对于后续新订阅用户，我们将拆分 Kimi 主权益 (包含 KimiWeb，Kimi App，Kimi Work) 和 Kimi Code 权益，以方便更精准匹配算力，保障用户体验。我们向满怀期待、却没能获得期待中体验的朋友郑重道歉，也对给予我们理解和包容的朋友深表谢意。Kimi 团队2026 年 7 月 </p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-07-19</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.ithome.com/0/978/807.htm" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">周星驰《功夫女足》跻身 2026 年电影票房前三，上映 9 天超 14.57 亿</h3>
+                            <span class="article-source">IT之家</span>
+                        </div>
+                        
+                        <p class="article-summary">IT之家 7 月 19 日消息，据灯塔专业版，截至 7 月 19 日，《功夫女足》上映 9 天总票房超 14.57 亿（含预售），进入 2026 年度票房榜前三。IT之家附榜单如下：《飞驰人生 3》44.21 亿元《给阿嬷的情书》19.94 亿元《功夫女足》14.58 亿元《镖人：风起大漠》14.48 亿元《惊蛰无声》13.66 亿元《熊出没 · 年年有熊》10.67 亿元《消失的人》5.75 亿元《疯狂动物城 2》5.73 亿元《匿杀》4.36 亿元《阿凡达 3》4.28 亿元该影片由周星驰担任导演、编剧，张小斐、迪丽热巴、张艺兴领衔主演，刘嘉玲、佐藤健特别出演。该片结合少林功夫与足球元素，围绕女子足球队“峨眉队”征战展开，讲述了一群热爱足球的女孩如何克服困难，追求梦想的故事。公开资料显示，周星驰在 61 岁生日那天许下生日愿望同时宣布将拍摄新电影《少林女足》，之后更名为《女足》，如今确定为《功夫女足》。IT之家附剧情简介：“至尊无敌杯”开赛在即，一众顶尖球队即将展开一场前所未有的巅峰对决！而此时的功夫女足队员们开局直接拿了地狱难度剧本？！对手各个身怀绝技，外界也在层层施压，赛场诡计</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-07-19</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.ithome.com/0/978/806.htm" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">深空矩阵发布“星环计划”，第一阶段目标部署约 210 颗卫星</h3>
+                            <span class="article-source">IT之家</span>
+                        </div>
+                        
+                        <p class="article-summary">IT之家 7 月 19 日消息，深空矩阵在 2026 世界人工智能大会上，发布面向太空 AI 算力产业化落地的系统性星座方案“星环计划”。官方公众号显示，深空矩阵位于北京，致力于构建超大规模星群协同的太空 AI 算力基础设施。深空矩阵创始人兼 CEO 张伟杰表示，AI 竞争最终会落到算力竞争。而随着大规模 AI 智能体落地，传统地面算力体系将面临电力、土地、建设周期、散热、网络与基础设施承载能力的多重约束。因此，算力上天已经不再只是前沿想象，而是 AI 智能体时代必须被严肃对待的产业刚需。官方表示，星环计划第一阶段目标，是以约 210 颗卫星构建低轨遥算一体化验证星座，后续扩容后可将全球覆盖率提升至约 99.8%，并实现 5-10 分钟区域准重访，满足重点区域高频动态监测和动态目标跟踪需求。IT之家获悉，在轨道体系设计上，所有卫星统一采用 450 公里核心轨道高度，以提升产业适配性，并实现对 500 至 800 公里主流商用遥感卫星作业范围的兼容覆盖。官方公布了五步的演进路径，将经历从验证星座、互联协同、节点成环到算力扩容的连续过程，未来可拓展至数千至数万颗卫星规模：建设先期通遥算（通</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-07-19</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.ithome.com/0/978/326.htm" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">科幻 Roguelike 卡牌游戏《穿雾列车》登陆 Steam，首发价 44.25 元</h3>
+                            <span class="article-source">IT之家</span>
+                        </div>
+                        
+                        <p class="article-summary">IT之家 7 月 19 日消息，由 Mad Cookies Studio 开发、独立游戏发行商 Hooded Horse 发行的科幻类 Rogue 卡牌构筑游戏《穿雾列车（Fogpiercer）》今日正式登陆 Steam 平台。IT之家附游戏商品页（https://store.steampowered.com/app/3219010/_Fogpiercer/?l=schinese&amp;cc=cn）。本作国区原价 59 元，目前 25% 折扣，折后价为 44.25 元，首发优惠截止至 7 月 31 日；同时官方还提供捆绑包优惠，购买对应捆绑包可享额外折扣。游戏支持简体中文界面与字幕，同时提供 Steam 成就、云存档、集换式卡牌等功能，完整支持控制器操作。致命的迷雾压城而来，人们的未来就掌握在你的手中了！组装属于你的火车，选择铺路火车头，在强盗肆虐的世界里，铺设未来轨道，与此同时还要投身火爆的回合制战术战斗，强力协同作用、绝佳的战略位置、亦步亦趋的连锁反应都是决胜的关键。《穿雾列车》是一款科幻题材类 Rogue 回合制卡牌构筑游戏，核心玩法围绕回合制战术战斗展开：玩家需要策划牌组，从各式火车</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-07-19</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.ithome.com/0/978/805.htm" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">美科首款 4433 中画幅相机镜头 85mm F1.8 G 发布：提供富士 GFX 卡口，2299 元</h3>
+                            <span class="article-source">IT之家</span>
+                        </div>
+                        
+                        <p class="article-summary">IT之家 7 月 19 日消息，美科现已正式发布旗下首款 4433 中画幅相机镜头 85mm F1.8 G，为富士 GFX 卡口，定价为 2299 元，将于明日发售。美科表示，该镜头专为富士 GFX 系统打造，集 F1.8 大光圈、高解析成像、自然焦外、快速对焦与便携机身于一体。它为中画幅摄影提供兼顾画质、效率与成本的全新选择，既能满足专业摄影师对于成像品质的要求，也降低了中画幅人像镜头的使用门槛，具有较高性价比。规格方面，IT之家获悉该镜头重量 406g，采用 7 组 11 片结构，配备 11 片光圈叶片，最近对焦距离 0.65 米，使用 STM 步进马达，滤镜尺寸 62mm。</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-07-19</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.ithome.com/0/978/804.htm" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">微星更新电竞显示器阵容：27 英寸 2K 320Hz“MAG 274QPF X32”、31.5 英寸 2K 180Hz 曲面“MAG 325CQPF E18”</h3>
+                            <span class="article-source">IT之家</span>
+                        </div>
+                        
+                        <p class="article-summary">IT之家 7 月 19 日消息，微星宣布更新 MAG 系列显示器产品线，推出“MAG 274QPF X32”和“MAG 325CQPF E18”两款电竞显示器，IT之家整理参数如下：MAG 274QPF X32该机配备一块 27 英寸 2560x1440 分辨率 320Hz Rapid IPS 面板，GtG 响应速度 0.5ms，SDR / HDR 亮度分别为 300/400 尼特，典型对比度为 1000:1，显示器支持 10-Bit 色彩（8-Bit + FRC），覆盖 95% Adobe RGB、97% DCI-P3 色域。该机支架支持升降 / 倾斜 / 俯仰 / 旋转，显示器本体支持 VESA 100x100mm 壁挂，配备了一个 DisplayPort 1.4a 接口、两个 HDMI 2.1 接口、以及一个 3.5mm 耳机接口。MAG 325CQPF E18该机配备一块 31.5 英寸 2560x1440 分辨率 180Hz Rapid VA 面板，曲率为 1000R，GtG 响应速度 0.5ms，SDR 亮度为 300 尼特，典型对比度为 1000:1，显示器支持 10-B</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-07-19</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.ithome.com/0/978/803.htm" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">千里科技在 WAIC 公布多项进展：阶跃 Step AOS 将应用于汽车，年底推 ASD 5.0</h3>
+                            <span class="article-source">IT之家</span>
+                        </div>
+                        
+                        <p class="article-summary">IT之家 7 月 19 日消息，在 2026 世界人工智能大会（WAIC 2026）举办期间，千里科技公布多项项目进展。千里科技公布了未来 ASD 4.1 版本技术预览，聚焦三项突破：其一，实现零断点的全场景 D2D 通行—— 从地库到地面、从城区到乡镇，一键导航直达；其二，依托物理 AI 大模型，深度语义理解带来识别能力的全面升级，对小动物、特殊车辆及需特别关注人群采取更优交互策略；其三，舱驾深度融合，语音直接控车，车辆主动理解意图并执行。千里科技进一步透露，计划于年底推出的 ASD 5.0 版本。在操作系统层面，阶跃星辰日前发布智能体原生操作系统 Step AOS，千里科技同步宣布将其应用于汽车领域。Step AOS 具备记忆、决策与执行、安全三大核心特征，将模型能力与终端能力深度打通，能将包括汽车在内的硬件与原有系统的全部能力，转化为智能体可直接调用的算力、可理解的数据和可调用的资源，用户只需表达任务意图，全链路由智能体自主完成。IT之家注意到，本次 WAIC，千里科技联合吉利、阶跃星辰共同研发的汽车“超级智能体”—— 超级 Eva 亮相阶跃展台，该超级智能体以阶跃星辰最新发布的</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-07-19</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.ithome.com/0/977/868.htm" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">V社为 Steam Deck 掌机推送 SteamOS 3.8.16 更新：修复《刺客信条：黑旗记忆重置》游戏黑屏问题</h3>
+                            <span class="article-source">IT之家</span>
+                        </div>
+                        
+                        <p class="article-summary">IT之家 7 月 19 日消息，V 社正式向所有 Steam Deck 用户推送了 SteamOS 3.8.16 正式版更新，本次更新主要修复了上个版本引入的部分游戏黑屏问题。通用更新回退了导致《刺客信条：黑旗记忆重置》游戏黑屏的“HDR 修复补丁”，相应补丁将暂时留在 Beta 通道中，官方将在此期间调查问题根本原因。本文由机器人发布，如果你发现了日志中未提及的更新点，欢迎发在评论区供大家参考 ~[微笑]</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-07-19</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.infoq.cn/article/yFAybPctMgHsNJUYMEtw?utm_source=rss&amp;utm_medium=article" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">寻找 AI 原生时代创业者：极客部落 OPC 入驻招募启动！</h3>
+                            <span class="article-source">InfoQ 中文站</span>
+                        </div>
+                        
+                        <p class="article-summary">小贴士：OPC 是什么？ 全称 One Person Company（一人公司） ，是 AI 时代最先锋的创业形态之一：一个人或一个极小团队，借助 AI 完成产品研发、运营、交付与增长。如今，OPC 已被写入多地“十五五”规划，北京也正从创业空间、企业登记、算力与政策服务等方面加快布局。新一批站在技术浪潮前沿的“超级个体”，已经开始把一个人的想法，真正落地为可经营公司。一、新居落地，汇资聚才 7 月 16 日，“AI 赋新质·智启新增长——星禾 AI 智体创新谷启动暨望京新质产业加速器周年沙龙”在望京 SOHO T2 座 20 层举行。活动现场，极客部落·AI 应用生态园作为首批核心 AI 产...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-07-19</span>
+                            
+                            <span class="article-author">👤 Serena</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.infoq.cn/article/iIoJ2qhXbXCH2ozGqCJ6?utm_source=rss&amp;utm_medium=article" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">边端AI不只缺算力：安谋科技重做CPU、NPU、VPU与AI操作系统</h3>
+                            <span class="article-source">InfoQ 中文站</span>
+                        </div>
+                        
+                        <p class="article-summary">7 月 18 日，WAIC 2026 期间，安谋科技在上海世博展览馆举行 AI 前瞻发布会。与展馆中大量围绕超节点、万卡集群和云端大模型的讨论不同，这场发布会把重点放在了另一端：当 AI 进入嵌入式设备、摄像头、机器人、工业网关和边缘计算节点，有限功耗、有限内存和复杂负载将如何改变芯片与系统设计。发布会涉及四条技术线：面向嵌入式设备的“星辰”CPU 与 Arm Helium 指令集，面向边端推理的“周易”X3-Pro NPU 架构，面向机器视觉的“玲珑”VPU，以及安谋科技牵头发起的开源 AIOS 联盟。把这些内容放在一起看，安谋科技这次在 WAIC 上试图回答的是一个更具体的工程问题：在功耗...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-07-19</span>
+                            
+                            <span class="article-author">👤 李冬梅</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.infoq.cn/article/TjLEm0VKwkrrkLxOds61?utm_source=rss&amp;utm_medium=article" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">WAIC 2026现场，阡视科技发布超节点系统，专为Token工厂而生</h3>
+                            <span class="article-source">InfoQ 中文站</span>
+                        </div>
+                        
+                        <p class="article-summary">7 月 17 日，以“智能伙伴 共创未来”为主题的 2026 世界人工智能大会暨人工智能全球治理高级别会议（以下简称“WAIC 2026”）在上海正式拉开帷幕。新一代 AI 基础设施服务商阡视科技，携最新专为 Token 工厂而生的超节点真机重磅亮相，沉浸式呈现下一代国产超节点技术的底层智算逻辑与系统级性能拓展路径。当前，人工智能技术正从推理时计算演进至递归自我改进阶段，长程连续迭代与闭环规划任务成为下一阶段的核心范式。在此范式下，KV Cache 的频繁读写使存力成为新的系统瓶颈。传统超节点架构主要侧重于 GPU 的互联平面，重点解决芯片间横向通信的瓶颈，对于 Token 工厂场景来说，无法...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-07-19</span>
+                            
+                            <span class="article-author">👤 李冬梅</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.infoq.cn/article/LCMZqxPWHIFvQbuRIS6f?utm_source=rss&amp;utm_medium=article" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">三款AI推理芯片+超节点异构集群，云天励飞公布未来算力蓝图</h3>
+                            <span class="article-source">InfoQ 中文站</span>
+                        </div>
+                        
+                        <p class="article-summary">7 月 18 日，云天励飞在 2026 WAIC 公布未来两年多 AI 推理芯片路线图。公司计划推出 DeepVerse100P、DeepVerse100D、DeepVerse100L 三款芯片，分别针对 AI 推理中 Prefill、Decode 和 Decode FFN 环节的负载特征进行专用优化。三款芯片将面向万卡异构集群进行协同设计与部署，通过对不同推理阶段进行解耦，为不同负载配置更加适配的芯片和算力资源，进一步提升系统整体效率，持续降低 Token 生成成本。推理负载持续分化，算力优化走向精细化 从负载特征来看，当前大模型推理应用正在形成不同类型：以对话、知识问答为代表的通用 AI ...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-07-19</span>
+                            
+                            <span class="article-author">👤 李冬梅</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.infoq.cn/article/eTGhBWBHXum6AuVU45Ab?utm_source=rss&amp;utm_medium=article" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">从大模型到 AI 执行系统：构建企业级可控 Agent 体系｜AICon深圳</h3>
+                            <span class="article-source">InfoQ 中文站</span>
+                        </div>
+                        
+                        <p class="article-summary">Agent 时代，哪些方向正在成为行业关键变量？50 + 实战案例揭晓答案！ 模型参数规模不断突破，推理成本持续下降，开源生态日益繁荣。当模型能力逐渐成为行业共识，一个新的问题开始浮现： 当人人都能获得强大的模型能力之后，真正的竞争力还剩下什么？ 答案正在从模型能力本身，转向围绕模型构建可规模化的智能系统；从单点能力提升，转向系统工程与组织级落地能力。在这一背景下， 2026 年 AICon 人工智能开发与应用大会 · 深圳站 正式启动。本次大会将于 8 月 21 日—22 日 举办，聚焦 AI 基础设施、大模型系统、智能体工程、数据智能、多模态技术与行业落地等关键方向，邀请来自腾讯、阿里、华...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-07-19</span>
+                            
+                            <span class="article-author">👤 AICon 全球人工智能开发与应用大会</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://mp.weixin.qq.com/s?__biz=MzI3MTA0MTk1MA==&amp;mid=2652713906&amp;idx=1&amp;sn=4e843834e26fbf0f675ca8ed0dbfa34f" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">Agent拉爆算力？中国杀出新物种：日冲10万亿Token，还赚钱了</h3>
+                            <span class="article-source">新智元</span>
+                        </div>
+                        
+                        <p class="article-summary empty">暂无摘要，点击查看原文阅读完整内容 →</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-07-19</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://mp.weixin.qq.com/s?__biz=MzI3MTA0MTk1MA==&amp;mid=2652713906&amp;idx=2&amp;sn=4b4f0ab130e460a944473f4d1fcb16e0" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">WAIC华山论剑，罕见AI新共识：机器人ChatGPT时刻，最快两年！</h3>
+                            <span class="article-source">新智元</span>
+                        </div>
+                        
+                        <p class="article-summary empty">暂无摘要，点击查看原文阅读完整内容 →</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-07-19</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://mp.weixin.qq.com/s?__biz=MzI3MTA0MTk1MA==&amp;mid=2652713906&amp;idx=3&amp;sn=527ff6af8314b41b0c370e4396f4b334" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">告别审稿抽卡！全新LLM校准机制，给AI顶会统一打分尺度</h3>
+                            <span class="article-source">新智元</span>
+                        </div>
+                        
+                        <p class="article-summary empty">暂无摘要，点击查看原文阅读完整内容 →</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-07-19</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.infoq.cn/article/r6m3xASYYfM81h9dNBRE?utm_source=rss&amp;utm_medium=article" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">腾讯云发布ADP 4.0海外版：集成Google Workspace、Jira，定位AgentOps全生命周期管理</h3>
+                            <span class="article-source">InfoQ 中文站</span>
+                        </div>
+                        
+                        <p class="article-summary">“企业级智能体不是比谁搭得更快，而是比谁能更稳定、安全、可持续地跑在业务现场，形成持续创造价值的运营体系。”7 月 18 日，在 2026 世界人工智能大会上，腾讯云副总裁吴运声详细解读“以知识驱动，打造企业原生智能体”的落地路径，并正式发布腾讯云智能体开发平台 ADP4.0 海外版。吴运声表示，企业级智能体不是比谁搭得更快，而是比谁能更稳定、安全地跑在业务现场，形成一个持续创造价值的运营体系。腾讯云为此搭建起两大底座，一是能力底座“腾讯云智能体开发平台 ADP”，二是知识底座“腾讯乐享 Agentic 知识库”。...</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-07-19</span>
+                            
+                            <span class="article-author">👤 青和</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                </div>
+            </section>
+            
+            
+            
+            <section class="category-section">
+                <div class="category-header">
+                    
+                    <span class="category-icon">🏢</span>
+                    <h2 class="category-title">国际公司官方</h2>
+                    <span class="category-count">1 篇</span>
+                </div>
+                <div class="articles-grid">
+                    
+                    <a href="mailto:press@anthropic.com" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">Newsroom</h3>
+                            <span class="article-source">Anthropic</span>
+                        </div>
+                        
+                        <p class="article-summary">We’re asking the public for their hardest questions about AI, and committing to show our work as we address them.</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-07-20</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                </div>
+            </section>
+            
+            
+            
+            <section class="category-section">
+                <div class="category-header">
+                    
+                    <span class="category-icon">👨‍🔬</span>
+                    <h2 class="category-title">国际研究员</h2>
+                    <span class="category-count">3 篇</span>
+                </div>
+                <div class="articles-grid">
+                    
+                    <a href="https://github.com/distillpub/post--multimodal/issues?q=is%3Aissue+label%3Apeer-review" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">Multimodal Neurons in Artificial Neural Networks</h3>
+                            <span class="article-source">Distill.pub</span>
+                        </div>
+                        
+                        <p class="article-summary">Gabriel Goh, Nick Cammarata †, Chelsea Voss †, Shan Carter, Michael Petrov, Ludwig Schubert, Alec Radford, and Chris Olah</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-07-20</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://simonwillison.net/2026/Jul/16/kimi-k3/" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">Kimi K3, and what we can still learn from the pelican benchmark</h3>
+                            <span class="article-source">Simon Willison</span>
+                        </div>
+                        
+                        <p class="article-summary">Chinese AI lab Moonshot AIannounced Kimi K3this morning, describing it as their “most capable model to date, with 2.8 trillion parameters”. It’s currently available via their website and API, but an open weight release is promised “by July 27, 2026”.[...1,113 words]</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-07-20</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.anthropic.com/" target="_blank" rel="noopener" class="article-card">
+                        <div class="article-header">
+                            <h3 class="article-title">Essays</h3>
+                            <span class="article-source">Dario Amodei</span>
+                        </div>
+                        
+                        <p class="article-summary">Dario Amodei is the CEO ofAnthropic, a public benefit corporation dedicated to building AI systems that are steerable, interpretable and safe....More</p>
+                        
+                        <div class="article-meta">
+                            <span class="article-date">📅 2026-07-20</span>
+                            
+                            <span class="read-more">阅读全文 →</span>
+                        </div>
+                    </a>
+                    
+                </div>
+            </section>
+            
+            
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">
+                AI Daily Brief · 每日 AI 资讯聚合
+            </p>
+            <p class="footer-text" style="margin-top: 0.5rem; font-size: 0.75rem;">
+                生成于 2026-07-20 08:01
+            </p>
+        </div>
+    </footer>
+
+    <button class="scroll-top" onclick="scrollToTop()" id="scrollTop">↑</button>
+
+    <script>
+        // Scroll to top button
+        const scrollTopBtn = document.getElementById('scrollTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+        
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Add stagger animation to cards
+        document.querySelectorAll('.article-card').forEach((card, index) => {
+            card.style.animationDelay = `${index * 0.05}s`;
+        });
+    </script>
+</body>
+</html>
